@@ -26,8 +26,9 @@ public class PolicyDetails {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address")
-    private String address;
+    @ManyToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     //TODO
 //    private User user;
@@ -84,11 +85,11 @@ public class PolicyDetails {
         this.email = email;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 }

@@ -101,10 +101,12 @@ CREATE TABLE IF NOT EXISTS `policy_details`
     `picture`      blob DEFAULT NULL,
     `phone_number` int(10)     NOT NULL,
     `email`        varchar(20) NOT NULL,
-    `address`      varchar(70) NOT NULL,
+    `address_id`   int(11)     NOT NULL,
     `user_id`      int(11)     NOT NULL,
     PRIMARY KEY (`id`),
     KEY `policy_details_user_details_id_fk` (`user_id`),
+    KEY `policy_details_addresses_id_fk` (`address_id`),
+    CONSTRAINT `policy_details_addresses_id_fk` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
     CONSTRAINT `policy_details_user_details_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`id`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = latin1;
@@ -205,5 +207,3 @@ CREATE TABLE IF NOT EXISTS `user_details`
     ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE = IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS = IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
-/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
