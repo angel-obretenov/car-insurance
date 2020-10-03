@@ -30,6 +30,8 @@ public class UserDetails {
     @Column(name = "age")
     private Integer age;
 
+    public UserDetails() {
+    }
 
     public Integer getId() {
         return id;

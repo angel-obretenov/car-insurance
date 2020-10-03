@@ -14,6 +14,9 @@ public class Address {
     @Column(name = "address")
     private String address;
 
+    public Address() {
+    }
+
     public Integer getId() {
         return id;
     }

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class PolicyDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -30,8 +30,9 @@ public class PolicyDetails {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    //TODO
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserDetails user;
 
 
     public PolicyDetails() {
@@ -91,5 +92,13 @@ public class PolicyDetails {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public UserDetails getUser() {
+        return user;
+    }
+
+    public void setUser(UserDetails user) {
+        this.user = user;
     }
 }

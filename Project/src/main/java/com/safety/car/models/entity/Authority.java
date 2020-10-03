@@ -15,6 +15,9 @@ public class Authority {
     @Column(name = "authority")
     String role;
 
+    public Authority() {
+    }
+
     public String getUsername() {
         return username;
     }
