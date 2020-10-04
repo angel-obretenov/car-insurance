@@ -10,10 +10,10 @@ public class Authority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "username")
-    String username;
+    private String username;
 
     @Column(name = "authority")
-    String role;
+    private String role;
 
     public Authority() {
     }

@@ -9,7 +9,7 @@ public class PolicyDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "start_date")
     private String startDate;

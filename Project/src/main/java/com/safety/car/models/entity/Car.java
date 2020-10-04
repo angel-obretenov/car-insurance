@@ -9,7 +9,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "brand")
     private String brand;
@@ -18,7 +18,7 @@ public class Car {
     private String model;
 
     @Column(name = "cubic_capacity")
-    private int cubicCapacity;
+    private Integer cubicCapacity;
 
     @Column(name = "registration_date")
     private String registrationDate;

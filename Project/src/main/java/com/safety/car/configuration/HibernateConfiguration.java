@@ -22,10 +22,10 @@ public class HibernateConfiguration {
     private final String dbPassword;
 
     public HibernateConfiguration(Environment environment) {
-        dbDriverClassName = environment.getProperty("spring.datasource.driverClassName");
-        dbUrl = environment.getProperty("spring.datasource.url");
-        dbUsername = environment.getProperty("spring.datasource.username");
-        dbPassword = environment.getProperty("spring.datasource.password");
+        dbDriverClassName = environment.getProperty("database.driverClassName");
+        dbUrl = environment.getProperty("database.url");
+        dbUsername = environment.getProperty("database.username");
+        dbPassword = environment.getProperty("database.password");
     }
 
     @Bean

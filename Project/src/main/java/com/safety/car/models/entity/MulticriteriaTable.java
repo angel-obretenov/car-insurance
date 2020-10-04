@@ -3,7 +3,7 @@ package com.safety.car.models.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "multicriteria_table")
+@Table(name = "multicriteria_range")
 public class MulticriteriaTable {
 
     @Id
