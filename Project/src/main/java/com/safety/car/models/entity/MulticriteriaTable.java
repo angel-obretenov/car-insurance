@@ -23,8 +23,19 @@ public class MulticriteriaTable {
     @Column(name = "car_age_max")
     private Integer carMaxAge;
 
+    @Column(name = "base_amount")
+    private Double baseAmount;
+
     public Integer getId() {
         return id;
+    }
+
+    public Double getBaseAmount() {
+        return baseAmount;
+    }
+
+    public void setBaseAmount(Double baseAmount) {
+        this.baseAmount = baseAmount;
     }
 
     public void setId(Integer id) {

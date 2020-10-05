@@ -23,6 +23,9 @@ public class Car {
     @Column(name = "registration_date")
     private String registrationDate;
 
+    @Column(name = "driver_age")
+    private Integer driversAge;
+
     @Column(name = "has_accidents")
     private boolean hasAccidents;
 
@@ -32,11 +35,11 @@ public class Car {
     public Car() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,11 +59,11 @@ public class Car {
         this.model = model;
     }
 
-    public int getCubicCapacity() {
+    public Integer getCubicCapacity() {
         return cubicCapacity;
     }
 
-    public void setCubicCapacity(int cubicCapacity) {
+    public void setCubicCapacity(Integer cubicCapacity) {
         this.cubicCapacity = cubicCapacity;
     }
 
@@ -70,6 +73,14 @@ public class Car {
 
     public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Integer getDriversAge() {
+        return driversAge;
+    }
+
+    public void setDriversAge(Integer driversAge) {
+        this.driversAge = driversAge;
     }
 
     public boolean isHasAccidents() {
