@@ -1,8 +1,6 @@
 package com.safety.car.repositories;
 
-import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.MulticriteriaTable;
-import com.safety.car.models.entity.UserDetails;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,7 +20,7 @@ public class MulticriteriaRepositoryImpl implements MulticriteriaRepository {
 
     @Override
     public Double getByCCandAge(int cc, int age) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<MulticriteriaTable> query = session.createQuery("FROM MulticriteriaTable " +
                     "WHERE :cc BETWEEN ccMin AND ccMax AND :age BETWEEN carMinAge AND carMaxAge");
             query.setParameter("cc", cc);

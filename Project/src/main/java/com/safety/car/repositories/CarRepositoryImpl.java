@@ -56,7 +56,7 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public void update(Car car) {
-        try(Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
 
             session.update(car);

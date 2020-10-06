@@ -1,10 +1,10 @@
-package com.safety.car.repositories.interfaces;
+package com.safety.car.services.interfaces;
 
 import com.safety.car.models.entity.UserDetails;
 
 import java.util.List;
 
-public interface UserDetailsRepository {
+public interface UserDetailsService {
 
     List<UserDetails> getAll();
 
@@ -13,6 +13,4 @@ public interface UserDetailsRepository {
     void create(UserDetails userDetails);
 
     void update(UserDetails userDetails);
-
-    boolean emailExists(String email);
 }

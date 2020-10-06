@@ -9,7 +9,10 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+
+import static java.lang.String.format;
 
 @Repository
 public class UserDetailsRepositoryImpl implements UserDetailsRepository {
@@ -21,21 +24,26 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
     }
 
     @Override
-    public UserDetails getById(int id) {
-        try (Session session = sessionFactory.openSession()) {
-            Query<UserDetails> query = session.createQuery("FROM UserDetails WHERE :id = id", UserDetails.class);
-            query.setParameter("id", id);
-
-            return query.list().get(0);
-        }
-    }
-
-    @Override
     public List<UserDetails> getAll() {
         try (Session session = sessionFactory.openSession()) {
             Query<UserDetails> query = session.createQuery("FROM UserDetails", UserDetails.class);
 
             return query.list();
+        }
+    }
+
+    @Override
+    public UserDetails getById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<UserDetails> query = session.createQuery("FROM UserDetails WHERE :id = id", UserDetails.class);
+            query.setParameter("id", id);
+
+            if (query.list().isEmpty()) {
+                throw new EntityNotFoundException(
+                        format("User with id: %d, was not found!", id));
+            }
+
+            return query.list().get(0);
         }
     }
 
@@ -55,5 +63,12 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
             session.update(userDetails);
             tx.commit();
         }
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return getAll()
+                .stream()
+                .anyMatch(e -> e.getEmail().equalsIgnoreCase(email));
     }
 }

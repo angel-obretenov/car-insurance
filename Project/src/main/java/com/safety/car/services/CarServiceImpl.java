@@ -53,8 +53,6 @@ public class CarServiceImpl implements CarService {
         carRepository.update(car);
     }
 
-
-
     private void isAgeValid(Car car) {
         int driversAge = car.getDriversAge();
         if (driversAge < 18 || driversAge > 65) {
@@ -62,9 +60,9 @@ public class CarServiceImpl implements CarService {
         }
     }
 
-    private double calculatePremium(int id){
+    private double calculatePremium(int id) {
         double totalPremium = 0;
-        Car car  = carRepository.getById(id);
+        Car car = carRepository.getById(id);
         totalPremium = totalPremium + multicriteriaRepository.getByCCandAge(car.getCubicCapacity(), car.getDriversAge());
 
         //adding 20% if accidents = true
