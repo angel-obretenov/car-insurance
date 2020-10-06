@@ -11,6 +11,8 @@ public interface CarService {
 
     Double getTotalPremiumByCarId(int id);
 
+    Double simulateOffer(Car car);
+
     void create(Car car);
 
     void update(Car car);

@@ -13,4 +13,6 @@ public interface CarRepository {
     void create(Car car);
 
     void update(Car car);
+
+    int simulateOffer(Car car);
 }

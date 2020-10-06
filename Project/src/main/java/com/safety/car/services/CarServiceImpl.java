@@ -39,6 +39,13 @@ public class CarServiceImpl implements CarService {
         return calculatePremium(id);
     }
 
+
+    @Override
+    public Double simulateOffer(Car car) {
+        int id = carRepository.simulateOffer(car);
+        return getTotalPremiumByCarId(id);
+    }
+
     @Override
     public void create(Car car) {
         isAgeValid(car);

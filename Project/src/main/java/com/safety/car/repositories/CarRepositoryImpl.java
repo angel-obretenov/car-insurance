@@ -63,4 +63,16 @@ public class CarRepositoryImpl implements CarRepository {
             tx.commit();
         }
     }
+
+    @Override
+    public int simulateOffer(Car car) {
+        try (Session session = sessionFactory.openSession()) {
+
+            session.save(car);
+            Query<Car> query = session.createQuery("FROM Car ORDER BY id DESC", Car.class);
+            query.setMaxResults(1);
+
+            return query.list().get(0).getId();
+        }
+    }
 }
