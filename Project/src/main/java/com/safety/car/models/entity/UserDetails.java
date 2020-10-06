@@ -27,9 +27,6 @@ public class UserDetails {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @Column(name = "age")
-    private Integer age;
-
     public UserDetails() {
     }
 
@@ -79,13 +76,5 @@ public class UserDetails {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 }

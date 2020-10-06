@@ -34,7 +34,6 @@ public class PolicyDetails {
     @JoinColumn(name = "user_id")
     private UserDetails user;
 
-
     public PolicyDetails() {
     }
 
