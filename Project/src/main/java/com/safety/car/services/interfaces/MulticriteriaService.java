@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface MulticriteriaService {
 
-
-    Double getByCCandAge(int cc, int age);
+    Double getByCCAndAge(int cc, int age);
 }

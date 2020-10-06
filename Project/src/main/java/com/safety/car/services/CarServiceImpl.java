@@ -63,7 +63,7 @@ public class CarServiceImpl implements CarService {
     private double calculatePremium(int id) {
         double totalPremium = 0;
         Car car = carRepository.getById(id);
-        totalPremium = totalPremium + multicriteriaRepository.getByCCandAge(car.getCubicCapacity(), car.getDriversAge());
+        totalPremium = totalPremium + multicriteriaRepository.getByCCAndAge(car.getCubicCapacity(), car.getDriversAge());
 
         //adding 20% if accidents = true
         if (car.isHasAccidents()) totalPremium = totalPremium + totalPremium * 0.2;

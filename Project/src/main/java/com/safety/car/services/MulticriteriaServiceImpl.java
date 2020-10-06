@@ -15,7 +15,7 @@ public class MulticriteriaServiceImpl implements MulticriteriaService {
     }
 
     @Override
-    public Double getByCCandAge(int cc, int age) {
-        return multicriteriaRepository.getByCCandAge(cc, age);
+    public Double getByCCAndAge(int cc, int age) {
+        return multicriteriaRepository.getByCCAndAge(cc, age);
     }
 }

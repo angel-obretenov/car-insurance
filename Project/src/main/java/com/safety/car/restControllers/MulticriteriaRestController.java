@@ -20,7 +20,7 @@ public class MulticriteriaRestController {
     @GetMapping
     public Double getByCcAndAge(@RequestParam int cc, @RequestParam int age) {
         try {
-            return multicriteriaService.getByCCandAge(cc, age);
+            return multicriteriaService.getByCCAndAge(cc, age);
         } catch (Exception e) {
             return 0.0;
         }
