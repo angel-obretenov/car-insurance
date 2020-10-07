@@ -48,6 +48,21 @@ public class AddressRepositoryImpl implements AddressRepository {
     }
 
     @Override
+    public Address getById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Address> query = session.createQuery("From Address where :id = id", Address.class);
+            query.setParameter("id", id);
+
+            if (query.list().isEmpty()) {
+                throw new NotFoundException(
+                        format("Address with id: %s, was not found!", id));
+            }
+
+            return query.list().get(0);
+        }
+    }
+
+    @Override
     public void createAddress(Address address) {
         try (Session session = sessionFactory.openSession()) {
 

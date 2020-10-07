@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.safety.car.services.interfaces.ServiceConstants.DRIVER_AGE_ERROR;
 import static java.lang.String.format;
 
 @Service
@@ -63,7 +64,7 @@ public class CarServiceImpl implements CarService {
     private void isAgeValid(Car car) {
         int driversAge = car.getDriversAge();
         if (driversAge < 18 || driversAge > 65) {
-            throw new AgeException(format("Drivers age is %d, it should be between 18 and 65!", driversAge));
+            throw new AgeException(format(DRIVER_AGE_ERROR, driversAge));
         }
     }
 

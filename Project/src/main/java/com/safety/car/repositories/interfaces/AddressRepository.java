@@ -10,6 +10,8 @@ public interface AddressRepository {
 
     Address findByName(String addressName);
 
+    Address getById(int id);
+
     void createAddress(Address address);
 
     void updateAddress(Address address);

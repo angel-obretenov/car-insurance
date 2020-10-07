@@ -34,7 +34,19 @@ public class PolicyDetails {
     @JoinColumn(name = "user_id")
     private UserDetails user;
 
+    @ManyToOne
+    @JoinColumn(name = "car_id")
+    private Car car;
+
     public PolicyDetails() {
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public int getId() {

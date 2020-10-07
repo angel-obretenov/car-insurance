@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.safety.car.services.interfaces.ServiceConstants.EMAIL_CHANGE_REJECTION;
+import static com.safety.car.services.interfaces.ServiceConstants.*;
 import static java.lang.String.format;
 
 @Service
@@ -36,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void create(UserDetails userDetails) {
         if (userRepository.emailExists(userDetails.getEmail())) {
             throw new DuplicateException(
-                    format("User with email: %s, already exists", userDetails.getEmail()));
+                    format(USER_EMAIL_EXISTS, userDetails.getEmail()));
         }
 
         userRepository.create(userDetails);
@@ -47,7 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserDetails oldUser = getById(userDetails.getId());
 
         if (!oldUser.getEmail().equals(userDetails.getEmail())) {
-            throw new UnauthorizedException("Cannot change email of the user!");
+            throw new UnauthorizedException(EMAIL_CHANGE_REJECTION);
         }
 
         userRepository.update(userDetails);
