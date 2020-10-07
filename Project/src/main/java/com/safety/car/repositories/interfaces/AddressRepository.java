@@ -8,8 +8,11 @@ public interface AddressRepository {
 
     List<Address> getAll();
 
+    Address findByName(String addressName);
+
     void createAddress(Address address);
 
     void updateAddress(Address address);
 
+    void checkIfNeedsToBeSaved(String addressName);
 }
