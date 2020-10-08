@@ -5,7 +5,6 @@ import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.repositories.interfaces.AddressRepository;
 import com.safety.car.services.interfaces.CarService;
 import com.safety.car.services.interfaces.GenericUtilityService;
 import com.safety.car.services.interfaces.UserDetailsService;
@@ -21,14 +20,14 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 @Component
-public class PolicyHelper {
+public class Helper {
 
     private final GenericUtilityService<Address> addressService;
     private final UserDetailsService userService;
     private final CarService carService;
 
     @Autowired
-    public PolicyHelper(GenericUtilityService<Address> addressService, UserDetailsService userService, CarService carService) {
+    public Helper(GenericUtilityService<Address> addressService, UserDetailsService userService, CarService carService) {
         this.addressService = addressService;
         this.userService = userService;
         this.carService = carService;

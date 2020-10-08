@@ -3,7 +3,7 @@ package com.safety.car.restControllers;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.PolicyDetailsService;
-import com.safety.car.utils.mappers.PolicyHelper;
+import com.safety.car.utils.mappers.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,11 +14,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/policies")
 public class PolicyDetailsRestController {
-    private final PolicyHelper policyHelper;
+    private final Helper policyHelper;
     private final PolicyDetailsService policyDetailsService;
 
     @Autowired
-    public PolicyDetailsRestController(PolicyHelper policyHelper, PolicyDetailsService policyDetailsService) {
+    public PolicyDetailsRestController(Helper policyHelper, PolicyDetailsService policyDetailsService) {
         this.policyHelper = policyHelper;
         this.policyDetailsService = policyDetailsService;
     }

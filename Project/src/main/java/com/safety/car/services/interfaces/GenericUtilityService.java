@@ -6,4 +6,6 @@ public interface GenericUtilityService<T> {
     List<T> getAll();
 
     T getById(Integer id);
+
+
 }

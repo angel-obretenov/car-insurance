@@ -11,11 +11,13 @@ public class Car {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "brand")
-    private String brand;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private Brand brand;
 
-    @Column(name = "model")
-    private String model;
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private Model model;
 
     @Column(name = "cubic_capacity")
     private Integer cubicCapacity;
@@ -43,19 +45,19 @@ public class Car {
         this.id = id;
     }
 
-    public String getBrand() {
+    public Brand getBrand() {
         return brand;
     }
 
-    public void setBrand(String brand) {
+    public void setBrand(Brand brand) {
         this.brand = brand;
     }
 
-    public String getModel() {
+    public Model getModel() {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(Model model) {
         this.model = model;
     }
 
