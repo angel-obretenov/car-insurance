@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Basic -->
     <meta charset="utf-8">
@@ -15,24 +15,24 @@
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon"/>
-    <link rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+    <link th:href="@{/images/favicon.ico}" rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon"/>
+    <link th:href="/images/apple-touch-icon.png" rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="../static/css/bootstrap.min.css">
     <!-- Site CSS -->
-    <link rel="stylesheet" href="../static/style.css">
+    <link th:href="@{/style.css}" rel="stylesheet" href="../static/style.css">
     <!-- Colors CSS -->
-    <link rel="stylesheet" href="../static/css/colors.css">
+    <link th:href="@{/css/colors.css}" rel="stylesheet" href="../static/css/colors.css">
     <!-- ALL VERSION CSS -->
-    <link rel="stylesheet" href="../static/css/versions.css">
+    <link th:href="@{/css/versions.css}" rel="stylesheet" href="../static/css/versions.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="../static/css/responsive.css">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet" href="../static/css/responsive.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../static/css/custom.css">
+    <link th:href="@{/css/custom.css}" rel="stylesheet" href="../static/css/custom.css">
 
     <!-- Modernizer for Portfolio -->
-    <script src="../static/js/modernizer.js"></script>
+    <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
 
     <!--[if lt IE 9]>
     <script src="../static/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -59,7 +59,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img src="../static/images/logos/logo.png" alt="image"></a>
+                <a class="navbar-brand" href="index.html"><img th:src="@{/images/logos/logo.png}" src="../static/images/logos/logo.png" alt="image"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -119,7 +119,7 @@
         <div id="da-thumbs" class="da-thumbs portfolio">
             <div class="post-media_g pitem item-w1 item-h1 cat1">
                 <a href="../static/uploads/home_01.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_01.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_01.jpg}" src="../static/uploads/home_01.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -127,7 +127,7 @@
             </div>
             <div class="post-media_g pitem item-w1 item-h1 cat2">
                 <a href="../static/uploads/home_02.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_02.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_02.jpg}" src="../static/uploads/home_02.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -135,7 +135,7 @@
             </div>
             <div class="post-media_g pitem item-w1 item-h1 cat1">
                 <a href="../static/uploads/home_03.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_03.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_03.jpg}" src="../static/uploads/home_03.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -144,7 +144,7 @@
 
             <div class="post-media_g pitem item-w1 item-h1 cat3">
                 <a href="../static/uploads/home_04.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_04.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_04.jpg}" src="../static/uploads/home_04.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -152,7 +152,7 @@
             </div>
             <div class="post-media_g pitem item-w1 item-h1 cat2">
                 <a href="../static/uploads/home_05.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_05.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_05.jpg}" src="../static/uploads/home_05.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -160,7 +160,7 @@
             </div>
             <div class="post-media_g pitem item-w1 item-h1 cat1">
                 <a href="../static/uploads/home_06.jpg" data-rel="prettyPhoto[gal]">
-                    <img src="../static/uploads/home_06.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/home_06.jpg}" src="../static/uploads/home_06.jpg" alt="" class="img-responsive">
                     <div>
                         <i class="flaticon-unlink"></i>
                     </div>
@@ -192,7 +192,7 @@
 
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
                             <h4>James Fernando <small>- Manager of Racer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -207,7 +207,7 @@
                                 praising pain was born and I will give you completed.</p>
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
                             <h4>Jacques Philips <small>- Designer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -222,7 +222,7 @@
                                 pleasure itself, because it is very pursue pleasure. </p>
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
                             <h4>Venanda Mercy <small>- Newyork City</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -236,7 +236,7 @@
                                 skilled, and experienced & professional team.</p>
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
                             <h4>James Fernando <small>- Manager of Racer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -251,7 +251,7 @@
                                 praising pain was born and I will give you completed.</p>
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
                             <h4>Jacques Philips <small>- Designer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -266,7 +266,7 @@
                                 pleasure itself, because it is very pursue pleasure. </p>
                         </div>
                         <div class="testi-meta">
-                            <img src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
                             <h4>Venanda Mercy <small>- Newyork City</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -283,7 +283,7 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="widget clearfix">
                     <div class="widget-title">
-                        <img src="../static/images/logos/logo-realestate.png" alt="">
+                        <img th:src="@{/images/logos/logo-realestate.png}" src="../static/images/logos/logo-realestate.png" alt="">
                     </div>
                     <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus
                         bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis
@@ -364,14 +364,14 @@
 <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
 <!-- ALL JS FILES -->
-<script src="../static/js/all.js"></script>
+<script th:src="@{/js/all.js}" src="../static/js/all.js"></script>
 <!-- ALL PLUGINS -->
-<script src="../static/js/custom.js"></script>
-<script src="../static/js/portfolio.js"></script>
-<script src="../static/js/hoverdir.js"></script>
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
+<script th:src="@{/js/portfolio.js}" src="../static/js/portfolio.js"></script>
+<script th:src="@{/js/hoverdir.js}" src="../static/js/hoverdir.js"></script>
+<script  src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
-<script src="../static/js/map.js"></script>
+<script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
 
 </body>
 </html>
