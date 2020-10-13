@@ -1576,7 +1576,7 @@ hr.invis1 {
     position: relative;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
-    /*background: url("../static/uploads/design.jpg") no-repeat;*/
+    background: url("../static/uploads/design.jpg") no-repeat;
 }
 
 
