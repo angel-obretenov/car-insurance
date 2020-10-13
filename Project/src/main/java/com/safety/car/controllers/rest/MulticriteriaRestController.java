@@ -1,4 +1,4 @@
-package com.safety.car.restControllers;
+package com.safety.car.controllers.rest;
 
 import com.safety.car.services.interfaces.MulticriteriaService;
 import org.springframework.beans.factory.annotation.Autowired;

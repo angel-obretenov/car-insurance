@@ -1,4 +1,4 @@
-package com.safety.car.restControllers;
+package com.safety.car.controllers.rest;
 
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.PolicyDetails;

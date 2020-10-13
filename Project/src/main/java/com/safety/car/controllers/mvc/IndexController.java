@@ -1,4 +1,4 @@
-package com.safety.car.controllers;
+package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.entity.Address;
@@ -19,7 +19,7 @@ import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
 @RequestMapping("/index")
-public class CarController {
+public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
     private final GenericUtilityService<Address> addressService;
@@ -27,7 +27,7 @@ public class CarController {
     private final ModelService modelService;
 
     @Autowired
-    public CarController(CarService carService, PolicyDetailsService policyDetailsService, GenericUtilityService<Address> addressService, BrandService brandService, ModelService modelService) {
+    public IndexController(CarService carService, PolicyDetailsService policyDetailsService, GenericUtilityService<Address> addressService, BrandService brandService, ModelService modelService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
         this.addressService = addressService;
@@ -70,5 +70,4 @@ public class CarController {
 
         return "index";
     }
-
 }

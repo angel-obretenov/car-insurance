@@ -59,16 +59,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img th:src="@{/images/logos/logo.png}" src="../static/images/logos/logo.png" alt="image"></a>
+                <a class="navbar-brand" th:href="@{/index}"><img th:src="@{/images/logos/logo.png}"
+                                                                 src="../static/images/logos/logo.png" alt="image"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a class="active" href="about.html">About us </a></li>
-                    <li><a href="service.html">Service</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="properties.html">Properties</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a th:href="@{/index}">Home</a></li>
+                    <li><a class="active" th:href="@{/about}">About us </a></li>
+                    <li><a th:href="@{/service}">Service</a></li>
+                    <li><a th:href="@{/gallery}">Gallery</a></li>
+                    <li><a th:href="@{/properties}">Properties</a></li>
+                    <li><a th:href="@{/contact}">Contact</a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
@@ -112,7 +113,8 @@
             <div class="top-feature owl-carousel owl-theme">
                 <div class="item">
                     <div class="single-feature">
-                        <div class="icon"><img th:src="@{/uploads/icon-01.png}" src="../static/uploads/icon-01.png" class="img-responsive" alt=""></div>
+                        <div class="icon"><img th:src="@{/uploads/icon-01.png}" src="../static/uploads/icon-01.png"
+                                               class="img-responsive" alt=""></div>
                         <h4><a href="#">Full Furnished</a></h4>
                         <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,
                             maximus molestie nisi. </p>
@@ -120,7 +122,8 @@
                 </div>
                 <div class="item">
                     <div class="single-feature">
-                        <div class="icon"><img th:src="@{/uploads/icon-02.png}" src="../static/uploads/icon-02.png" class="img-responsive" alt=""></div>
+                        <div class="icon"><img th:src="@{/uploads/icon-02.png}" src="../static/uploads/icon-02.png"
+                                               class="img-responsive" alt=""></div>
                         <h4><a href="#">Living Inside a Nature</a></h4>
                         <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,
                             maximus molestie nisi.</p>
@@ -128,7 +131,8 @@
                 </div>
                 <div class="item">
                     <div class="single-feature">
-                        <div class="icon"><img th:src="@{/uploads/icon-03.png}" src="../static/uploads/icon-03.png" class="img-responsive" alt=""></div>
+                        <div class="icon"><img th:src="@{/uploads/icon-03.png}" src="../static/uploads/icon-03.png"
+                                               class="img-responsive" alt=""></div>
                         <h4><a href="#">Luxurious Fittings</a></h4>
                         <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,
                             maximus molestie nisi. </p>
@@ -136,7 +140,8 @@
                 </div>
                 <div class="item">
                     <div class="single-feature">
-                        <div class="icon"><img th:src="@{/uploads/icon-04.png}" src="../static/uploads/icon-04.png" class="img-responsive" alt=""></div>
+                        <div class="icon"><img th:src="@{/uploads/icon-04.png}" src="../static/uploads/icon-04.png"
+                                               class="img-responsive" alt=""></div>
                         <h4><a href="#">Non Stop Security</a></h4>
                         <p>Lorem Is a dummy Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at
                             nisl sit amet, maximus molestie nisi. </p>
@@ -150,7 +155,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="post-media wow fadeIn" style="visibility: visible; animation-name: fadeIn;">
-                    <img th:src="@{/uploads/about_bg.jpg}" src="../static/uploads/about_bg.jpg" alt="" class="img-responsive">
+                    <img th:src="@{/uploads/about_bg.jpg}" src="../static/uploads/about_bg.jpg" alt=""
+                         class="img-responsive">
                 </div><!-- end media -->
             </div>
             <div class="col-md-6">
@@ -193,7 +199,8 @@
 
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>James Fernando <small>- Manager of Racer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -208,7 +215,8 @@
                                 praising pain was born and I will give you completed.</p>
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>Jacques Philips <small>- Designer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -223,7 +231,8 @@
                                 pleasure itself, because it is very pursue pleasure. </p>
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>Venanda Mercy <small>- Newyork City</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -237,7 +246,8 @@
                                 skilled, and experienced & professional team.</p>
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>James Fernando <small>- Manager of Racer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -252,7 +262,8 @@
                                 praising pain was born and I will give you completed.</p>
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>Jacques Philips <small>- Designer</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -267,7 +278,8 @@
                                 pleasure itself, because it is very pursue pleasure. </p>
                         </div>
                         <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt="" class="img-responsive alignleft">
+                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
+                                 class="img-responsive alignleft">
                             <h4>Venanda Mercy <small>- Newyork City</small></h4>
                         </div>
                         <!-- end testi-meta -->
@@ -284,7 +296,8 @@
             <div class="col-md-4 col-sm-4 col-xs-12">
                 <div class="widget clearfix">
                     <div class="widget-title">
-                        <img th:src="@{/images/logos/logo-realestate.png}" src="../static/images/logos/logo-realestate.png" alt="">
+                        <img th:src="@{/images/logos/logo-realestate.png}"
+                             src="../static/images/logos/logo-realestate.png" alt="">
                     </div>
                     <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus
                         bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis
@@ -372,7 +385,7 @@
 <script th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
 <script th:src="@{/js/portfolio.js}" src="../static/js/portfolio.js"></script>
 <script th:src="@{/js/hoverdir.js}" src="../static/js/hoverdir.js"></script>
-<script  src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
 

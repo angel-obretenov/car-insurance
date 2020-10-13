@@ -1,4 +1,4 @@
-package com.safety.car.restControllers;
+package com.safety.car.controllers.rest;
 
 import com.safety.car.exceptions.DuplicateException;
 import com.safety.car.exceptions.NotFoundException;
