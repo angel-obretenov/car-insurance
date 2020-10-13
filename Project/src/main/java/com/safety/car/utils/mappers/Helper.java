@@ -1,13 +1,9 @@
 package com.safety.car.utils.mappers;
 
+import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
-import com.safety.car.models.entity.Address;
-import com.safety.car.models.entity.Car;
-import com.safety.car.models.entity.PolicyDetails;
-import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.CarService;
-import com.safety.car.services.interfaces.GenericUtilityService;
-import com.safety.car.services.interfaces.UserDetailsService;
+import com.safety.car.models.entity.*;
+import com.safety.car.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -67,4 +63,21 @@ public class Helper {
             e.printStackTrace();
         }
     }
+
+    public static Car carDtoToCar(CarDto dto, ModelService modelService, BrandService brandService) {
+        Car car = new Car();
+        Model model = modelService.getById(dto.getModelId());
+        Brand brand = brandService.getById(dto.getBrandId());
+
+        car.setBrand(brand);
+        car.setModel(model);
+        car.setCubicCapacity(dto.getCubicCapacity());
+        car.setRegistrationDate(dto.getRegistrationDate());
+        car.setDriversAge(dto.getDriversAge());
+        car.setHasAccidents(dto.isHasAccidents());
+        car.setActive(dto.isActive());
+
+        return car;
+    }
+
 }

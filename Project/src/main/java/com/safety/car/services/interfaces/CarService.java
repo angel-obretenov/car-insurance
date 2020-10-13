@@ -1,6 +1,9 @@
 package com.safety.car.services.interfaces;
 
+import com.safety.car.models.entity.Brand;
 import com.safety.car.models.entity.Car;
+import com.safety.car.repositories.interfaces.BrandRepository;
+import com.safety.car.repositories.interfaces.ModelRepository;
 
 import java.util.List;
 

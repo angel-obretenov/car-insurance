@@ -1,10 +1,14 @@
 package com.safety.car.services;
 
 import com.safety.car.exceptions.AgeException;
+import com.safety.car.models.entity.Brand;
 import com.safety.car.models.entity.Car;
 import com.safety.car.repositories.interfaces.CarRepository;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
+import com.safety.car.services.interfaces.BrandService;
 import com.safety.car.services.interfaces.CarService;
+import com.safety.car.services.interfaces.ModelService;
+import io.swagger.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
