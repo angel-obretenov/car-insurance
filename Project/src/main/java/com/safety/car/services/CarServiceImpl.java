@@ -1,20 +1,16 @@
 package com.safety.car.services;
 
 import com.safety.car.exceptions.AgeException;
-import com.safety.car.models.entity.Brand;
 import com.safety.car.models.entity.Car;
 import com.safety.car.repositories.interfaces.CarRepository;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
-import com.safety.car.services.interfaces.BrandService;
 import com.safety.car.services.interfaces.CarService;
-import com.safety.car.services.interfaces.ModelService;
-import io.swagger.models.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.safety.car.services.interfaces.ServiceConstants.DRIVER_AGE_ERROR;
+import static com.safety.car.utils.constants.service.ServiceConstants.DRIVER_AGE_ERROR;
 import static java.lang.String.format;
 
 @Service
@@ -79,7 +75,6 @@ public class CarServiceImpl implements CarService {
 
         //adding 20% if accidents = true
         if (car.isHasAccidents()) totalPremium = totalPremium + totalPremium * 0.2;
-
 
         //adding 5% if drivers age below 25
         if (car.getDriversAge() < 25) {

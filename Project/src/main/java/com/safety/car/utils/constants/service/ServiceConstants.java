@@ -1,4 +1,4 @@
-package com.safety.car.services.interfaces;
+package com.safety.car.utils.constants.service;
 
 public class ServiceConstants {
     public static final String EMAIL_CHANGE_REJECTION = "Cannot change email of the user!";
