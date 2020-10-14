@@ -28,7 +28,7 @@ public class UserMapperImpl implements UserMapper {
         user.setLastName(userCreateDto.getLastName());
         user.setPhoneNumber(userCreateDto.getPhoneNumber());
 
-        addressRepository.checkIfNeedsToBeSaved(userCreateDto.getAddressName());
+        addressRepository.createIfNotExist(userCreateDto.getAddressName());
         Address address = addressRepository.findByName(userCreateDto.getAddressName());
         user.setAddress(address);
 
@@ -43,7 +43,7 @@ public class UserMapperImpl implements UserMapper {
         user.setFirstName(userUpdateDto.getFirstName());
         user.setLastName(userUpdateDto.getLastName());
         user.setPhoneNumber(userUpdateDto.getPhoneNumber());
-        addressRepository.checkIfNeedsToBeSaved(userUpdateDto.getAddressName());
+        addressRepository.createIfNotExist(userUpdateDto.getAddressName());
         Address address = addressRepository.findByName(userUpdateDto.getAddressName());
         user.setAddress(address);
 

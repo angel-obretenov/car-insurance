@@ -81,7 +81,7 @@ public class AddressRepositoryImpl implements AddressRepository {
     }
 
     @Override
-    public void checkIfNeedsToBeSaved(String addressName) {
+    public void createIfNotExist(String addressName) {
         if (isNotSaved(addressName)) {
             var address = new Address();
             address.setAddress(addressName);

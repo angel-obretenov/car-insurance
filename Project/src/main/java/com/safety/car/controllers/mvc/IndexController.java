@@ -60,8 +60,6 @@ public class IndexController {
         if (action.equals("simulate")) {
             Car car = carDtoToCar(carDto, modelService, brandService);
             model.addAttribute("estimatedPrice", carService.simulateOffer(car));
-            double test = carService.simulateOffer(car);
-            System.out.println(test);
         }
 
         model.addAttribute("brands", brandService.getAll());

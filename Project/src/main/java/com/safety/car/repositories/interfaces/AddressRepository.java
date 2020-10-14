@@ -16,5 +16,5 @@ public interface AddressRepository {
 
     void updateAddress(Address address);
 
-    void checkIfNeedsToBeSaved(String addressName);
+    void createIfNotExist(String addressName);
 }

@@ -7,5 +7,4 @@ public interface GenericUtilityService<T> {
 
     T getById(Integer id);
 
-
 }

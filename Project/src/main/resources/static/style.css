@@ -445,7 +445,7 @@ body.realestate_version .social-links:hover a{
 }
 
 .header_style_01 .navbar-default .navbar-nav > li a.active {
-	background-color: #a8cf45;
+	background-color: #004d33;
 	color: #ffffff;
 	border-radius: 2px;
 }
@@ -557,7 +557,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option button
 	line-height: 43px;
 	width: 45px;
 	color: #fff;
-	background: #a8cf45;
+	background: #004d33;
 	border: none;
 	transition: all .3s ease-in-out;
 	border-radius: 2px;
@@ -594,7 +594,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
 	display: block;
 	width: 48px;
 	color: #fff;
-	background: #a8cf45;
+	background: #004d33;
 	border: 1px solid #fff;
 	border-left: none;
 	line-height: 40px;
@@ -1118,7 +1118,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
 }
 
 .top-feature .center .single-feature, .top-feature .single-feature:hover {
-    border-bottom-color: #a8cf45;
+    border-bottom-color: #004d33;
 }
 
 
@@ -1288,7 +1288,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
     position: absolute;
     top: 20px;
     right: 12px;
-	background: #a8cf45;
+	background: #004d33;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
@@ -1307,7 +1307,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
     z-index: 4;
     color: #fff;
     text-align: left;
-    background: #a8cf45;
+    background: #004d33;
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
@@ -1418,7 +1418,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
 
 .post-media {
     position: relative;
-	border: 8px solid #a8cf45;	
+	border: 8px solid #004d33;	
 }
 
 .post-media img {
@@ -1442,7 +1442,7 @@ body.realestate_version .header_style_01 .navbar-right > li.search-option form b
 }
 
 .hoverbutton {
-    background-color: #a8cf45;
+    background-color: #004d33;
     position: absolute;
     color: #1f1f1f !important;
     top: 48%;
@@ -2202,7 +2202,7 @@ select.mobile-device {
 
 .footer-links a:hover,
 .footer a:hover {
-    color: #a8cf45;
+    color: #004d33;
 }
 
 .footer-links li {
@@ -2342,7 +2342,7 @@ select.mobile-device {
 }
 
 .footer-distributed .footer-company-name a:hover{
-	color: #a8cf45;
+	color: #004d33;
 }
 
 
@@ -2366,7 +2366,7 @@ select.mobile-device {
 }
 
 .dmtop {
-    background-color: #a8cf45;
+    background-color: #004d33;
     z-index: 100;
     width: 50px;
     height: 50px;
@@ -2425,7 +2425,7 @@ select.mobile-device {
     right: 0;
     bottom: 0;
     left: 0;
-    background: #a8cf45;
+    background: #004d33;
     z-index: 11000;
     position: fixed;
     display: block;
@@ -2589,7 +2589,7 @@ select.mobile-device {
 }
 
 #breadcrumbs {
-	background: #a8cf45;
+	background: #004d33;
 	padding: 10px 20px;
     position: absolute;
     right: 0px;
@@ -2617,7 +2617,7 @@ select.mobile-device {
 	color: #ffffff;
 }
 #breadcrumbs:hover ul li a{
-	color: #a8cf45;
+	color: #004d33;
 }
 #breadcrumbs ul li:first-child::before {
 	display: none;
@@ -2651,7 +2651,7 @@ select.mobile-device {
 	display: block;
 	font-size: 28px;
 	color: #ffffff;	
-	background: #a8cf45;
+	background: #004d33;
 	width: 48px;
 	height: 48px;
 	line-height: 48px;
