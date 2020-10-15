@@ -31,6 +31,8 @@
     <link th:href="@{/css/responsive.css}" rel="stylesheet" href="../static/css/responsive.css">
     <!-- Custom CSS -->
     <link th:href="@{/css/custom.css}" rel="stylesheet" href="../static/css/custom.css">
+    <!--    Request Policy CSS-->
+    <link th:href="@{/css/policy.css}" rel="stylesheet" href="../static/css/policy.css">
 
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
@@ -110,60 +112,19 @@
 
 <div class="about-box">
     <div class="container">
-        <div class="section-title row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>OUR SERVICES</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non mi vitae risus blandit rutrum ac
-                    id arcu. Vivamus sodales metus id posuere pulvinar. In id arcu et purus vehicula euismod. Fusce eu
-                    nibh sit amet neque suscipit malesuada. </p>
-            </div><!-- end col -->
-        </div><!-- end title -->
-
-        <div class="row">
-            <div class="col-md-4 col-sm-4 col-sm-12">
-                <div class="single-services">
-                    <div class="single-services-img">
-                        <img th:src="@{/uploads/icon-01.png}" src="../static/uploads/icon-01.png" class="img-responsive"
-                             alt="">
-                    </div>
-                    <div class="single-services-desc">
-                        <h4><a href="#">Full Furnished</a></h4>
-                        <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam
-                            risus. Sed a tellus quis mi rhoncus dignissim.</p>
-                    </div>
-                    <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-sm-12">
-                <div class="single-services">
-                    <div class="single-services-img">
-                        <img th:src="@{/uploads/icon-02.png}" src="../static/uploads/icon-02.png" class="img-responsive"
-                             alt="">
-                    </div>
-                    <div class="single-services-desc">
-                        <h4><a href="#">Living Inside a Nature</a></h4>
-                        <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam
-                            risus. Sed a tellus quis mi rhoncus dignissim.</p>
-                    </div>
-                    <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-sm-12">
-                <div class="single-services">
-                    <div class="single-services-img">
-                        <img th:src="@{/uploads/icon-03.png}" src="../static/uploads/icon-03.png" class="img-responsive"
-                             alt="">
-                    </div>
-                    <div class="single-services-desc">
-                        <h4><a href="#">Luxurious Fittings</a></h4>
-                        <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam
-                            risus. Sed a tellus quis mi rhoncus dignissim.</p>
-                    </div>
-                    <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>
-                </div>
-            </div>
+        <div class="form-style-8">
+            <h2>Request Policy</h2>
+            <form th:action="@{/service}" th:object="${policy}" method="post">
+                <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}" placeholder="Start date"/>
+                <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}" placeholder="End date"/>
+                <input type="file" th:field="*{picture}" name="image" th:placeholder="#{attach.image}" placeholder="Image" />  <!--th:field="*{picture}" -->
+                <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
+                <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}" placeholder="Phone number"/>
+                <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}" placeholder="Postal address"/>
+                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>
+                <input type="button" value="Send Message"/>
+            </form>
         </div>
-
     </div>
 </div>
 
@@ -378,6 +339,14 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
+
+<script type="text/javascript">
+    //auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight)+"px";
+    }
+</script>
 
 </body>
 </html>
