@@ -26,4 +26,9 @@ public class ModelServiceImpl implements ModelService {
     public List<Model> getAll() {
         return modelRepository.getAll();
     }
+
+    @Override
+    public List<Model> getByBrandId(int id) {
+        return modelRepository.getByBrandId(id);
+    }
 }

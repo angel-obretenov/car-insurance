@@ -10,4 +10,6 @@ public interface ModelRepository {
 
     List<Model> getAll();
 
+    List<Model> getByBrandId(int id);
+
 }

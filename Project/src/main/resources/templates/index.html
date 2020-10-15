@@ -117,7 +117,7 @@
                     <form th:action="@{/index}" th:object="${carDto}" id="contactform1" class="row" method="post">
                         <fieldset class="row-fluid">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label for="brand_id"></label><select th:field="*{brandId}" name="select_service31"
+                                <label for="brand_id"></label><select th:field="*{brandId}"  name="select_service31"
                                                                          id="brand_id"
                                                                          class="selectpicker form-control"
                                                                          data-style="btn-white">
@@ -132,7 +132,7 @@
                                                                         class="selectpicker form-control"
                                                                         data-style="btn-white">
                                 <option selected value="-1">Select Model</option>
-                                <option th:each="model : ${models}" th:value="${model.id}"
+                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}" th:value="${model.id}"
                                         th:text="${model.name}"></option>
                             </select>
                             </div>

@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.safety.car.services.interfaces.ServiceConstants.EMAIL_CHANGE_REJECTION;
-import static com.safety.car.services.interfaces.ServiceConstants.*;
+
+import static com.safety.car.utils.constants.service.ServiceConstants.EMAIL_CHANGE_REJECTION;
+import static com.safety.car.utils.constants.service.ServiceConstants.USER_EMAIL_EXISTS;
 import static java.lang.String.format;
 
 @Service

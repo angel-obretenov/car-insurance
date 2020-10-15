@@ -9,4 +9,6 @@ public interface ModelService {
     Model getById(int id);
 
     List<Model> getAll();
+
+    List<Model> getByBrandId(int id);
 }

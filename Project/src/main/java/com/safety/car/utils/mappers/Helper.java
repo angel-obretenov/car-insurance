@@ -80,4 +80,25 @@ public class Helper {
         return car;
     }
 
+    public static PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto,
+                                                   UserDetailsService userService,
+                                                   CarService carService,
+                                                   GenericUtilityService<Address> addressService){
+        PolicyDetails policyDetails = new PolicyDetails();
+        Car car = carService.getById(dto.getCarId());
+        UserDetails user = userService.getById(dto.getUserDetailsId());
+        Address address = addressService.getById(dto.getAddressId());
+
+        policyDetails.setStartDate(dto.getStartDate());
+        policyDetails.setEndDate(dto.getEndDate());
+        policyDetails.setEmail(dto.getEmail());
+        policyDetails.setAddress(address);
+        policyDetails.setPicture(dto.getPath());
+        policyDetails.setPhoneNumber(dto.getPhoneNumber());
+        policyDetails.setUser(user);
+        policyDetails.setCar(car);
+
+        return policyDetails;
+    }
+
 }
