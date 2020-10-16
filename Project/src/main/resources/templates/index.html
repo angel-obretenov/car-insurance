@@ -61,12 +61,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" th:href="@{/index}"><img th:src="@{/images/logos/logo.png}"
-                                                                 src="../static/images/logos/logo.png" alt="image"></a>
+                <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logos/logo.png}"
+                                                            src="../static/images/logos/logo.png" alt="image"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a class="active" th:href="@{/index}">Home</a></li>
+                    <li><a class="active" th:href="@{/}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a th:href="@{/gallery}">Gallery</a></li>
@@ -114,14 +114,15 @@
         <div class="row">
             <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
                 <div class="contact_form">
-                    <h3><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK OFFER</h3>
-                    <form th:action="@{/index}" th:object="${carDto}" id="contactform1" class="row" method="post">
+                    <h3 th:text="'Hi, ' + ${principal}"><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK OFFER
+                    </h3>
+                    <form th:action="@{/}" th:object="${carDto}" id="contactform1" class="row" method="post">
                         <fieldset class="row-fluid">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label for="brand_id"></label><select th:field="*{brandId}"  name="select_service31"
-                                                                         id="brand_id"
-                                                                         class="selectpicker form-control"
-                                                                         data-style="btn-white">
+                                <label for="brand_id"></label><select th:field="*{brandId}" name="select_service31"
+                                                                      id="brand_id"
+                                                                      class="selectpicker form-control"
+                                                                      data-style="btn-white">
                                 <option selected value="-1">Select Brand</option>
                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
                                         th:text="${brand.name}"></option>
@@ -129,11 +130,12 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label for="model_id"></label><select th:field="*{modelId}" name="select_service1"
-                                                                        id="model_id"
-                                                                        class="selectpicker form-control"
-                                                                        data-style="btn-white">
+                                                                      id="model_id"
+                                                                      class="selectpicker form-control"
+                                                                      data-style="btn-white">
                                 <option selected value="-1">Select Model</option>
-                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}" th:value="${model.id}"
+                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}"
+                                        th:value="${model.id}"
                                         th:text="${model.name}"></option>
                             </select>
                             </div>
@@ -144,8 +146,8 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label for="reg_date"></label><input th:field="*{registrationDate}" type="date"
-                                                                   name="phone1" id="reg_date"
-                                                                   class="form-control" th:placeholder="#{car.reg}">
+                                                                     name="phone1" id="reg_date"
+                                                                     class="form-control" th:placeholder="#{car.reg}">
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label class="sr-only">Select Time</label>
@@ -182,7 +184,8 @@
                 <div class="big-tagline clearfix">
                     <h2>Insure your car</h2>
                     <p class="lead">With our car insurance company which is the best in the region. </p>
-                    <a data-scroll href="#static/gallery" class="btn btn-light btn-radius grd1 btn-brd">Request Policy</a>
+                    <a data-scroll th:href="@{/service}" href="/service" class="btn btn-light btn-radius grd1 btn-brd">Request
+                        Policy</a>
                 </div>
             </div>
         </div><!-- end row -->

@@ -18,7 +18,7 @@ import java.security.Principal;
 import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
-@RequestMapping("/index")
+@RequestMapping("/")
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
@@ -39,6 +39,11 @@ public class IndexController {
     public String getHomePage(Model model,
                               Principal principal) {
 
+        try {
+            model.addAttribute("principal", principal.getName());
+        } catch (NullPointerException e) {
+            model.addAttribute("principal", "Anonymous user");
+        }
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
         model.addAttribute("carDto", new CarDto());
@@ -55,6 +60,12 @@ public class IndexController {
 
         if (bindingResult.hasErrors()) {
             return "index";
+        }
+
+        try {
+            model.addAttribute("principal", principal.getName());
+        } catch (NullPointerException e) {
+            model.addAttribute("principal", "Anonymous user");
         }
 
         if (action.equals("simulate")) {

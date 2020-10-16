@@ -26,23 +26,23 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.dataSource = dataSource;
     }
 
-    // auth manager builder sets the logic for users, passwords and roles
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource);
-    }
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Bean
     public UserDetailsManager userDetailsManager() {
         var jdbcUserDetailsManager = new JdbcUserDetailsManager();
         jdbcUserDetailsManager.setDataSource(dataSource);
         return jdbcUserDetailsManager;
     }
+
+    // auth manager builder sets the logic for users, passwords and roles
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(dataSource);
+    }
+
+//    @Bean
+//    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     // http configuration which sets the application security behaviour
     //TODO still yet to configure the restricted access
@@ -59,7 +59,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/authenticate").permitAll()
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/", true)
+                .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/login?logout").permitAll()
                 .and()
