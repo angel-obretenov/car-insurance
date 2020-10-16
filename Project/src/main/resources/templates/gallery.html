@@ -16,7 +16,7 @@
 
     <!-- Site Icons -->
     <link th:href="@{/images/favicon.ico}" rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon"/>
-    <link th:href="/images/apple-touch-icon.png" rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+    <link th:href="@{/images/apple-touch-icon.png}" rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" href="../static/css/bootstrap.min.css">
@@ -70,6 +70,7 @@
                     <li><a class="active" th:href="@{/gallery}">Gallery</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
+                    <li><a th:href="@{/login}">Login</a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
@@ -367,7 +368,9 @@
 
             <div class="footer-right">
                 <form method="get" action="#">
-                    <input placeholder="Subscribe our newsletter.." name="search">
+                    <label>
+                        <input placeholder="Subscribe our newsletter.." name="search">
+                    </label>
                     <i class="fa fa-envelope-o"></i>
                 </form>
             </div>

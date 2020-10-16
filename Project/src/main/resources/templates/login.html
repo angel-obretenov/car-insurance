@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
     <!-- Basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,13 +30,13 @@
     <link th:href="@{/css/responsive.css}" rel="stylesheet" href="../static/css/responsive.css">
     <!-- Custom CSS -->
     <link th:href="@{/css/custom.css}" rel="stylesheet" href="../static/css/custom.css">
-    <!--    Request Policy CSS-->
-    <link th:href="@{/css/policy.css}" rel="stylesheet" href="../static/css/policy.css">
 
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
 
+
     <!--[if lt IE 9]>
+    //TODO MAYBE
     <script src="../static/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="../static/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -69,11 +68,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:href="@{/index}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
-                    <li><a class="active" th:href="@{/service}">Service</a></li>
+                    <li><a th:href="@{/service}">Service</a></li>
                     <li><a th:href="@{/gallery}">Gallery</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
+                    <li><a class="active" th:href="@{/login}">Login</a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
@@ -94,158 +93,58 @@
     </nav>
 </header>
 
-<div class="all-title-box">
+
+<ul class='slideshow'>
+    <li>
+        <span>Summer</span>
+    </li>
+    <li>
+        <span>Fall</span>
+    </li>
+    <li>
+        <span>Winter</span>
+    </li>
+    <li>
+        <span>Spring</span>
+    </li>
+</ul>
+<div class="parallax first-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h2>Service</h2>
-                <!-- Breadcrumbs -->
-                <nav id="breadcrumbs">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li>Service</li>
-                    </ul>
-                </nav>
+            <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
+                <div class="contact_form">
+                    <h3><i class="fa fa-envelope-o grd1 global-radius"></i> LOGIN TO OUR SITE</h3>
+                    <form method="post" th:action="@{/authenticate}" class="px-4 py-3">
+                        <div class="form-group">
+                            <label for="exampleDropdownFormEmail1">Email address</label>
+                            <input type="email" class="form-control" id="exampleDropdownFormEmail1"
+                                   placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleDropdownFormPassword1">Password</label>
+                            <input type="password" class="form-control" id="exampleDropdownFormPassword1"
+                                   placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                                <label class="form-check-label" for="dropdownCheck">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <button type="submit" style="background-color: #004d33" class="btn btn-primary">Sign in</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <div>
+                        <a class="dropdown-item" href="#">New around here? Sign up</a>
+                    </div>
+                    <a class="dropdown-item" href="#">Forgot password?</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<div class="about-box">
-    <div class="container">
-        <div class="form-style-8">
-            <h2>Request Policy</h2>
-            <form th:action="@{/service}" th:object="${policy}" method="post">
-                <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
-                       placeholder="Start date"/>
-                <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
-                       placeholder="End date"/>
-                <input type="file" th:field="*{picture}" name="image" th:placeholder="#{attach.image}"
-                       placeholder="Image"/>  <!--th:field="*{picture}" -->
-                <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
-                <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
-                       placeholder="Phone number"/>
-                <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}"
-                       placeholder="Postal address"/>
-                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>
-                <input type="button" value="Send Message"/>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div id="testimonials" class="section lb">
-    <div class="container">
-        <div class="section-title row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>Happy Customers</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non
-                    aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-            </div><!-- end col -->
-        </div><!-- end title -->
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="testi-carousel owl-carousel owl-theme">
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly
-                                skilled, and experienced & professional team.</p>
-
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>James Fernando <small>- Manager of Racer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and
-                                praising pain was born and I will give you completed.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Jacques Philips <small>- Designer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i
-                                    class="fa fa-quote-right"></i></h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids
-                                pleasure itself, because it is very pursue pleasure. </p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Venanda Mercy <small>- Newyork City</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly
-                                skilled, and experienced & professional team.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>James Fernando <small>- Manager of Racer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and
-                                praising pain was born and I will give you completed.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Jacques Philips <small>- Designer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i
-                                    class="fa fa-quote-right"></i></h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids
-                                pleasure itself, because it is very pursue pleasure. </p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Venanda Mercy <small>- Newyork City</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div><!-- end testimonial -->
-                </div><!-- end carousel -->
-            </div><!-- end col -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</div><!-- end section -->
+</div><!-- end row -->
 
 <footer class="footer">
     <div class="container">
@@ -345,14 +244,8 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
-
-<script type="text/javascript">
-    //auto expand textarea
-    function adjust_textarea(h) {
-        h.style.height = "20px";
-        h.style.height = (h.scrollHeight) + "px";
-    }
-</script>
+<!--<script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>-->
+<script th:src="@{/js/testing.js}"></script>
 
 </body>
 </html>
