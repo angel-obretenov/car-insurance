@@ -62,12 +62,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" th:href="@{/index}"><img th:src="@{/images/logos/logo.png}"
-                                                                 src="../static/images/logos/logo.png" alt="image"></a>
+                <a class="navbar-brand" th:href="@{/}"><img th:src="@{/images/logos/logo.png}"
+                                                            src="../static/images/logos/logo.png" alt="image"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a th:href="@{/index}">Home</a></li>
+                    <li><a th:href="@{/}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
                     <li><a class="active" th:href="@{/service}">Service</a></li>
                     <li><a th:href="@{/gallery}">Gallery</a></li>
@@ -113,23 +113,41 @@
 
 <div class="about-box">
     <div class="container">
-        <div class="form-style-8">
-            <h2>Request Policy</h2>
-            <form th:action="@{/service}" th:object="${policy}" method="post">
-                <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
-                       placeholder="Start date"/>
-                <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
-                       placeholder="End date"/>
-                <input type="file" th:field="*{picture}" name="image" th:placeholder="#{attach.image}"
-                       placeholder="Image"/>  <!--th:field="*{picture}" -->
-                <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
-                <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
-                       placeholder="Phone number"/>
-                <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}"
-                       placeholder="Postal address"/>
-<!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
-                <input type="button" value="Request policy"/>
-            </form>
+        <div class="row">
+                <ul th:object="${session.carDto}" class="list-group col">
+                    <li th:text="#{car.brand.name}" class="list-group-item">Cras justo odio</li>
+                    <li th:text="#{car.model.name}" class="list-group-item">Dapibus ac facilisis in</li>
+                    <li th:text="#{car.cubics}" class="list-group-item">Morbi leo risus</li>
+                    <li th:text="#{car.reg}" class="list-group-item">Porta ac consectetur ac
+                    </li>
+                    <li th:text="#{car.driver.age}" class="list-group-item">Vestibulum at eros</li>
+                </ul>
+                <ul th:object="${session.carDto}" class="list-group col">
+                    <li th:each="brand : ${brands}" th:if="${brand.id == session.carDto.brandId}" th:text="${brand.name}" class="list-group-item">Cras justo odio</li>
+                    <li th:each="model : ${models}" th:if="${model.id == session.carDto.modelId}" th:text="${model.name}" class="list-group-item">Dapibus ac facilisis in</li>
+                    <li th:text="${session.carDto.cubicCapacity}" class="list-group-item">Morbi leo risus</li>
+                    <li th:text="${session.carDto.registrationDate}" class="list-group-item">Porta ac consectetur ac
+                    </li>
+                    <li th:text="${session.carDto.driversAge}" class="list-group-item">Vestibulum at eros</li>
+                </ul>
+            <div class="form-style-8 col">
+                <h2>Request Policy</h2>
+                <form th:action="@{/service}" th:object="${policy}" method="post">
+                    <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
+                           placeholder="Start date"/>
+                    <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
+                           placeholder="End date"/>
+                    <input type="file" th:field="*{picture}" name="image" th:placeholder="#{attach.image}"
+                           placeholder="Image"/>  <!--th:field="*{picture}" -->
+                    <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
+                    <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
+                           placeholder="Phone number"/>
+                    <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}"
+                           placeholder="Postal address"/>
+                    <!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
+                    <input type="button" value="Request policy"/>
+                </form>
+            </div>
         </div>
     </div>
 </div>

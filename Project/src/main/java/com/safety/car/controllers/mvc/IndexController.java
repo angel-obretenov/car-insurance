@@ -1,35 +1,42 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.CarDto;
+import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
+import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-import static com.safety.car.utils.mappers.Helper.carDtoToCar;
+import static com.safety.car.utils.mappers.Helper.*;
 
 @Controller
 @RequestMapping("/")
+@SessionAttributes("carDto")
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
+    private final UserDetailsService userService;
     private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
 
     @Autowired
-    public IndexController(CarService carService, PolicyDetailsService policyDetailsService, GenericUtilityService<Address> addressService, BrandService brandService, ModelService modelService) {
+    public IndexController(CarService carService,
+                           PolicyDetailsService policyDetailsService,
+                           UserDetailsService userService,
+                           GenericUtilityService<Address> addressService,
+                           BrandService brandService,
+                           ModelService modelService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
+        this.userService = userService;
         this.addressService = addressService;
         this.brandService = brandService;
         this.modelService = modelService;
@@ -75,9 +82,13 @@ public class IndexController {
 
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
-        model.addAttribute("car", new CarDto());
+
+        if (!(carDto == null)) {
+            model.addAttribute("carDto", carDto);
+        } else {
+            model.addAttribute("carDto", new CarDto());
+        }
 
         return "index";
     }
-
 }

@@ -121,9 +121,10 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label for="brand_id"></label><select th:field="*{brandId}" name="select_service31"
                                                                       id="brand_id"
+                                                                      th:id="brand_id"
                                                                       class="selectpicker form-control"
                                                                       data-style="btn-white">
-                                <option selected value="-1">Select Brand</option>
+                                <!--                                <option selected value="-1">Select Brand</option>-->
                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
                                         th:text="${brand.name}"></option>
                             </select>
@@ -191,238 +192,6 @@
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
-
-<!--<div class="about-box">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="top-feature owl-carousel owl-theme">-->
-<!--                <div class="item">-->
-<!--                    <div class="single-feature">-->
-<!--                        <div class="icon"><img th:src="@{/uploads/icon-01.png}" src="../static/uploads/icon-01.png"-->
-<!--                                               class="img-responsive" alt=""></div>-->
-<!--                        <h4><a href="#">Full Furnished</a></h4>-->
-<!--                        <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,-->
-<!--                            maximus molestie nisi. </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="item">-->
-<!--                    <div class="single-feature">-->
-<!--                        <div class="icon"><img th:src="@{/uploads/icon-02.png}" src="../static/uploads/icon-02.png"-->
-<!--                                               class="img-responsive" alt=""></div>-->
-<!--                        <h4><a href="#">Living Inside a Nature</a></h4>-->
-<!--                        <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,-->
-<!--                            maximus molestie nisi.</p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="item">-->
-<!--                    <div class="single-feature">-->
-<!--                        <div class="icon"><img th:src="@{/uploads/icon-03.png}" src="../static/uploads/icon-03.png"-->
-<!--                                               class="img-responsive" alt=""></div>-->
-<!--                        <h4><a href="#">Luxurious Fittings</a></h4>-->
-<!--                        <p>Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at nisl sit amet,-->
-<!--                            maximus molestie nisi. </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="item">-->
-<!--                    <div class="single-feature">-->
-<!--                        <div class="icon"><img th:src="@{/uploads/icon-04.png}" src="../static/uploads/icon-04.png"-->
-<!--                                               class="img-responsive" alt=""></div>-->
-<!--                        <h4><a href="#">Non Stop Security</a></h4>-->
-<!--                        <p>Lorem Is a dummy Mauris eu porta orci. In at erat enim. Suspendisse felis erat, volutpat at-->
-<!--                            nisl sit amet, maximus molestie nisi. </p>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <hr class="hr1">-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="post-media wow fadeIn" style="visibility: visible; animation-name: fadeIn;">-->
-<!--                    <img th:src="@{/uploads/about_bg.jpg}" src="../static/uploads/about_bg.jpg" alt=""-->
-<!--                         class="img-responsive">-->
-<!--                </div>&lt;!&ndash; end media &ndash;&gt;-->
-<!--            </div>-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="message-box right-ab">-->
-<!--                    <h4>Awards Winning Real Estate Company</h4>-->
-<!--                    <h2>Welcome to CITY Real Estate</h2>-->
-<!--                    <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam-->
-<!--                        risus. Sed a tellus quis mi rhoncus dignissim.</p>-->
-<!--                    <p>Aenean eleifend in felis id viverra. Vestibulum semper ex eu molestie pulvinar. Maecenas non-->
-<!--                        efficitur metus, et semper sem. Mauris ligula sapien, gravida a scelerisque ut, vehicula sed-->
-<!--                        mauris. Proin dapibus mi id vulputate euismod. Nam ullamcorper dui tellus, non lacinia lorem-->
-<!--                        hendrerit eu. Donec at orci cursus, rutrum metus eget, cursus turpis. </p>-->
-<!--                    <a href="#" class="btn btn-light btn-radius grd1 btn-brd"> Read More </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div id="agent" class="parallax section db parallax-off"-->
-<!--     style="background-image:url('../static/uploads/parallax_02.png');">-->
-<!--    <div class="container">-->
-<!--        <div class="section-title row text-center">-->
-<!--            <div class="col-md-8 col-md-offset-2">-->
-<!--                <h3>Agent Details</h3>-->
-<!--                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non-->
-<!--                    aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end title &ndash;&gt;-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-6">-->
-<!--                <div class="message-box">-->
-<!--                    <h4>The Agent</h4>-->
-<!--                    <h2>Jenny Martines</h2>-->
-<!--                    <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non-->
-<!--                        aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>-->
-
-<!--                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus-->
-<!--                        bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis-->
-<!--                        parturient montes, nascetur ridiculus mus. </p>-->
-
-<!--                    <a href="#contact" data-scroll class="btn btn-light global-radius btn-brd grd1 effect-1">Contact-->
-<!--                        Me</a>-->
-<!--                </div>&lt;!&ndash; end messagebox &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--            <div class="col-md-3">-->
-<!--                <div class="post-media wow fadeIn">-->
-<!--                    <img th:src="@{/uploads/agent.jpg}" src="../static/uploads/agent.jpg" alt="" class="img-responsive">-->
-<!--                    <a href="http://www.youtube.com/watch?v=nrJtHemSPW4" data-rel="prettyPhoto[gal]" class="playbutton"><i-->
-<!--                            class="flaticon-play-button"></i></a>-->
-<!--                </div>&lt;!&ndash; end media &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--            <div class="col-md-3">-->
-<!--                <div class="agencies_meta clearfix">-->
-<!--                    <span><i class="fa fa-envelope "></i> <a href="mailto:support@sitename.com">support@sitename.com</a></span>-->
-<!--                    <span><i class="fa fa-link "></i> <a href="#">www.sitename.com</a></span>-->
-<!--                    <span><i class="fa fa-phone-square "></i> +1 232 444 55 66</span>-->
-<!--                    <span><i class="fa fa-print "></i> +1 232 444 55 66</span>-->
-<!--                    <span><i class="fa fa-facebook-square "></i> <a href="#">facebook.com/tagline</a></span>-->
-<!--                    <span><i class="fa fa-twitter-square "></i> <a href="#">twitter.com/tagline</a></span>-->
-<!--                    <span><i class="fa fa-linkedin-square "></i> <a href="#">linkedin.com/tagline</a></span>-->
-<!--                </div>&lt;!&ndash; end agencies_meta &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div id="testimonials" class="section lb">-->
-<!--    <div class="container">-->
-<!--        <div class="section-title row text-center">-->
-<!--            <div class="col-md-8 col-md-offset-2">-->
-<!--                <h3>Happy Customers</h3>-->
-<!--                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non-->
-<!--                    aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end title &ndash;&gt;-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-md-12 col-sm-12">-->
-<!--                <div class="testi-carousel owl-carousel owl-theme">-->
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>-->
-<!--                            </h3>-->
-<!--                            <p class="lead">They have got my project on time with the competition with a sed highly-->
-<!--                                skilled, and experienced & professional team.</p>-->
-
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>James Fernando <small>- Manager of Racer</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; end testimonial &ndash;&gt;-->
-
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>-->
-<!--                            </h3>-->
-<!--                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and-->
-<!--                                praising pain was born and I will give you completed.</p>-->
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>Jacques Philips <small>- Designer</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; end testimonial &ndash;&gt;-->
-
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i-->
-<!--                                    class="fa fa-quote-right"></i></h3>-->
-<!--                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids-->
-<!--                                pleasure itself, because it is very pursue pleasure. </p>-->
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>Venanda Mercy <small>- Newyork City</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; end testimonial &ndash;&gt;-->
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>-->
-<!--                            </h3>-->
-<!--                            <p class="lead">They have got my project on time with the competition with a sed highly-->
-<!--                                skilled, and experienced & professional team.</p>-->
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>James Fernando <small>- Manager of Racer</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; end testimonial &ndash;&gt;-->
-
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>-->
-<!--                            </h3>-->
-<!--                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and-->
-<!--                                praising pain was born and I will give you completed.</p>-->
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>Jacques Philips <small>- Designer</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>-->
-<!--                    &lt;!&ndash; end testimonial &ndash;&gt;-->
-
-<!--                    <div class="testimonial clearfix">-->
-<!--                        <div class="desc">-->
-<!--                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i-->
-<!--                                    class="fa fa-quote-right"></i></h3>-->
-<!--                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids-->
-<!--                                pleasure itself, because it is very pursue pleasure. </p>-->
-<!--                        </div>-->
-<!--                        <div class="testi-meta">-->
-<!--                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""-->
-<!--                                 class="img-responsive alignleft">-->
-<!--                            <h4>Venanda Mercy <small>- Newyork City</small></h4>-->
-<!--                        </div>-->
-<!--                        &lt;!&ndash; end testi-meta &ndash;&gt;-->
-<!--                    </div>&lt;!&ndash; end testimonial &ndash;&gt;-->
-<!--                </div>&lt;!&ndash; end carousel &ndash;&gt;-->
-<!--            </div>&lt;!&ndash; end col &ndash;&gt;-->
-<!--        </div>&lt;!&ndash; end row &ndash;&gt;-->
-<!--    </div>&lt;!&ndash; end container &ndash;&gt;-->
-<!--</div>&lt;!&ndash; end section &ndash;&gt;-->
 
 <footer class="footer">
     <div class="container">
@@ -515,6 +284,27 @@
 
 <!-- ALL JS FILES -->
 <script th:src="@{/js/all.js}" src="../static/js/all.js"></script>
+<!--<script th:src="@{/js/testing.js}"></script>-->
+<!--<script>-->
+<!--    $(document).change(function () {-->
+<!--        $(`#brand_id`).on('change', function () {-->
+<!--            let val = $(this).val();-->
+<!--            console.log(val);-->
+<!--            let sub = $('#model_id');-->
+
+<!--            $('option', sub).filter(function () {-->
+<!--                if ($(this).attr('data-brandid') === val-->
+<!--                    // || $(this).attr('value') === -1-->
+<!--                ) {-->
+<!--                    $(this).show();-->
+<!--                } else {-->
+<!--                    $(this).hide();-->
+<!--                }-->
+<!--            });-->
+<!--        })-->
+<!--        $('#brand_id').trigger('change');-->
+<!--    })-->
+<!--</script>-->
 <!-- ALL PLUGINS -->
 <script th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
 <script th:src="@{/js/portfolio.js}" src="../static/js/portfolio.js"></script>
@@ -522,8 +312,7 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
-<!--<script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>-->
-<script th:src="@{/js/testing.js}"></script>
+<!--<script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
 
 </body>
 </html>

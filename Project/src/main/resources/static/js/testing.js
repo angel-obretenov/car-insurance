@@ -34,13 +34,27 @@
 // })
 
 // close to work, doesnt see the thymeleaf options tho
-// $(function () {
+
+// $(document).ready(function($) {
+//     alert('Jquery Working');
+// });
+
+// $(`#brand_id`).on('change', function (){
+//     alert('test');
+// })
+
+
+
+// $(document).ready(function () {
 //     $(`#brand_id`).on('change', function (){
 //         let val = $(this).val();
+//         console.log(val);
 //         let sub = $('#model_id');
+//
 //         $('option', sub).filter(function () {
-//             if ($(this).attr('data-brandid') == val
-//                 || $(this).attr('value') === -1){
+//             if ($(this).attr('data-brandid') === val
+//                 // || $(this).attr('value') === -1
+//             ){
 //                 $(this).show();
 //             } else {
 //                 $(this).hide();

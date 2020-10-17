@@ -1,5 +1,6 @@
 package com.safety.car.controllers.mvc;
 
+import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.PolicyDetails;
@@ -8,10 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -44,11 +42,17 @@ public class ServiceService {
     }
 
     @GetMapping
-    public String requestPolicy(Model model, Principal principal) {
+    public String requestPolicy(Model model,
+                                Principal principal) {
 
 //        model.addAttribute("principal", principal.getName());
 //        System.out.println(principal.getName());
+        CarDto carDto = (CarDto) model.getAttribute("carDto");
+
+        model.addAttribute("carDto", carDto);
         model.addAttribute("policy", new PolicyDetailsDto());
+        model.addAttribute("brands", brandService.getAll());
+        model.addAttribute("models", modelService.getAll());
 //        model.addAttribute("user", userService.getByName)
 //        model.addAttribute("car", carService.getByUserSessionId())
 //        model.addAttribute("totalPremium", carService.getTotalPremiumByCarId())
