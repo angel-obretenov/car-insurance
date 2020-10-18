@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
-                .logout().logoutSuccessUrl("/login?logout").permitAll()
+                .logout().logoutSuccessUrl("/").permitAll()
                 .and()
                 .exceptionHandling().accessDeniedPage("/access-denied")
                 .and()
