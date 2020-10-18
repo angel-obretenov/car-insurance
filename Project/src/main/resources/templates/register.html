@@ -71,10 +71,11 @@
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a th:href="@{/gallery}">Gallery</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
-                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/contact}">Contact</a></li>
-                    <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/login}">Login</a></li>
+                    <li><a th:href="@{/contact}">Contact</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/register}">Register</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
-                    <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
+                    <li class=" social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
                     <li class="search-option">
@@ -109,46 +110,67 @@
         <span>Spring</span>
     </li>
 </ul>
-<div class="parallax first-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
-                <div class="contact_form">
-                    <h3><i class="fa fa-envelope-o grd1 global-radius"></i> LOGIN TO OUR SITE</h3>
-                    <form method="post" th:action="@{/authenticate}" class="px-4 py-3">
-                        <div class="form-group">
-                            <label for="username">Email address</label>
-                            <input type="email" class="form-control" id="username" name="username"
-                                   placeholder="email@example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                <label class="form-check-label" for="dropdownCheck">
-                                    Remember me
-                                </label>
+<div>
+    <div class="parallax first-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
+                    <div class="contact_form">
+                        <h3><i class="fa fa-envelope-o grd1 global-radius"></i> REGISTER</h3>
+                        <form method="post" th:action="@{/register}" th:object="${userCreateDto}" class="px-4 py-3">
+                            <div class="form-group">
+                                <label for="firstname">First Name</label>
+                                <input th:field="*{firstName}" type="text" class="form-control" id="firstname"
+                                       name="firstname"
+                                       placeholder="First Name(not required)">
                             </div>
-                        </div>
-                        <button type="submit" value="Login" style="background-color: #004d33" class="btn btn-primary">
-                            Sign in
-                        </button>
-                    </form>
-                    <div class="dropdown-divider"></div>
-                    <div>
-                        <a class="dropdown-item" th:href="@{/register}">New around here? Sign up</a>
+                            <div class="form-group">
+                                <label for="lastname">Family Name</label>
+                                <input th:field="*{lastName}" type="text" class="form-control" id="lastname"
+                                       name="lastname"
+                                       placeholder="Last Name(not required)">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input th:field="*{email}" type="email" class="form-control" id="email" name="email"
+                                       placeholder="email@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input th:field="*{password}" type="password" class="form-control" id="password"
+                                       name="password"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="passwordConfirm">Confirm Password</label>
+                                <input th:field="*{confirmPassword}" type="password" class="form-control"
+                                       id="passwordConfirm" name="passwordConfirm"
+                                       placeholder="Confirm Your Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input th:field="*{phoneNumber}" type="number" class="form-control"
+                                       id="phone" name="phone"
+                                       placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input th:field="*{addressName}" type="text" class="form-control"
+                                       id="address" name="address"
+                                       placeholder="Address">
+                            </div>
+                            <button type="submit" style="background-color: #004d33" class="btn btn-primary">
+                                Register
+                            </button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/login}">Already have account ? Go to Login Page.</a>
                     </div>
-                    <a class="dropdown-item" href="#">Forgot password?</a>
                 </div>
             </div>
         </div>
-    </div>
-</div><!-- end row -->
-
+    </div><!-- end row -->
+</div>
 <footer class="footer">
     <div class="container">
         <div class="row">

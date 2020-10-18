@@ -1,10 +1,8 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.CarDto;
-import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
-import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-import static com.safety.car.utils.mappers.Helper.*;
+import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
 @RequestMapping("/")
@@ -22,7 +20,7 @@ import static com.safety.car.utils.mappers.Helper.*;
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
-    private final UserDetailsService userService;
+    private final UserService userService;
     private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
@@ -30,7 +28,7 @@ public class IndexController {
     @Autowired
     public IndexController(CarService carService,
                            PolicyDetailsService policyDetailsService,
-                           UserDetailsService userService,
+                           UserService userService,
                            GenericUtilityService<Address> addressService,
                            BrandService brandService,
                            ModelService modelService) {

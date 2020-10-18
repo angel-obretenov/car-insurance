@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 
     <!-- Basic -->
@@ -73,7 +73,9 @@
                     <li><a th:href="@{/gallery}">Gallery</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
-                    <li><a th:href="@{/login}">Login</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
@@ -114,22 +116,26 @@
 <div class="about-box">
     <div class="container">
         <div class="row">
-                <ul th:object="${session.carDto}" class="list-group col">
-                    <li th:text="#{car.brand.name}" class="list-group-item">Cras justo odio</li>
-                    <li th:text="#{car.model.name}" class="list-group-item">Dapibus ac facilisis in</li>
-                    <li th:text="#{car.cubics}" class="list-group-item">Morbi leo risus</li>
-                    <li th:text="#{car.reg}" class="list-group-item">Porta ac consectetur ac
-                    </li>
-                    <li th:text="#{car.driver.age}" class="list-group-item">Vestibulum at eros</li>
-                </ul>
-                <ul th:object="${session.carDto}" class="list-group col">
-                    <li th:each="brand : ${brands}" th:if="${brand.id == session.carDto.brandId}" th:text="${brand.name}" class="list-group-item">Cras justo odio</li>
-                    <li th:each="model : ${models}" th:if="${model.id == session.carDto.modelId}" th:text="${model.name}" class="list-group-item">Dapibus ac facilisis in</li>
-                    <li th:text="${session.carDto.cubicCapacity}" class="list-group-item">Morbi leo risus</li>
-                    <li th:text="${session.carDto.registrationDate}" class="list-group-item">Porta ac consectetur ac
-                    </li>
-                    <li th:text="${session.carDto.driversAge}" class="list-group-item">Vestibulum at eros</li>
-                </ul>
+            <ul th:object="${session.carDto}" class="list-group col">
+                <li th:text="#{car.brand.name}" class="list-group-item">Cras justo odio</li>
+                <li th:text="#{car.model.name}" class="list-group-item">Dapibus ac facilisis in</li>
+                <li th:text="#{car.cubics}" class="list-group-item">Morbi leo risus</li>
+                <li th:text="#{car.reg}" class="list-group-item">Porta ac consectetur ac
+                </li>
+                <li th:text="#{car.driver.age}" class="list-group-item">Vestibulum at eros</li>
+            </ul>
+            <ul th:object="${session.carDto}" class="list-group col">
+                <li th:each="brand : ${brands}" th:if="${brand.id == session.carDto.brandId}" th:text="${brand.name}"
+                    class="list-group-item">Cras justo odio
+                </li>
+                <li th:each="model : ${models}" th:if="${model.id == session.carDto.modelId}" th:text="${model.name}"
+                    class="list-group-item">Dapibus ac facilisis in
+                </li>
+                <li th:text="${session.carDto.cubicCapacity}" class="list-group-item">Morbi leo risus</li>
+                <li th:text="${session.carDto.registrationDate}" class="list-group-item">Porta ac consectetur ac
+                </li>
+                <li th:text="${session.carDto.driversAge}" class="list-group-item">Vestibulum at eros</li>
+            </ul>
             <div class="form-style-8 col">
                 <h2>Request Policy</h2>
                 <form th:action="@{/service}" th:object="${policy}" method="post">

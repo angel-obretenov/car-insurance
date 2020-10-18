@@ -24,7 +24,7 @@ public class ServiceService {
     private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
-    private final UserDetailsService userService;
+    private final UserService userService;
 
     @Autowired
     public ServiceService(CarService carService,
@@ -32,7 +32,7 @@ public class ServiceService {
                           GenericUtilityService<Address> addressService,
                           BrandService brandService,
                           ModelService modelService,
-                          UserDetailsService userService) {
+                          UserService userService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
         this.addressService = addressService;

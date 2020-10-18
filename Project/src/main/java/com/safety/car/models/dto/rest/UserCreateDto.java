@@ -1,23 +1,32 @@
 package com.safety.car.models.dto.rest;
 
-public class UserCreateDto {
+import org.springframework.format.annotation.NumberFormat;
 
-    private String email;
+import javax.persistence.Enumerated;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+public class UserCreateDto {
 
     private String firstName;
 
     private String lastName;
 
+    @Email(message = "Invalid email address")
+    @NotEmpty(message = "Email must not be empty")
+    private String email;
+
+    @NotEmpty(message = "Password must not be empty")
+    private String password;
+
+    @NotEmpty(message = "Confirm password must not be empty")
+    private String confirmPassword;
+
     private Integer phoneNumber;
 
     private String addressName;
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public UserCreateDto() {
     }
 
     public String getFirstName() {
@@ -34,6 +43,30 @@ public class UserCreateDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public Integer getPhoneNumber() {

@@ -19,11 +19,11 @@ import java.nio.file.StandardCopyOption;
 public class Helper {
 
     private final GenericUtilityService<Address> addressService;
-    private final UserDetailsService userService;
+    private final UserService userService;
     private final CarService carService;
 
     @Autowired
-    public Helper(GenericUtilityService<Address> addressService, UserDetailsService userService, CarService carService) {
+    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService) {
         this.addressService = addressService;
         this.userService = userService;
         this.carService = carService;
@@ -81,7 +81,7 @@ public class Helper {
     }
 
     public static PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto,
-                                                   UserDetailsService userService,
+                                                   UserService userService,
                                                    CarService carService,
                                                    GenericUtilityService<Address> addressService){
         PolicyDetails policyDetails = new PolicyDetails();
