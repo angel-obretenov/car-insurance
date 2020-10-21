@@ -10,6 +10,8 @@ public interface UserDetailsRepository {
 
     UserDetails getById(int id);
 
+    UserDetails getByEmail(String email);
+
     void create(UserDetails userDetails);
 
     void update(UserDetails userDetails);

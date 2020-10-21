@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.safety.car.utils.constants.service.ServiceConstants.DRIVER_AGE_ERROR;
+import static com.safety.car.utils.constants.Constants.DRIVER_AGE_ERROR;
 import static java.lang.String.format;
 
 @Service

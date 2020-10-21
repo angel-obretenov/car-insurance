@@ -116,7 +116,7 @@
 <div class="about-box">
     <div class="container">
         <div class="row">
-            <ul th:object="${session.carDto}" class="list-group col">
+            <ul th:object="${car}" class="list-group col">
                 <li th:text="#{car.brand.name}" class="list-group-item">Cras justo odio</li>
                 <li th:text="#{car.model.name}" class="list-group-item">Dapibus ac facilisis in</li>
                 <li th:text="#{car.cubics}" class="list-group-item">Morbi leo risus</li>
@@ -124,17 +124,17 @@
                 </li>
                 <li th:text="#{car.driver.age}" class="list-group-item">Vestibulum at eros</li>
             </ul>
-            <ul th:object="${session.carDto}" class="list-group col">
-                <li th:each="brand : ${brands}" th:if="${brand.id == session.carDto.brandId}" th:text="${brand.name}"
+            <ul th:object="${car}" class="list-group col">
+                <li th:each="brand : ${brands}" th:if="${brand.id == car.brand.id}" th:text="${brand.name}"
                     class="list-group-item">Cras justo odio
                 </li>
-                <li th:each="model : ${models}" th:if="${model.id == session.carDto.modelId}" th:text="${model.name}"
+                <li th:each="model : ${models}" th:if="${model.id == car.model.id}" th:text="${model.name}"
                     class="list-group-item">Dapibus ac facilisis in
                 </li>
-                <li th:text="${session.carDto.cubicCapacity}" class="list-group-item">Morbi leo risus</li>
-                <li th:text="${session.carDto.registrationDate}" class="list-group-item">Porta ac consectetur ac
+                <li th:text="${car.cubicCapacity}" class="list-group-item">Morbi leo risus</li>
+                <li th:text="${car.registrationDate}" class="list-group-item">Porta ac consectetur ac
                 </li>
-                <li th:text="${session.carDto.driversAge}" class="list-group-item">Vestibulum at eros</li>
+                <li th:text="${car.driversAge}" class="list-group-item">Vestibulum at eros</li>
             </ul>
             <div class="form-style-8 col">
                 <h2>Request Policy</h2>
@@ -151,7 +151,7 @@
                     <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}"
                            placeholder="Postal address"/>
                     <!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
-                    <input type="button" value="Request policy"/>
+                    <input name="action" th:value="simulate" type="submit"  value="Request policy"/>
                 </form>
             </div>
         </div>

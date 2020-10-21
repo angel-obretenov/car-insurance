@@ -33,6 +33,8 @@
 
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>
+
 
 
     <!--[if lt IE 9]>
@@ -159,16 +161,6 @@
                                                                        class="form-control"
                                                                        th:placeholder="#{car.driver.age}">
                             </div>
-                            <!--                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">-->
-                            <!--                                <label class="sr-only">What is max price?</label>-->
-                            <!--                                <label for="select_price1"></label><select name="select_price1" id="select_price1"-->
-                            <!--                                                                           class="selectpicker form-control"-->
-                            <!--                                                                           data-style="btn-white">-->
-                            <!--                                <option value="$100 - $2000">$100 - $2000</option>-->
-                            <!--                                <option value="$2000 - $4000">$2000 - $4000</option>-->
-                            <!--                                <option value="$4000 - $10000">$4000 - $10000</option>-->
-                            <!--                            </select>-->
-                            <!--                            </div>-->
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" th:unless="${estimatedPrice == null}">
                                 <h6>Estimated price <span class="badge badge-secondary">Great deal</span></h6>
                                 <h6 th:text="${#numbers.formatDecimal(estimatedPrice, 0, 'COMMA', 2, 'POINT')} + #{lv}"></h6>
@@ -286,27 +278,7 @@
 
 <!-- ALL JS FILES -->
 <script th:src="@{/js/all.js}" src="../static/js/all.js"></script>
-<!--<script th:src="@{/js/testing.js}"></script>-->
-<!--<script>-->
-<!--    $(document).change(function () {-->
-<!--        $(`#brand_id`).on('change', function () {-->
-<!--            let val = $(this).val();-->
-<!--            console.log(val);-->
-<!--            let sub = $('#model_id');-->
 
-<!--            $('option', sub).filter(function () {-->
-<!--                if ($(this).attr('data-brandid') === val-->
-<!--                    // || $(this).attr('value') === -1-->
-<!--                ) {-->
-<!--                    $(this).show();-->
-<!--                } else {-->
-<!--                    $(this).hide();-->
-<!--                }-->
-<!--            });-->
-<!--        })-->
-<!--        $('#brand_id').trigger('change');-->
-<!--    })-->
-<!--</script>-->
 <!-- ALL PLUGINS -->
 <script th:src="@{/js/custom.js}" src="../static/js/custom.js"></script>
 <script th:src="@{/js/portfolio.js}" src="../static/js/portfolio.js"></script>
@@ -314,7 +286,7 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
-<!--<script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
+<script th:src="@{/js/testing.js}" src="../static/js/testing.js"></script>
 
 </body>
 </html>

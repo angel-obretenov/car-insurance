@@ -2,6 +2,7 @@ package com.safety.car.services;
 
 import com.safety.car.models.entity.Address;
 import com.safety.car.repositories.interfaces.AddressRepository;
+import com.safety.car.services.interfaces.AddressService;
 import com.safety.car.services.interfaces.GenericUtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddressServiceImpl implements GenericUtilityService<Address> {
+public class AddressServiceImpl implements GenericUtilityService<Address>, AddressService {
     private final AddressRepository addressRepository;
 
     @Autowired
@@ -25,5 +26,24 @@ public class AddressServiceImpl implements GenericUtilityService<Address> {
     @Override
     public Address getById(Integer id) {
         return addressRepository.getById(id);
+    }
+
+    @Override
+    public void createIfNotExist(String addressName) {
+        if (isNotSaved(addressName)) {
+            var address = new Address();
+            address.setAddress(addressName);
+            addressRepository.createAddress(address);
+        }
+    }
+
+    @Override
+    public boolean isNotSaved(String addressName) {
+        return getAll().stream().noneMatch(address -> address.getAddress().equalsIgnoreCase(addressName));
+    }
+
+    @Override
+    public Address findByName(String addressName) {
+        return addressRepository.findByName(addressName);
     }
 }

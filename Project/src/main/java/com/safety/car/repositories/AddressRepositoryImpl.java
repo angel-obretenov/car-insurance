@@ -79,17 +79,4 @@ public class AddressRepositoryImpl implements AddressRepository {
             tx.commit();
         }
     }
-
-    @Override
-    public void createIfNotExist(String addressName) {
-        if (isNotSaved(addressName)) {
-            var address = new Address();
-            address.setAddress(addressName);
-            createAddress(address);
-        }
-    }
-
-    private boolean isNotSaved(String addressName) {
-        return getAll().stream().noneMatch(address -> address.getAddress().equalsIgnoreCase(addressName));
-    }
 }

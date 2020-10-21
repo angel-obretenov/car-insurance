@@ -44,6 +44,7 @@
 // })
 
 
+// $('#brand_id').trigger('change');
 
 // $(document).ready(function () {
 //     $(`#brand_id`).on('change', function (){
@@ -63,6 +64,26 @@
 //     });
 //     $('#brand_id').trigger('change');
 // })
+
+// $(document).ready(function () {
+//     $(`#brand_id`).on('change', function () {
+//         let val = $(this).val();
+//
+//         let json = [];
+//         $.getJSON('/api/model/brandId/' + val, {
+//             ajax: 'true',
+//             function(data) {
+//                 json = data;
+//                 data.int.charAt(3)
+//             }
+//         });
+//
+//         $('#model_id')
+//             .append($("<option></option>")
+//                 .attr("value=", json[index]["id"])
+//                 .text(json[index]["name"]));
+//     })
+// });
 
 // $(document).ready(function() {
 //     // $('#model_id').prop('disabled', true);
@@ -130,26 +151,51 @@
 
 // })
 
+// $(document).ready(function () {
+//     $('#brand_id').change(function () {
+//             let brandId = $(this).val();
+//
+//             $.ajax({
+//                 url: '/api/model/brandId/' + brandId,
+//                 type: "GET",
+//                 datatype: "JSON",
+//                 success: function (data) {
+//                     let html = '<option value="">City</option>';
+//                     let len = data.length;
+//                     // alert(data)
+//
+//                     for (let i = 0; i < len; i++) {
+//                         html += '<option value="' + data[i].id + '">' + data[i].name + '</option>';
+//                     }
+//
+//                     html += '</option>'
+//                     $('#model_id').html(html)
+//                 }
+//             })
+//         }
+//     )
+// })
 
-// $(document).ready(function (){
-//     const carDto = {};
-//     $('#submit1').click(function (){
+
+// $(document).ready(function () {
+//     const carDto = [];
+//     $('#submit1').click(function () {
 //         carDto.brandId = $('#brand_id').val();
 //         carDto.modelId = $('#model_id').val();
 //         carDto.cubicCapacity = $('#cubics').val();
 //         carDto.registrationDate = $('#reg_date').val();
 //         carDto.driversAge = $('#driver_age').val();
 //
-//         var carDtoObj = JSON.stringify(carDto);
+//         let carDtoObj = JSON.stringify(carDto);
 //         $.ajax({
-//             url: '/index',
+//             url: '/',
 //             method: 'POST',
 //             data: carDtoObj,
 //             contentType: 'application/json; charset = urf-8',
-//             success: function (){
+//             success: function () {
 //                 alert('Saved succsfly!');
 //             },
-//             error: function (error){
+//             error: function (error) {
 //                 alert('something happened which i dont know what it is :) ' + error);
 //             }
 //         })

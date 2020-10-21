@@ -1,8 +1,8 @@
 package com.safety.car.controllers.mvc;
 
-import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
+import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
 import static com.safety.car.utils.mappers.Helper.dtoToPolicyDetails;
@@ -18,7 +19,8 @@ import static com.safety.car.utils.mappers.Helper.pictureSaver;
 
 @Controller
 @RequestMapping("/service")
-public class ServiceService {
+@SessionAttributes({"carDto", "car"})
+public class ServiceController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
     private final GenericUtilityService<Address> addressService;
@@ -27,12 +29,12 @@ public class ServiceService {
     private final UserService userService;
 
     @Autowired
-    public ServiceService(CarService carService,
-                          PolicyDetailsService policyDetailsService,
-                          GenericUtilityService<Address> addressService,
-                          BrandService brandService,
-                          ModelService modelService,
-                          UserService userService) {
+    public ServiceController(CarService carService,
+                             PolicyDetailsService policyDetailsService,
+                             GenericUtilityService<Address> addressService,
+                             BrandService brandService,
+                             ModelService modelService,
+                             UserService userService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
         this.addressService = addressService;
@@ -43,19 +45,16 @@ public class ServiceService {
 
     @GetMapping
     public String requestPolicy(Model model,
-                                Principal principal) {
+                                Principal principal,
+                                @SessionAttribute("car") Car car) {
 
-//        model.addAttribute("principal", principal.getName());
-//        System.out.println(principal.getName());
-        CarDto carDto = (CarDto) model.getAttribute("carDto");
 
-        model.addAttribute("carDto", carDto);
+        model.addAttribute("car", car);
         model.addAttribute("policy", new PolicyDetailsDto());
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
-//        model.addAttribute("user", userService.getByName)
-//        model.addAttribute("car", carService.getByUserSessionId())
-//        model.addAttribute("totalPremium", carService.getTotalPremiumByCarId())
+        model.addAttribute("user", userService.getByEmail(principal.getName()));
+
         return "service";
     }
 
@@ -69,6 +68,7 @@ public class ServiceService {
         if (!dto.getPicture().isEmpty()) pictureSaver(dto);
         PolicyDetails policyDetails = dtoToPolicyDetails(dto, userService, carService, addressService);
 
+        policyDetailsService.create(policyDetails);
 
         return "service";
     }

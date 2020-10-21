@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-import static com.safety.car.utils.constants.service.ServiceConstants.EMAIL_CHANGE_REJECTION;
-import static com.safety.car.utils.constants.service.ServiceConstants.USER_EMAIL_EXISTS;
+import static com.safety.car.utils.constants.Constants.EMAIL_CHANGE_REJECTION;
+import static com.safety.car.utils.constants.Constants.USER_EMAIL_EXISTS;
 import static java.lang.String.format;
 
 @Service
@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDetails getById(int id) {
         return userRepository.getById(id);
+    }
+
+    @Override
+    public UserDetails getByEmail(String email) {
+        return userRepository.getByEmail(email);
     }
 
     @Override

@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
+import static com.safety.car.utils.constants.Constants.USER_NOT_FOUND_EMAIL;
+import static com.safety.car.utils.constants.Constants.USER_NOT_FOUND_ID;
 import static java.lang.String.format;
 
 @Repository
@@ -40,7 +42,22 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
 
             if (query.list().isEmpty()) {
                 throw new EntityNotFoundException(
-                        format("User with id: %d, was not found!", id));
+                        format(USER_NOT_FOUND_ID, id));
+            }
+
+            return query.list().get(0);
+        }
+    }
+
+    @Override
+    public UserDetails getByEmail(String email) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<UserDetails> query = session.createQuery("FROM UserDetails WHERE :email = email", UserDetails.class);
+            query.setParameter("email", email);
+
+            if (query.list().isEmpty()) {
+                throw new EntityNotFoundException(
+                        format(USER_NOT_FOUND_EMAIL, email));
             }
 
             return query.list().get(0);

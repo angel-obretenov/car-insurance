@@ -5,6 +5,7 @@ import com.safety.car.models.dto.rest.UserUpdateDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.repositories.interfaces.AddressRepository;
+import com.safety.car.services.interfaces.AddressService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,10 +14,12 @@ import org.springframework.stereotype.Component;
 public class UserMapperImpl implements UserMapper {
 
     private final AddressRepository addressRepository;
+    private final AddressService addressService;
 
     @Autowired
-    public UserMapperImpl(AddressRepository addressRepository) {
+    public UserMapperImpl(AddressRepository addressRepository, AddressService addressService) {
         this.addressRepository = addressRepository;
+        this.addressService = addressService;
     }
 
     @Override
@@ -28,8 +31,8 @@ public class UserMapperImpl implements UserMapper {
         user.setLastName(userCreateDto.getLastName());
         user.setPhoneNumber(userCreateDto.getPhoneNumber());
 
-        addressRepository.createIfNotExist(userCreateDto.getAddressName());
-        Address address = addressRepository.findByName(userCreateDto.getAddressName());
+        addressService.createIfNotExist(userCreateDto.getAddressName());
+        Address address = addressService.findByName(userCreateDto.getAddressName());
         user.setAddress(address);
 
         return user;
@@ -43,8 +46,8 @@ public class UserMapperImpl implements UserMapper {
         user.setFirstName(userUpdateDto.getFirstName());
         user.setLastName(userUpdateDto.getLastName());
         user.setPhoneNumber(userUpdateDto.getPhoneNumber());
-        addressRepository.createIfNotExist(userUpdateDto.getAddressName());
-        Address address = addressRepository.findByName(userUpdateDto.getAddressName());
+        addressService.createIfNotExist(userUpdateDto.getAddressName());
+        Address address = addressService.findByName(userUpdateDto.getAddressName());
         user.setAddress(address);
 
         return user;

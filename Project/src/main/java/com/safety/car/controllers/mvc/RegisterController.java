@@ -1,8 +1,11 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.UserCreateDto;
+import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.UserDetails;
+import com.safety.car.services.interfaces.UserCarService;
 import com.safety.car.services.interfaces.UserService;
+import com.safety.car.utils.mappers.Helper;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,32 +15,31 @@ import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 @RequestMapping("/register")
+@SessionAttributes({"carDto", "car"})
 public class RegisterController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsManager userDetailsManager;
     private final UserService userService;
+    private final UserCarService userCarService;
     private final UserMapper userMapper;
+    private final Helper helper;
 
     @Autowired
-    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder,
-                              UserDetailsManager userDetailsManager,
-                              UserService userService,
-                              UserMapper userMapper) {
+    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsManager userDetailsManager, UserService userService, UserCarService userCarService, UserMapper userMapper, Helper helper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsManager = userDetailsManager;
         this.userService = userService;
+        this.userCarService = userCarService;
         this.userMapper = userMapper;
+        this.helper = helper;
     }
 
     @GetMapping
@@ -67,7 +69,6 @@ public class RegisterController {
             model.addAttribute("error", "Passwords do not match, please try again.");
             return "register";
         }
-
         String username = userCreateDto.getEmail();
         String password = bCryptPasswordEncoder.encode(userCreateDto.getPassword());
 
