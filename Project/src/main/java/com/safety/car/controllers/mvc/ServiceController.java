@@ -1,21 +1,19 @@
 package com.safety.car.controllers.mvc;
 
-import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.*;
+import com.safety.car.utils.mappers.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 
-import static com.safety.car.utils.mappers.Helper.dtoToPolicyDetails;
 import static com.safety.car.utils.mappers.Helper.pictureSaver;
 
 @Controller
@@ -28,6 +26,7 @@ public class ServiceController {
     private final BrandService brandService;
     private final ModelService modelService;
     private final UserService userService;
+    private final Helper helper;
 
     @Autowired
     public ServiceController(CarService carService,
@@ -35,23 +34,20 @@ public class ServiceController {
                              GenericUtilityService<Address> addressService,
                              BrandService brandService,
                              ModelService modelService,
-                             UserService userService) {
+                             UserService userService, Helper helper) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
         this.addressService = addressService;
         this.brandService = brandService;
         this.modelService = modelService;
         this.userService = userService;
+        this.helper = helper;
     }
 
     @GetMapping
     public String requestPolicy(Model model,
                                 Principal principal,
                                 @SessionAttribute("car") Car car) {
-
-//        model.addAttribute("principal", principal.getName());
-//        System.out.println(principal.getName());
-        CarDto carDto = (CarDto) model.getAttribute("carDto");
 
         model.addAttribute("car", car);
         model.addAttribute("policy", new PolicyDetailsDto());
@@ -66,12 +62,13 @@ public class ServiceController {
     public String postPolicy(@ModelAttribute("policy") PolicyDetailsDto dto,
                              Model model,
                              Principal principal,
+                             @SessionAttribute("car") Car car,
                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "index";
 
-        if (!dto.getPicture().isEmpty()) pictureSaver(dto);
-        PolicyDetails policyDetails = dtoToPolicyDetails(dto, userService, carService, addressService);
+        pictureSaver(dto);
 
+        PolicyDetails policyDetails = helper.dtoToPolicyDetails(dto, car, userService.getByEmail(principal.getName()));
         policyDetailsService.create(policyDetails);
 
         return "service";

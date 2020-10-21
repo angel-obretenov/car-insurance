@@ -45,8 +45,7 @@ public class IndexController {
 
     @GetMapping
     public String getHomePage(Model model,
-                              Principal principal,
-                              HttpServletRequest request) {
+                              Principal principal) {
 
         try {
             UserDetails user = userService.getByEmail(principal.getName());

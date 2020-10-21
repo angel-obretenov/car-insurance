@@ -23,7 +23,7 @@ public class PolicyDetailsDto {
     private String email;
 
     @PositiveOrZero
-    private Integer addressId;
+    private String address;
 
     @PositiveOrZero
     private Integer userDetailsId;
@@ -99,12 +99,12 @@ public class PolicyDetailsDto {
         this.email = email;
     }
 
-    public Integer getAddressId() {
-        return addressId;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Integer getUserDetailsId() {

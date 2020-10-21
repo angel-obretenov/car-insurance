@@ -138,17 +138,17 @@
             </ul>
             <div class="form-style-8 col">
                 <h2>Request Policy</h2>
-                <form th:action="@{/service}" th:object="${policy}" method="post">
+                <form th:action="@{/service}" th:object="${policy}" method="post" enctype="multipart/form-data">
                     <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
                            placeholder="Start date"/>
                     <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
                            placeholder="End date"/>
-                    <input type="file" th:field="*{picture}" name="image" th:placeholder="#{attach.image}"
+                    <input type="file" th:field="*{picture}" name="file" th:placeholder="#{attach.image}"
                            placeholder="Image"/>  <!--th:field="*{picture}" -->
                     <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
                     <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
                            placeholder="Phone number"/>
-                    <input type="text" th:field="*{addressId}" name="address" th:placeholder="#{address}"
+                    <input type="text" th:field="*{address}" name="address" th:placeholder="#{address}"
                            placeholder="Postal address"/>
                     <!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
                     <input name="action" th:value="simulate" type="submit"  value="Request policy"/>

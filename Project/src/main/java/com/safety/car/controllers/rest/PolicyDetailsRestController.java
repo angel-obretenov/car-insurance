@@ -44,7 +44,7 @@ public class PolicyDetailsRestController {
     @PostMapping
     public PolicyDetails create(@RequestBody PolicyDetailsDto dto){
         try {
-           PolicyDetails policyDetails = policyHelper.toPolicyDetails(dto);
+           PolicyDetails policyDetails = policyHelper.dtoToPolicyDetails(dto);
             policyDetailsService.create(policyDetails);
             return policyDetails;
         } catch (Exception e){

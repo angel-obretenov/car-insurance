@@ -2,6 +2,7 @@ package com.safety.car.services;
 
 import com.safety.car.models.entity.Address;
 import com.safety.car.repositories.interfaces.AddressRepository;
+import com.safety.car.services.interfaces.AddressCombinedServices;
 import com.safety.car.services.interfaces.AddressService;
 import com.safety.car.services.interfaces.GenericUtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AddressServiceImpl implements GenericUtilityService<Address>, AddressService {
+public class AddressServiceImpl implements AddressCombinedServices {
     private final AddressRepository addressRepository;
 
     @Autowired

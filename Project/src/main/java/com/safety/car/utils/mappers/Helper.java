@@ -24,37 +24,23 @@ public class Helper {
     private final GenericUtilityService<Address> addressService;
     private final UserService userService;
     private final CarService carService;
+    private final AddressCombinedServices addressCombinedServices;
 
     @Autowired
-    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService) {
+    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService, AddressCombinedServices addressCombinedServices) {
         this.addressService = addressService;
         this.userService = userService;
         this.carService = carService;
-    }
-
-    public PolicyDetails toPolicyDetails(PolicyDetailsDto dto) {
-
-        PolicyDetails policyDetails = new PolicyDetails();
-        //TODO
-        Address address = addressService.getById(dto.getAddressId());
-        UserDetails user = userService.getById(dto.getUserDetailsId());
-        Car car = carService.getById(dto.getCarId());
-
-        policyDetails.setStartDate(dto.getStartDate());
-        policyDetails.setEndDate(dto.getEndDate());
-//        policyDetails.setPicture();
-        policyDetails.setPhoneNumber(dto.getPhoneNumber());
-        policyDetails.setEmail(dto.getEmail());
-        policyDetails.setAddress(address);
-        policyDetails.setUser(user);
-        policyDetails.setCar(car);
-
-        return policyDetails;
+        this.addressCombinedServices = addressCombinedServices;
     }
 
     public static void pictureSaver(PolicyDetailsDto dto) {
         MultipartFile photo = dto.getPicture();
         Path path = Paths.get("uploads/");
+
+        String filename1 = "test.csv";
+        Path path1 = Paths.get(filename1);
+        System.out.println(path1.toAbsolutePath());
 
         try {
             InputStream inputStream = photo.getInputStream();
@@ -62,7 +48,7 @@ public class Helper {
                     StandardCopyOption.REPLACE_EXISTING);
             dto.setPath(photo.getOriginalFilename().toLowerCase());
         } catch (IOException e) {
-            dto.setPath("corona.png");
+            dto.setPath("no.png");
             e.printStackTrace();
         }
     }
@@ -83,20 +69,19 @@ public class Helper {
         return car;
     }
 
-    public static PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto,
-                                                   UserService userService,
-                                                   CarService carService,
-                                                   GenericUtilityService<Address> addressService) {
+    public PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto) {
         PolicyDetails policyDetails = new PolicyDetails();
         Car car = carService.getById(dto.getCarId());
         UserDetails user = userService.getById(dto.getUserDetailsId());
-        Address address = addressService.getById(dto.getAddressId());
+
+        addressCombinedServices.createIfNotExist(dto.getAddress());
+        Address address = addressCombinedServices.findByName(dto.getAddress());
 
         policyDetails.setStartDate(dto.getStartDate());
         policyDetails.setEndDate(dto.getEndDate());
         policyDetails.setEmail(dto.getEmail());
-//        addressRepository.createIfNotExist(userCreateDto.getAddressName());
-//        Address address = addressRepository.findByName(userCreateDto.getAddressName());
+        policyDetails.setAddress(address);
+
         policyDetails.setPicture(dto.getPath());
         policyDetails.setPhoneNumber(dto.getPhoneNumber());
         policyDetails.setUser(user);
@@ -121,7 +106,28 @@ public class Helper {
         return list;
     }
 
-    public UserCar toUserCar(Car car, UserDetails userDetails){
+    // same method, but pass directly car and user
+    public PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto, Car car, UserDetails user) {
+        PolicyDetails policyDetails = new PolicyDetails();
+        policyDetails.setCar(car);
+        policyDetails.setUser(user);
+        policyDetails.setPhoneNumber(dto.getPhoneNumber());
+        policyDetails.setEmail(dto.getEmail());
+        policyDetails.setStartDate(dto.getStartDate());
+        policyDetails.setEndDate(dto.getEndDate());
+
+        addressCombinedServices.createIfNotExist(dto.getAddress());
+        Address address = addressCombinedServices.findByName(dto.getAddress());
+        policyDetails.setAddress(address);
+
+        if (!dto.getPicture().isEmpty()) {
+            policyDetails.setPicture(dto.getPath());
+        }
+
+        return policyDetails;
+    }
+
+    public UserCar toUserCar(Car car, UserDetails userDetails) {
         UserCar userCar = new UserCar();
         userCar.setCarId(car);
         userCar.setUserId(userDetails);
