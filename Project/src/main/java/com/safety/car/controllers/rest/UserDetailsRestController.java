@@ -5,7 +5,7 @@ import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.dto.rest.UserUpdateDto;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.UserService;
+import com.safety.car.services.interfaces.UserDetailsService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,23 +19,23 @@ import java.util.List;
 public class UserDetailsRestController {
 
     private final UserMapper userMapper;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    public UserDetailsRestController(UserMapper userMapper, UserService userService) {
+    public UserDetailsRestController(UserMapper userMapper, UserDetailsService userDetailsService) {
         this.userMapper = userMapper;
-        this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping
     public List<UserDetails> getAll() {
-        return userService.getAll();
+        return userDetailsService.getAll();
     }
 
     @GetMapping("/{id}")
     public UserDetails getById(@PathVariable int id) {
         try {
-            return userService.getById(id);
+            return userDetailsService.getById(id);
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     e.getMessage());
@@ -46,7 +46,7 @@ public class UserDetailsRestController {
     public UserDetails create(@RequestBody UserCreateDto userCreateDto) {
         try {
             UserDetails userDetails = userMapper.fromDto(userCreateDto);
-            userService.create(userDetails);
+            userDetailsService.create(userDetails);
             return userDetails;
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
@@ -61,7 +61,7 @@ public class UserDetailsRestController {
     public UserDetails update(@RequestBody UserUpdateDto userUpdateDto) {
         try {
             UserDetails userDetails = userMapper.fromDto(userUpdateDto);
-            userService.update(userDetails);
+            userDetailsService.update(userDetails);
             return userDetails;
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,

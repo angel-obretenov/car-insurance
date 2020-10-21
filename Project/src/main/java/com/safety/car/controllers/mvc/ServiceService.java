@@ -24,7 +24,7 @@ public class ServiceService {
     private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
     public ServiceService(CarService carService,
@@ -32,13 +32,13 @@ public class ServiceService {
                           GenericUtilityService<Address> addressService,
                           BrandService brandService,
                           ModelService modelService,
-                          UserService userService) {
+                          UserDetailsService userDetailsService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
         this.addressService = addressService;
         this.brandService = brandService;
         this.modelService = modelService;
-        this.userService = userService;
+        this.userDetailsService = userDetailsService;
     }
 
     @GetMapping
@@ -53,7 +53,7 @@ public class ServiceService {
         model.addAttribute("policy", new PolicyDetailsDto());
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
-//        model.addAttribute("user", userService.getByName)
+//        model.addAttribute("user", userDetailsService.getByName)
 //        model.addAttribute("car", carService.getByUserSessionId())
 //        model.addAttribute("totalPremium", carService.getTotalPremiumByCarId())
         return "service";
@@ -67,7 +67,7 @@ public class ServiceService {
         if (bindingResult.hasErrors()) return "index";
 
         if (!dto.getPicture().isEmpty()) pictureSaver(dto);
-        PolicyDetails policyDetails = dtoToPolicyDetails(dto, userService, carService, addressService);
+        PolicyDetails policyDetails = dtoToPolicyDetails(dto, userDetailsService, carService, addressService);
 
 
         return "service";

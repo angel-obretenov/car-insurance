@@ -20,7 +20,7 @@ import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
     private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
@@ -28,13 +28,13 @@ public class IndexController {
     @Autowired
     public IndexController(CarService carService,
                            PolicyDetailsService policyDetailsService,
-                           UserService userService,
+                           UserDetailsService userDetailsService,
                            GenericUtilityService<Address> addressService,
                            BrandService brandService,
                            ModelService modelService) {
         this.carService = carService;
         this.policyDetailsService = policyDetailsService;
-        this.userService = userService;
+        this.userDetailsService = userDetailsService;
         this.addressService = addressService;
         this.brandService = brandService;
         this.modelService = modelService;

@@ -19,13 +19,13 @@ import java.nio.file.StandardCopyOption;
 public class Helper {
 
     private final GenericUtilityService<Address> addressService;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
     private final CarService carService;
 
     @Autowired
-    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService) {
+    public Helper(GenericUtilityService<Address> addressService, UserDetailsService userDetailsService, CarService carService) {
         this.addressService = addressService;
-        this.userService = userService;
+        this.userDetailsService = userDetailsService;
         this.carService = carService;
     }
 
@@ -34,7 +34,7 @@ public class Helper {
         PolicyDetails policyDetails = new PolicyDetails();
         //TODO
         Address address = addressService.getById(dto.getAddressId());
-        UserDetails user = userService.getById(dto.getUserDetailsId());
+        UserDetails user = userDetailsService.getById(dto.getUserDetailsId());
         Car car = carService.getById(dto.getCarId());
 
         policyDetails.setStartDate(dto.getStartDate());
@@ -81,12 +81,12 @@ public class Helper {
     }
 
     public static PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto,
-                                                   UserService userService,
+                                                   UserDetailsService userDetailsService,
                                                    CarService carService,
                                                    GenericUtilityService<Address> addressService){
         PolicyDetails policyDetails = new PolicyDetails();
         Car car = carService.getById(dto.getCarId());
-        UserDetails user = userService.getById(dto.getUserDetailsId());
+        UserDetails user = userDetailsService.getById(dto.getUserDetailsId());
         Address address = addressService.getById(dto.getAddressId());
 
         policyDetails.setStartDate(dto.getStartDate());

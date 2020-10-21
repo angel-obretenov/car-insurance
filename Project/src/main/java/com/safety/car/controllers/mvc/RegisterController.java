@@ -2,7 +2,7 @@ package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.UserService;
+import com.safety.car.services.interfaces.UserDetailsService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,17 +26,17 @@ public class RegisterController {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsManager userDetailsManager;
-    private final UserService userService;
+    private final UserDetailsService userDetailsService;
     private final UserMapper userMapper;
 
     @Autowired
     public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder,
                               UserDetailsManager userDetailsManager,
-                              UserService userService,
+                              UserDetailsService userDetailsService,
                               UserMapper userMapper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsManager = userDetailsManager;
-        this.userService = userService;
+        this.userDetailsService = userDetailsService;
         this.userMapper = userMapper;
     }
 
@@ -71,7 +71,7 @@ public class RegisterController {
         String username = userCreateDto.getEmail();
         String password = bCryptPasswordEncoder.encode(userCreateDto.getPassword());
 
-        List<GrantedAuthority> authorities = userService.getAll().isEmpty()
+        List<GrantedAuthority> authorities = userDetailsService.getAll().isEmpty()
                 ? AuthorityUtils.createAuthorityList("ROLE_ADMIN")
                 : AuthorityUtils.createAuthorityList("ROLE_USER");
 
@@ -79,7 +79,7 @@ public class RegisterController {
         userDetailsManager.createUser(newUser);
 
         UserDetails userDetails = userMapper.fromDto(userCreateDto);
-        userService.create(userDetails);
+        userDetailsService.create(userDetails);
 
         return "redirect:/login";
     }
