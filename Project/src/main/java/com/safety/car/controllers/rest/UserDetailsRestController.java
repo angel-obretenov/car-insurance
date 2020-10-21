@@ -5,10 +5,11 @@ import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.dto.rest.UserUpdateDto;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.UserDetailsService;
+import com.safety.car.services.interfaces.UserService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,10 +20,10 @@ import java.util.List;
 public class UserDetailsRestController {
 
     private final UserMapper userMapper;
-    private final UserDetailsService userDetailsService;
+    private final UserService userDetailsService;
 
     @Autowired
-    public UserDetailsRestController(UserMapper userMapper, UserDetailsService userDetailsService) {
+    public UserDetailsRestController(UserMapper userMapper, UserService userDetailsService) {
         this.userMapper = userMapper;
         this.userDetailsService = userDetailsService;
     }

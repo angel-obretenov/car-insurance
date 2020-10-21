@@ -22,7 +22,7 @@ import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes("carDto")
+@SessionAttributes({"carDto", "car"})
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
@@ -49,7 +49,8 @@ public class IndexController {
                               HttpServletRequest request) {
 
         try {
-            model.addAttribute("principal", principal.getName());
+            UserDetails user = userService.getByEmail(principal.getName());
+            model.addAttribute("principal", user.getLastName());
         } catch (NullPointerException e) {
             model.addAttribute("principal", "Anonymous user");
         }

@@ -4,7 +4,7 @@ import com.safety.car.exceptions.DuplicateException;
 import com.safety.car.exceptions.UnauthorizedException;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.repositories.interfaces.UserDetailsRepository;
-import com.safety.car.services.interfaces.UserDetailsService;
+import com.safety.car.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +16,12 @@ import static com.safety.car.utils.constants.Constants.USER_EMAIL_EXISTS;
 import static java.lang.String.format;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserServiceImpl implements UserService {
 
     private final UserDetailsRepository userRepository;
 
     @Autowired
-    public UserDetailsServiceImpl(UserDetailsRepository userRepository) {
+    public UserServiceImpl(UserDetailsRepository userRepository) {
         this.userRepository = userRepository;
     }
 

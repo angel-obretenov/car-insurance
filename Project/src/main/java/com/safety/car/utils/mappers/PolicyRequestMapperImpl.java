@@ -5,7 +5,7 @@ import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.services.interfaces.PolicyDetailsService;
-import com.safety.car.services.interfaces.UserDetailsService;
+import com.safety.car.services.interfaces.UserService;
 import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,12 +14,12 @@ import org.springframework.stereotype.Component;
 public class PolicyRequestMapperImpl implements PolicyRequestMapper {
 
     private final PolicyDetailsService policyDetailsService;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
 
     @Autowired
-    public PolicyRequestMapperImpl(PolicyDetailsService policyDetailsService, UserDetailsService userDetailsService) {
+    public PolicyRequestMapperImpl(PolicyDetailsService policyDetailsService, UserService userService) {
         this.policyDetailsService = policyDetailsService;
-        this.userDetailsService = userDetailsService;
+        this.userService = userService;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class PolicyRequestMapperImpl implements PolicyRequestMapper {
         PolicyDetails policyDetails = policyDetailsService.getById(policyApprovalDto.getPolicyId());
         policyToUpdate.setPolicyDetails(policyDetails);
 
-        UserDetails userDetails = userDetailsService.getById(policyDetails.getUser().getId());
+        UserDetails userDetails = userService.getById(policyDetails.getUser().getId());
         policyToUpdate.setUserDetails(userDetails);
 
         policyToUpdate.setApproved(Boolean.parseBoolean(policyApprovalDto.getIsApproved()));

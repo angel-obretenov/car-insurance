@@ -22,13 +22,13 @@ import java.util.List;
 public class Helper {
 
     private final GenericUtilityService<Address> addressService;
-    private final UserDetailsService userDetailsService;
+    private final UserService userService;
     private final CarService carService;
 
     @Autowired
-    public Helper(GenericUtilityService<Address> addressService, UserDetailsService userDetailsService, CarService carService) {
+    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService) {
         this.addressService = addressService;
-        this.userDetailsService = userDetailsService;
+        this.userService = userService;
         this.carService = carService;
     }
 
@@ -37,7 +37,7 @@ public class Helper {
         PolicyDetails policyDetails = new PolicyDetails();
         //TODO
         Address address = addressService.getById(dto.getAddressId());
-        UserDetails user = userDetailsService.getById(dto.getUserDetailsId());
+        UserDetails user = userService.getById(dto.getUserDetailsId());
         Car car = carService.getById(dto.getCarId());
 
         policyDetails.setStartDate(dto.getStartDate());
@@ -84,12 +84,12 @@ public class Helper {
     }
 
     public static PolicyDetails dtoToPolicyDetails(PolicyDetailsDto dto,
-                                                   UserDetailsService userDetailsService,
+                                                   UserService userService,
                                                    CarService carService,
                                                    GenericUtilityService<Address> addressService) {
         PolicyDetails policyDetails = new PolicyDetails();
         Car car = carService.getById(dto.getCarId());
-        UserDetails user = userDetailsService.getById(dto.getUserDetailsId());
+        UserDetails user = userService.getById(dto.getUserDetailsId());
         Address address = addressService.getById(dto.getAddressId());
 
         policyDetails.setStartDate(dto.getStartDate());

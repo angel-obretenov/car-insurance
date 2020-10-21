@@ -20,6 +20,7 @@ import static com.safety.car.utils.mappers.Helper.pictureSaver;
 
 @Controller
 @RequestMapping("/service")
+@SessionAttributes({"carDto", "car"})
 public class ServiceController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
