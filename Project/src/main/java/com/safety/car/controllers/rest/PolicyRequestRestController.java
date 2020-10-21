@@ -40,7 +40,7 @@ public class PolicyRequestRestController {
         }
     }
 
-    @PutMapping
+    @PostMapping
     public PolicyRequest create(@RequestBody PolicyApprovalDto policyApprovalDto) {
         try {
             PolicyRequest updatePolicy = policyRequestMapper.fromDto(policyApprovalDto);
