@@ -22,7 +22,7 @@ import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({"carDto", "car"})
+@SessionAttributes("carDto")
 public class IndexController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
@@ -48,20 +48,11 @@ public class IndexController {
                               Principal principal,
                               HttpServletRequest request) {
 
-        request.getSession();
         try {
-            UserDetails user = userService.getByEmail(principal.getName());
-            model.addAttribute("principal", user.getLastName());
+            model.addAttribute("principal", principal.getName());
         } catch (NullPointerException e) {
-            model.addAttribute("principal", ANONYMOUS_USER_CONTROLLER);
-        } catch (EntityNotFoundException e) {
-            model.addAttribute("error", USER_NOT_FOUND_CONTROLLER);
+            model.addAttribute("principal", "Anonymous user");
         }
-
-//        UserCar userCar = userCarService.getByUserId(9);
-//        System.out.println("Car: " + userCar.getCarId().getId());
-//        System.out.println("User: " + userCar.getUserId().getId());
-
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
         model.addAttribute("carDto", new CarDto());

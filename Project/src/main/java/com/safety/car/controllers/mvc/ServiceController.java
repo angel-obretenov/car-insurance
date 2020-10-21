@@ -1,5 +1,6 @@
 package com.safety.car.controllers.mvc;
 
+import com.safety.car.models.dto.rest.CarDto;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
@@ -19,7 +20,6 @@ import static com.safety.car.utils.mappers.Helper.pictureSaver;
 
 @Controller
 @RequestMapping("/service")
-@SessionAttributes({"carDto", "car"})
 public class ServiceController {
     private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
@@ -48,6 +48,9 @@ public class ServiceController {
                                 Principal principal,
                                 @SessionAttribute("car") Car car) {
 
+//        model.addAttribute("principal", principal.getName());
+//        System.out.println(principal.getName());
+        CarDto carDto = (CarDto) model.getAttribute("carDto");
 
         model.addAttribute("car", car);
         model.addAttribute("policy", new PolicyDetailsDto());

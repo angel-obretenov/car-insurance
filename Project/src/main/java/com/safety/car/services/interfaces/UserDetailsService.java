@@ -4,7 +4,7 @@ import com.safety.car.models.entity.UserDetails;
 
 import java.util.List;
 
-public interface UserService {
+public interface UserDetailsService {
 
     List<UserDetails> getAll();
 

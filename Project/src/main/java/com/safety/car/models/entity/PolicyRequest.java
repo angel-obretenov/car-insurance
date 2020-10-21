@@ -12,11 +12,11 @@ public class PolicyRequest {
 
     @ManyToOne
     @JoinColumn(name = "policy_id")
-    private PolicyDetails policyId;
+    private PolicyDetails policyDetails;
 
     @ManyToOne
     @JoinColumn(name = "user_details_id")
-    private UserDetails userDetailsId;
+    private UserDetails userDetails;
 
     @Column(name = "is_approved")
     private boolean isApproved;
@@ -32,20 +32,20 @@ public class PolicyRequest {
         this.id = id;
     }
 
-    public PolicyDetails getPolicyId() {
-        return policyId;
+    public PolicyDetails getPolicyDetails() {
+        return policyDetails;
     }
 
-    public void setPolicyId(PolicyDetails policyId) {
-        this.policyId = policyId;
+    public void setPolicyDetails(PolicyDetails policyDetails) {
+        this.policyDetails = policyDetails;
     }
 
-    public UserDetails getUserDetailsId() {
-        return userDetailsId;
+    public UserDetails getUserDetails() {
+        return userDetails;
     }
 
-    public void setUserDetailsId(UserDetails userDetailsId) {
-        this.userDetailsId = userDetailsId;
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
     }
 
     public boolean isApproved() {

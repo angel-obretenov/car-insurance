@@ -28,7 +28,6 @@ public class RegisterController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsManager userDetailsManager;
     private final UserService userService;
-    private final UserCarService userCarService;
     private final UserMapper userMapper;
     private final Helper helper;
 
@@ -37,7 +36,6 @@ public class RegisterController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsManager = userDetailsManager;
         this.userService = userService;
-        this.userCarService = userCarService;
         this.userMapper = userMapper;
         this.helper = helper;
     }
