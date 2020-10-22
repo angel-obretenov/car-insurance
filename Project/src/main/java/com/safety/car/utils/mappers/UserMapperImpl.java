@@ -13,12 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapperImpl implements UserMapper {
 
-    private final AddressRepository addressRepository;
     private final AddressService addressService;
 
     @Autowired
-    public UserMapperImpl(AddressRepository addressRepository, AddressService addressService) {
-        this.addressRepository = addressRepository;
+    public UserMapperImpl(AddressService addressService) {
         this.addressService = addressService;
     }
 

@@ -1,9 +1,7 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.UserCreateDto;
-import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.UserCarService;
 import com.safety.car.services.interfaces.UserService;
 import com.safety.car.utils.mappers.Helper;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
@@ -29,15 +27,13 @@ public class RegisterController {
     private final UserDetailsManager userDetailsManager;
     private final UserService userService;
     private final UserMapper userMapper;
-    private final Helper helper;
 
     @Autowired
-    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsManager userDetailsManager, UserService userService, UserCarService userCarService, UserMapper userMapper, Helper helper) {
+    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsManager userDetailsManager, UserService userService, UserMapper userMapper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsManager = userDetailsManager;
         this.userService = userService;
         this.userMapper = userMapper;
-        this.helper = helper;
     }
 
     @GetMapping

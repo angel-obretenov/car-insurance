@@ -20,24 +20,19 @@ import static com.safety.car.utils.mappers.Helper.pictureSaver;
 @RequestMapping("/service")
 @SessionAttributes({"carDto", "car"})
 public class ServiceController {
-    private final CarService carService;
     private final PolicyDetailsService policyDetailsService;
-    private final GenericUtilityService<Address> addressService;
     private final BrandService brandService;
     private final ModelService modelService;
     private final UserService userService;
     private final Helper helper;
 
     @Autowired
-    public ServiceController(CarService carService,
-                             PolicyDetailsService policyDetailsService,
-                             GenericUtilityService<Address> addressService,
+    public ServiceController(PolicyDetailsService policyDetailsService,
                              BrandService brandService,
                              ModelService modelService,
-                             UserService userService, Helper helper) {
-        this.carService = carService;
+                             UserService userService,
+                             Helper helper) {
         this.policyDetailsService = policyDetailsService;
-        this.addressService = addressService;
         this.brandService = brandService;
         this.modelService = modelService;
         this.userService = userService;
@@ -71,7 +66,6 @@ public class ServiceController {
         PolicyDetails policyDetails = helper.dtoToPolicyDetails(dto, car, userService.getByEmail(principal.getName()));
         policyDetailsService.create(policyDetails);
 
-        return "service";
+        return "redirect:/";
     }
-
 }

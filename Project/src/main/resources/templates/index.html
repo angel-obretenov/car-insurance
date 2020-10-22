@@ -33,7 +33,8 @@
 
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
-    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>
+<!--    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
 
 
@@ -120,7 +121,7 @@
                 <div class="contact_form">
                     <h3 th:text="'Hi, ' + ${principal}"><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK OFFER
                     </h3>
-                    <form th:action="@{/}" th:object="${carDto}" id="contactform1" class="row" method="post">
+                    <form th:action="@{/}" th:object="${carDto}" id="simulate_form" class="row" method="post">
                         <fieldset class="row-fluid">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label for="brand_id"></label><select th:field="*{brandId}" name="select_service31"
@@ -128,7 +129,7 @@
                                                                       th:id="brand_id"
                                                                       class="selectpicker form-control"
                                                                       data-style="btn-white">
-                                <!--                                <option selected value="-1">Select Brand</option>-->
+                                <option selected th:value="-1" value="-1">Select Brand</option>
                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
                                         th:text="${brand.name}"></option>
                             </select>

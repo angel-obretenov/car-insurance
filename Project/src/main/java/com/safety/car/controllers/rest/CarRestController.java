@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+import static com.safety.car.utils.constants.Constants.*;
 import static java.lang.String.format;
 
 @RestController
@@ -33,7 +34,7 @@ public class CarRestController {
         try {
             return carService.getById(id);
         } catch (NotFoundException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, format("Car with id %d not found!", id));
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, format(CAR_ID_NOT_FOUND, id));
         }
     }
 
@@ -42,7 +43,7 @@ public class CarRestController {
         try {
             return carService.getTotalPremiumByCarId(id);
         } catch (NotFoundException e) {
-            return -1.1;
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, format(CAR_ID_NOT_FOUND, id));
         }
     }
 
@@ -50,9 +51,9 @@ public class CarRestController {
     public String create(@RequestBody Car car){
         try{
             carService.create(car);
-            return format("Car with brand %s created!", car.getBrand());
+            return format(CAR_WITH_BRAND_CREATED, car.getBrand());
         } catch (AgeException e){
-            return e.getMessage();
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }
 
@@ -60,18 +61,18 @@ public class CarRestController {
     public String update(@RequestBody Car car){
         try{
             carService.update(car);
-            return format("Car with brand %s updated!", car.getBrand());
+            return format(CAR_WITH_BRAND_UPDATE, car.getBrand());
         } catch (AgeException e){
-            return e.getMessage();
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }
 
     @PostMapping("simulate")
     public String simulateOffer(@RequestBody Car car){
         try{
-           return format("The estimated price is %.2f", carService.simulateOffer(car));
+           return format(ESTIMATED_PRICE_REST, carService.simulateOffer(car));
         } catch (AgeException e){
-            return e.getMessage();
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }
 }

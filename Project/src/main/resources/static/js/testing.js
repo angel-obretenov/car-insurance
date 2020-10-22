@@ -47,15 +47,15 @@
 // $('#brand_id').trigger('change');
 
 // $(document).ready(function () {
-//     $(`#brand_id`).on('change', function (){
+//     $(`#brand_id`).on('change', function () {
 //         let val = $(this).val();
 //         console.log(val);
 //         let sub = $('#model_id');
 //
 //         $('option', sub).filter(function () {
 //             if ($(this).attr('data-brandid') === val
-//                 // || $(this).attr('value') === -1
-//             ){
+//                 || $(this).attr('value') === '-1'
+//             ) {
 //                 $(this).show();
 //             } else {
 //                 $(this).hide();
@@ -211,3 +211,69 @@
 //             console.log(data);
 //         }
 // });
+
+
+// Fields verification, prevents pressing submit if not selected all
+
+$('#simulate_form').on('submit', function (e) {
+    let focusSet = false;
+    //FOR BRAND SELECT
+    if ($('#brand_id').val() === '-1') {
+        if ($("#brand_id").parent().next(".validation").length == 0) {
+            $("#brand_id").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select brand</div>");
+        }
+        e.preventDefault();
+        $('#brand_id').focus();
+        focusSet = true;
+    } else {
+        $("#brand_id").parent().next(".validation").remove();
+    }
+    //FOR MODEL SELECT
+    if ($('#model_id').val() === '-1') {
+        if ($("#model_id").parent().next(".validation").length == 0) {
+            $("#model_id").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select model</div>");
+        }
+        e.preventDefault();
+        if (!focusSet) {
+            $('#model_id').focus();
+        }
+    } else {
+        $("#model_id").parent().next(".validation").remove();
+    }
+    //FOR CUBICS
+    if (!$('#cubics').val()) {
+        if ($("#cubics").parent().next(".validation").length == 0) {
+            $("#cubics").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please fill cubic capacity</div>");
+        }
+        e.preventDefault();
+        if (!focusSet) {
+            $('#cubics').focus();
+        }
+    } else {
+        $("#cubics").parent().next(".validation").remove();
+    }
+    if ($('#cubics').val() > 1300) {
+        if ($("#cubics").parent().next(".validation").length == 0) {
+            $("#cubics").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Maximum cubic capacity is 1300!</div>");
+        }
+        e.preventDefault();
+        if (!focusSet) {
+            $('#cubics').focus();
+        }
+    } else {
+        $("#cubics").parent().next(".validation").remove();
+    }
+
+})
+
+
+
+
+
+
+
+
+
+
+
+

@@ -21,14 +21,12 @@ import java.util.List;
 @Component
 public class Helper {
 
-    private final GenericUtilityService<Address> addressService;
     private final UserService userService;
     private final CarService carService;
     private final AddressCombinedServices addressCombinedServices;
 
     @Autowired
-    public Helper(GenericUtilityService<Address> addressService, UserService userService, CarService carService, AddressCombinedServices addressCombinedServices) {
-        this.addressService = addressService;
+    public Helper(UserService userService, CarService carService, AddressCombinedServices addressCombinedServices) {
         this.userService = userService;
         this.carService = carService;
         this.addressCombinedServices = addressCombinedServices;
@@ -55,6 +53,7 @@ public class Helper {
 
     public static Car carDtoToCar(CarDto dto, ModelService modelService, BrandService brandService) {
         Car car = new Car();
+
         Model model = modelService.getById(dto.getModelId());
         Brand brand = brandService.getById(dto.getBrandId());
 
@@ -126,13 +125,4 @@ public class Helper {
 
         return policyDetails;
     }
-
-    public UserCar toUserCar(Car car, UserDetails userDetails) {
-        UserCar userCar = new UserCar();
-        userCar.setCarId(car);
-        userCar.setUserId(userDetails);
-
-        return userCar;
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.safety.car.controllers.rest;
 
+import com.safety.car.exceptions.EmptyException;
+import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.services.interfaces.PolicyDetailsService;
@@ -27,8 +29,8 @@ public class PolicyDetailsRestController {
     public List<PolicyDetails> getAll(){
         try {
             return policyDetailsService.getAll();
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } catch (EmptyException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
@@ -36,8 +38,8 @@ public class PolicyDetailsRestController {
     public PolicyDetails getById(@PathVariable int id){
         try {
             return policyDetailsService.getById(id);
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
@@ -47,8 +49,8 @@ public class PolicyDetailsRestController {
            PolicyDetails policyDetails = policyHelper.dtoToPolicyDetails(dto);
             policyDetailsService.create(policyDetails);
             return policyDetails;
-        } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 
@@ -58,8 +60,8 @@ public class PolicyDetailsRestController {
         try {
             policyDetailsService.update(policyDetails);
             return policyDetails;
-        } catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } catch (NotFoundException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
 

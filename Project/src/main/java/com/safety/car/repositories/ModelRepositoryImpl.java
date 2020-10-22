@@ -1,5 +1,7 @@
 package com.safety.car.repositories;
 
+import com.safety.car.exceptions.EmptyException;
+import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.entity.Model;
 import com.safety.car.repositories.interfaces.ModelRepository;
 import org.hibernate.Session;
@@ -9,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import static com.safety.car.utils.constants.Constants.*;
+import static java.lang.String.format;
 
 @Repository
 public class ModelRepositoryImpl implements ModelRepository {
@@ -25,7 +30,10 @@ public class ModelRepositoryImpl implements ModelRepository {
             Query<Model> query = session.createQuery("FROM Model WHERE id = :id", Model.class);
             query.setParameter("id", id);
 
-            return query.list().get(0);
+            List<Model> model = query.list();
+            if (model.isEmpty()) throw new NotFoundException(format(MODEL_ID_ERROR, id));
+
+            return model.get(0);
         }
     }
 
@@ -34,7 +42,10 @@ public class ModelRepositoryImpl implements ModelRepository {
         try (Session session = sessionFactory.openSession()) {
             Query<Model> query = session.createQuery("FROM Model", Model.class);
 
-            return query.list();
+            List<Model> model = query.list();
+            if (model.isEmpty()) throw new EmptyException(MODEL_EMPTY_ERROR);
+
+            return model;
         }
     }
 
@@ -44,7 +55,10 @@ public class ModelRepositoryImpl implements ModelRepository {
             Query<Model> query = session.createQuery("FROM Model WHERE brand.id = :id", Model.class);
             query.setParameter("id", id);
 
-            return query.list();
+            List<Model> model = query.list();
+            if (model.isEmpty()) throw new NotFoundException(format(MODEL_BRAND_ID_ERROR, id));
+
+            return model;
         }
     }
 }
