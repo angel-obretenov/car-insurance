@@ -35,7 +35,8 @@
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
 <!--    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+            th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
 
     <!--[if lt IE 9]>
@@ -127,7 +128,7 @@
                                 <label for="brand_id"></label><select th:field="*{brandId}" name="select_service31"
                                                                       id="brand_id"
                                                                       th:id="brand_id"
-                                                                      class="selectpicker form-control"
+                                                                      class="form-control"
                                                                       data-style="btn-white">
                                 <option selected th:value="-1" value="-1">Select Brand</option>
                                 <option th:each="brand : ${brands}" th:value="${brand.id}"
@@ -137,12 +138,11 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <label for="model_id"></label><select th:field="*{modelId}" name="select_service1"
                                                                       id="model_id"
-                                                                      class="selectpicker form-control"
+                                                                      class="form-control"
                                                                       data-style="btn-white">
-                                <option selected value="-1">Select Model</option>
-                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}"
-                                        th:value="${model.id}"
-                                        th:text="${model.name}"></option>
+<!--                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}"-->
+<!--                                        th:value="${model.id}"-->
+<!--                                        th:text="${model.name}"></option>-->
                             </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

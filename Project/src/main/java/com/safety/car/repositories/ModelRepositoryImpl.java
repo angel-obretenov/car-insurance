@@ -52,7 +52,7 @@ public class ModelRepositoryImpl implements ModelRepository {
     @Override
     public List<Model> getByBrandId(int id) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Model> query = session.createQuery("FROM Model WHERE brand.id = :id", Model.class);
+            Query<Model> query = session.createQuery("FROM Model WHERE brand.id = :id ORDER BY name", Model.class);
             query.setParameter("id", id);
 
             List<Model> model = query.list();

@@ -2,38 +2,38 @@ package com.safety.car.models.dto.rest;
 
 public class ModelDto {
 
-    private int id;
+    private Integer id;
 
-    private int year;
+    private Integer year;
 
-    private int brandId;
+    private Integer brandId;
 
     private String name;
 
     public ModelDto() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
-    public int getBrandId() {
+    public Integer getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(int brandId) {
+    public void setBrandId(Integer brandId) {
         this.brandId = brandId;
     }
 
