@@ -22,4 +22,6 @@ public class Constants {
     public static final String CAR_WITH_BRAND_CREATED = "Car with brand %s created!";
     public static final String ESTIMATED_PRICE_REST = "The estimated price is %.2f";
     public static final String CAR_ID_NOT_FOUND = "Car with id %d not found!";
+    public static final String GUEST_USER = "Guest user";
+    public static final String FILL_FORM_POLICY = "Please fill the form before continuing to requesting policy";
 }

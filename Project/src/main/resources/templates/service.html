@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Metas -->
-    <title>CITY Real Estate - Responsive HTML5 Landing Page Template</title>
+    <title>Insure Masters - Insure your car, be safe on the road.</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -115,7 +115,10 @@
 
 <div class="about-box">
     <div class="container">
-        <div class="row">
+<!--        <div th:if="${car == null}"  class="row">-->
+<!--            <meta th:content="@{/}" th:http-equiv="refresh"/>-->
+<!--        </div>-->
+        <div th:unless="${car == null}"  class="row">
             <ul th:object="${car}" class="list-group col">
                 <li th:text="#{car.brand.name}" class="list-group-item">Cras justo odio</li>
                 <li th:text="#{car.model.name}" class="list-group-item">Dapibus ac facilisis in</li>

@@ -1,10 +1,12 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.CarDto;
-import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.*;
+import com.safety.car.services.interfaces.BrandService;
+import com.safety.car.services.interfaces.CarService;
+import com.safety.car.services.interfaces.ModelService;
+import com.safety.car.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,16 +14,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.Objects;
 
-import static com.safety.car.utils.constants.Constants.ANONYMOUS_USER_CONTROLLER;
-import static com.safety.car.utils.constants.Constants.USER_NOT_FOUND_CONTROLLER;
+import static com.safety.car.utils.constants.Constants.*;
 import static com.safety.car.utils.mappers.Helper.carDtoToCar;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({"carDto", "car"})
+@SessionAttributes({"carDto", "car", "redirectFromService"})
 public class IndexController {
     private final CarService carService;
     private final UserService userService;
@@ -38,13 +40,15 @@ public class IndexController {
 
     @GetMapping
     public String getHomePage(Model model,
+                              HttpSession session,
                               Principal principal) {
 
         try {
             UserDetails user = userService.getByEmail(principal.getName());
             model.addAttribute("principal", user.getLastName());
+            model.addAttribute("redirectFromService", session.getAttribute("redirectFromService"));
         } catch (NullPointerException e) {
-            model.addAttribute("principal", "Anonymous user");
+            model.addAttribute("principal", GUEST_USER);
         }
         model.addAttribute("brands", brandService.getAll());
         model.addAttribute("models", modelService.getAll());
@@ -67,6 +71,7 @@ public class IndexController {
         try {
             UserDetails user = userService.getByEmail(principal.getName());
             model.addAttribute("principal", user.getLastName());
+            model.addAttribute("redirectFromService", null);
         } catch (NullPointerException e) {
             model.addAttribute("principal", ANONYMOUS_USER_CONTROLLER);
         } catch (EntityNotFoundException e) {

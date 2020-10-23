@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <!-- Site Metas -->
-    <title>CITY Real Estate - Responsive HTML5 Landing Page Template</title>
+    <title>Insure Masters - Insure your car, be safe on the road.</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -47,7 +47,6 @@
 
 </head>
 <body class="realestate_version">
-
 <!-- LOADER -->
 <div id="preloader">
     <span class="loader"><span class="loader-inner"></span></span>
@@ -72,7 +71,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a class="active" th:href="@{/}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
-                    <li><a th:href="@{/service}">Service</a></li>
+                    <li><a id="service-nav" th:href="@{/service}">Service</a></li>
                     <li><a th:href="@{/gallery}">Gallery</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
@@ -119,7 +118,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
-                <div class="contact_form">
+                <div class="contact_form" id="pre_form">
+                    <h3 id="redirect_msg" th:unless="${redirectFromService == null}" th:text="${redirectFromService}" ></h3>
                     <h3 th:text="'Hi, ' + ${principal}"><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK OFFER
                     </h3>
                     <form th:action="@{/}" th:object="${carDto}" id="simulate_form" class="row" method="post">
@@ -140,6 +140,7 @@
                                                                       id="model_id"
                                                                       class="form-control"
                                                                       data-style="btn-white">
+                                <option th:value="-1" value="-1">Select Model</option>
 <!--                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}"-->
 <!--                                        th:value="${model.id}"-->
 <!--                                        th:text="${model.name}"></option>-->
@@ -180,7 +181,7 @@
                 <div class="big-tagline clearfix">
                     <h2>Insure your car</h2>
                     <p class="lead">With our car insurance company which is the best in the region. </p>
-                    <a data-scroll th:href="@{/service}" href="/service" class="btn btn-light btn-radius grd1 btn-brd">Request
+                    <a id="service-mid" data-scroll th:href="@{/service}" href="/service" class="btn btn-light btn-radius grd1 btn-brd">Request
                         Policy</a>
                 </div>
             </div>

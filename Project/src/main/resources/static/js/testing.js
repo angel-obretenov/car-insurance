@@ -1,23 +1,33 @@
 $(document).ready(function () {
-    $('#brand_id').change(
-        function () {
-            $.getJSON('/api/model/brandId/' + $(this).val(), {
-                ajax: 'true'
-            }, function (data) {
-                var html = '<option value="">Select Model</option>';
-                var len = data.length;
-                for (var i = 0; i < len; i++) {
-                    html += '<option value="' + data[i].id + '">'
-                        + data[i].name + ' Year: ' + data[i].year + '</option>';
-                }
-                html += '</option>';
+        $('#brand_id').change(
+            function () {
+                $.getJSON('/api/model/brandId/' + $(this).val(), {
+                    ajax: 'true'
+                }, function (data) {
+                    var html = '<option value="">Select Model</option>';
+                    var len = data.length;
+                    for (var i = 0; i < len; i++) {
+                        html += '<option value="' + data[i].id + '">'
+                            + data[i].name + ' Year: ' + data[i].year + '</option>';
+                    }
+                    html += '</option>';
 
-                $('#model_id').html(html);
-                $('#model_id').trigger('contentChanged');
-            });
-        });
+                    $('#model_id').html(html);
+                    $('#model_id').trigger('contentChanged');
+                });
+            }
+        );
     $('#brand_id').trigger('change');
 });
+
+// $(document).ready(function () {
+//     $('#service-nav').click(
+//         function () {
+//             if ($(""))
+//         }
+//     )
+// })
+
 // $(document).ready(function () {
 //     const carDto = [];
 //     $('#submit1').click(function () {
@@ -49,90 +59,105 @@ $('#simulate_form').on('submit', function (e) {
     let focusSet = false;
     //FOR BRAND SELECT
     if ($('#brand_id').val() === '-1') {
-        if ($("#brand_id").parent().next(".validation").length == 0) {
-            $("#brand_id").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select brand</div>");
+        if ($("#brand_id").next(".validation").length === 0) {
+            $("#brand_id").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select brand</div>");
         }
         e.preventDefault();
         $('#brand_id').focus();
         focusSet = true;
     } else {
-        $("#brand_id").parent().next(".validation").remove();
+        $("#brand_id").next(".validation").remove();
     }
     //FOR MODEL SELECT
-    if ($('#model_id').val() === '-1') {
-        if ($("#model_id").parent().next(".validation").length == 0) {
-            $("#model_id").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select model</div>");
+    if ($('#model_id').val() === '-1' || $('#model_id').val() === null) {
+        if ($("#model_id").next(".validation").length === 0) {
+            $("#model_id").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select model</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#model_id').focus();
         }
     } else {
-        $("#model_id").parent().next(".validation").remove();
+        $("#model_id").next(".validation").remove();
     }
     //FOR CUBICS
-    if (!$('#cubics').val()) {
-        if ($("#cubics").parent().next(".validation").length == 0) {
-            $("#cubics").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please fill cubic capacity</div>");
+    if (!$('#cubics').val() || $('#cubics').val() === '') {
+        if ($("#cubics").next(".validation").length === 0) {
+            $("#cubics").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please fill cubic capacity</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#cubics').focus();
         }
     } else {
-        $("#cubics").parent().next(".validation").remove();
+        $("#cubics").next(".validation").remove();
     }
-    if ($('#cubics').val() > 1300) {
-        if ($("#cubics").parent().next(".validation").length == 0) {
-            $("#cubics").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Maximum cubic capacity is 1300!</div>");
+    if ($('#cubics').val() < 100 || $('#cubics').val() > 1300) {
+        if ($("#cubics").next(".validation").length === 0) {
+            $("#cubics").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Maximum cubic capacity is 1300!</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#cubics').focus();
         }
     } else {
-        $("#cubics").parent().next(".validation").remove();
+        $("#cubics").next(".validation").remove();
     }
     //FOR REGSITRATION DATE
     if (!$('#reg_date').val()) {
-        if ($("#reg_date").parent().next(".validation").length == 0) {
-            $("#reg_date").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select registraton date.</div>");
+        if ($("#reg_date").next(".validation").length === 0) {
+            $("#reg_date").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select registraton date.</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#reg_date').focus();
         }
     } else {
-        $("#reg_date").parent().next(".validation").remove();
+        $("#reg_date").next(".validation").remove();
     }
     //FOR DRIVERS AGE
 
     if (!$('#driver_age').val()) {
-        if ($("#driver_age").parent().next(".validation").length == 0) {
-            $("#driver_age").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please fill drivers age</div>");
+        if ($("#driver_age").next(".validation").length == 0) {
+            $("#driver_age").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please fill drivers age</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#driver_age').focus();
         }
     } else {
-        $("#driver_age").parent().next(".validation").remove();
+        $("#driver_age").next(".validation").remove();
     }
 
-    if ($('#driver_age').val() < 18 || $('#driver_age').val() > 65 ) {
-        if ($("#driver_age").parent().next(".validation").length == 0) {
-            $("#driver_age").parent().after("<div class='validation' style='color:red;margin-bottom: 20px;'>Drivers age should be between 18 and 65</div>");
+    if ($('#driver_age').val() < 18 || $('#driver_age').val() > 65) {
+        if ($("#driver_age").next(".validation").length == 0) {
+            $("#driver_age").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Drivers age should be between 18 and 65</div>");
         }
         e.preventDefault();
         if (!focusSet) {
             $('#driver_age').focus();
         }
     } else {
-        $("#driver_age").parent().next(".validation").remove();
+        $("#driver_age").next(".validation").remove();
     }
-
 })
 
 
-
-
+// $(document).ready(function () {
+//
+//     $("#submitButton").click(function (e) {
+//         var formInvalid = false;
+//         $('#simulate_form input').each(function () {
+//             if ($(this).val() === '') {
+//                 formInvalid = true;
+//                 e.preventDefault();
+//             }
+//         });
+//
+//         if (formInvalid) {
+//             $('#redirect_msg').show();
+//
+//         } else $('#redirect_msg').hide();
+//     });
+//
+// });
