@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -50,7 +49,7 @@ public class ModelRestController {
     @GetMapping("/brandId/{id}")
     public List<ModelDto> getByBrandId(@PathVariable int id) {
         try {
-           return helper.modelToDto(modelService.getByBrandId(id));
+            return helper.modelToDto(modelService.getByBrandId(id));
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }

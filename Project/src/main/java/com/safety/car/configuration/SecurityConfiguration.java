@@ -20,6 +20,11 @@ import javax.sql.DataSource;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
+    private static final String[] PUBLIC_MATCHERS = {"/style.css", "/fonts/**", "/css/**", "/js/**",
+            "/uploads/**", "/images/**", "/", "/login", "/register/**",
+            "/images/**"};
+    private static final String[] USER_MATCHERS = {"/service"};
+    private static final String[] ADMIN_MATCHERS = {""};
 
     @Autowired
     public SecurityConfiguration(DataSource dataSource) {
@@ -51,7 +56,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(new LoginRegisterPageFilter(), DefaultLoginPageGeneratingFilter.class);
 
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
+                .antMatchers(USER_MATCHERS).hasRole("USER")
+//                .antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
                 //.and()
                 //.httpBasic() -> (postman, insomnia configuration)
