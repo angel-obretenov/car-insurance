@@ -8,6 +8,8 @@ public interface PolicyRequestRepository {
 
     List<PolicyRequest> getAll();
 
+    List<PolicyRequest> getAllPending();
+
     PolicyRequest getById(int id);
 
     void create(PolicyRequest policyRequest);

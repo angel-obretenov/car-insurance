@@ -25,6 +25,11 @@ public class PolicyRequestServiceImpl implements PolicyRequestService {
     }
 
     @Override
+    public List<PolicyRequest> getAllPending() {
+        return policyRequestRepository.getAllPending();
+    }
+
+    @Override
     public PolicyRequest getById(int id) {
         return policyRequestRepository.getById(id);
     }

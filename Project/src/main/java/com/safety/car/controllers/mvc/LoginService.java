@@ -12,5 +12,4 @@ public class LoginService {
     public String showLoginPage() {
         return "login";
     }
-
 }

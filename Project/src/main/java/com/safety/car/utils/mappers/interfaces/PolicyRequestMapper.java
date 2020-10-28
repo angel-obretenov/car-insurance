@@ -9,4 +9,6 @@ public interface PolicyRequestMapper {
     PolicyRequest fromDto(PolicyRequestCreateDto policyRequestCreateDto);
 
     PolicyRequest fromDto(PolicyRequestApprovalDto policyRequestApprovalDto);
+
+    PolicyRequest getUpdateFrom(String action);
 }

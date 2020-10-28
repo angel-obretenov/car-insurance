@@ -142,9 +142,6 @@
                                                                       class="form-control"
                                                                       data-style="btn-white">
                                 <option th:value="-1" value="-1">Select Model</option>
-<!--                                <option th:each="model : ${models}" th:data-brandid="${model.brand.id}"-->
-<!--                                        th:value="${model.id}"-->
-<!--                                        th:text="${model.name}"></option>-->
                             </select>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -214,7 +211,8 @@
                     <ul class="twitter-widget footer-links">
                         <li><a th:href="@{/}"> Home </a></li>
                         <li><a th:href="@{/service}"> Services</a></li>
-                        <li><a th:href="@{/gallery}"> Gallery</a></li>
+                        <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
+                            Requests</a></li>
                         <li><a th:href="@{/properties}"> Properties</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->

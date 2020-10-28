@@ -34,6 +34,15 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
     }
 
     @Override
+    public List<PolicyRequest> getAllPending() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest WHERE isApproved is null", PolicyRequest.class);
+
+            return query.list();
+        }
+    }
+
+    @Override
     public PolicyRequest getById(int id) {
         try (Session session = sessionFactory.openSession()) {
             Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest WHERE :id = id", PolicyRequest.class);

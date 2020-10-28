@@ -103,7 +103,7 @@
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a th:href="@{/}">Home</a></li>
-                        <li>Gallery</li>
+                        <li>Policy Request</li>
                     </ul>
                 </nav>
             </div>
@@ -119,7 +119,8 @@
             </div><!-- end col -->
         </div><!-- end title -->
 
-        <div class="accordion" id="accordionExample" th:each="policy : ${policies}"
+        <h2 th:if="${policies.isEmpty()}" th:text="'No Pending Tickets!'"></h2>
+        <div th:unless="${policies.isEmpty()}" class="accordion" id="accordionExample" th:each="policy : ${policies}"
              th:if="${policy.getApproved() == null}" style="border-radius: 4px">
             <div class="card">
                 <div class="card-header" id="headingOne" style="background-color: darkgray">
@@ -149,18 +150,18 @@
                                                          'Phone: ' + ${policy.getPolicyDetails().phoneNumber} + '<br/>' +
                                                          'Address: ' + ${policy.getPolicyDetails().getAddress().address}">
                     </div>
-                    <!--                    <div th:field="*{id == ${policy.id}}" style="visibility: hidden">-->
-                    <!--                <form th:action="@{/gallery/approve}" th:object="${approval}" method="post">-->
-                    <a th:href="@{/policy-approval/approve/(id=${policy.id},bool='1')}" style="background-color: lightseagreen"
-                       type="button"
+                    <form method="post">
+                    <button name="action" th:value="'accept ' + ${policy.id}"  style="background-color: lightseagreen"
+                       type="submit"
                        class="btn btn-primary btn-sm">
                         Approve ✔
-                    </a>
-                    <a th:href="@{/policy-approval/approve/(id=${policy.id},bool='0')}" style="background-color: dimgray"
-                       type="button"
+                    </button>
+                    <button name="action" th:value="'reject ' + ${policy.id}"  style="background-color: dimgray"
+                       type="submit"
                        class="btn btn-primary btn-sm">
                         Decline ✖
-                    </a>
+                    </button>
+                    </form>
                 </div>
             </div>
             <hr>
@@ -196,7 +197,8 @@
                     <ul class="twitter-widget footer-links">
                         <li><a th:href="@{/}"> Home </a></li>
                         <li><a th:href="@{/service}"> Services</a></li>
-                        <li><a th:href="@{/gallery}"> Gallery</a></li>
+                        <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
+                            Requests</a></li>
                         <li><a th:href="@{/properties}"> Properties</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->

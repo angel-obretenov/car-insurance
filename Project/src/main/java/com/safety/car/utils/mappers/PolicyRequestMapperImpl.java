@@ -49,4 +49,21 @@ public class PolicyRequestMapperImpl implements PolicyRequestMapper {
 
         return policyToUpdate;
     }
+
+    @Override
+    public PolicyRequest getUpdateFrom(String action) {
+        String[] val = action.split(" ");
+
+        PolicyRequest policyToUpdate = policyRequestService.getById(Integer.parseInt(val[1]));
+
+        if (val[0].equals("accept")) {
+            policyToUpdate.setApproved(true);
+        }
+
+        if (val[0].equals("reject")) {
+            policyToUpdate.setApproved(false);
+        }
+
+        return policyToUpdate;
+    }
 }

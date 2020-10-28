@@ -353,7 +353,8 @@
                     <ul class="twitter-widget footer-links">
                         <li><a th:href="@{/}"> Home </a></li>
                         <li><a th:href="@{/service}"> Services</a></li>
-                        <li><a th:href="@{/gallery}"> Gallery</a></li>
+                        <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
+                            Requests</a></li>
                         <li><a th:href="@{/properties}"> Properties</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
