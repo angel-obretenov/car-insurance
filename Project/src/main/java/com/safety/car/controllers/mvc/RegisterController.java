@@ -1,5 +1,6 @@
 package com.safety.car.controllers.mvc;
 
+import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.models.entity.VerificationToken;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -108,17 +110,18 @@ public class RegisterController {
 
     @RequestMapping(value = "confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(@RequestParam("token") String confirmationToken, Model model) {
-        VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
+        VerificationToken token;
+        UserDetails user;
+        try {
+            token = verificationTokenRepository.findByVerificationToken(confirmationToken);
+            user = userService.getByEmail(token.getUser().getEmail());
 
-        if (token != null) {
-            UserDetails user = userService.getByEmail(token.getUser().getEmail());
             user.setEnabled(true);
             userService.update(user);
 
             model.addAttribute("message", "You have successfully confirmed your account!");
             return "accountVerified";
-
-        } else {
+        } catch (NotFoundException | EntityNotFoundException e){
             model.addAttribute("message", "The link is invalid or broken");
             return "errorVerification";
         }
