@@ -21,8 +21,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final DataSource dataSource;
     private static final String[] PUBLIC_MATCHERS = {"/style.css", "/fonts/**", "/css/**", "/js/**",
-            "/uploads/**", "/images/**", "/", "/login", "/register/**",
-            "/images/**"};
+            "/uploads/**", "/images/**", "/", "/login", "/register/**", "/confirm-account/**",
+            "/images/**", "/register/confirm-account/**"};
     private static final String[] USER_MATCHERS = {"/service"};
     private static final String[] ADMIN_MATCHERS = {""};
 

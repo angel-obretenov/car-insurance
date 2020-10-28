@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
             throw new DuplicateException(
                     format(USER_EMAIL_EXISTS, userDetails.getEmail()));
         }
-
         userRepository.create(userDetails);
     }
 

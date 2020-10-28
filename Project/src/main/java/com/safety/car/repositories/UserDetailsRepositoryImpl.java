@@ -68,6 +68,7 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
     public void create(UserDetails userDetails) {
         try (Session session = sessionFactory.openSession()) {
 
+            userDetails.setEnabled(false);
             session.save(userDetails);
         }
     }

@@ -29,8 +29,16 @@ dependencies {
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.4.RELEASE'
 
+    // https://mvnrepository.com/artifact/org.springframework/spring-context-support
+    compile group: 'org.springframework', name: 'spring-context-support', version: '5.2.9.RELEASE'
+
+
     // https://mvnrepository.com/artifact/org.webjars/jquery
     compile group: 'org.webjars', name: 'jquery', version: '3.3.1-2'
+
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mail
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.2.6.RELEASE'
+
 
 
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation

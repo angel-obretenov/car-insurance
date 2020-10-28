@@ -2,10 +2,13 @@ package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.entity.UserDetails;
+import com.safety.car.models.entity.VerificationToken;
+import com.safety.car.repositories.interfaces.VerificationTokenRepository;
+import com.safety.car.services.interfaces.EmailService;
 import com.safety.car.services.interfaces.UserService;
-import com.safety.car.utils.mappers.Helper;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,13 +26,20 @@ import java.util.List;
 @SessionAttributes({"carDto", "car"})
 public class RegisterController {
 
+    private final EmailService emailService;
+    private final VerificationTokenRepository verificationTokenRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserDetailsManager userDetailsManager;
     private final UserService userService;
     private final UserMapper userMapper;
 
     @Autowired
-    public RegisterController(BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsManager userDetailsManager, UserService userService, UserMapper userMapper) {
+    public RegisterController(EmailService emailService, VerificationTokenRepository verificationTokenRepository, BCryptPasswordEncoder bCryptPasswordEncoder,
+                              UserDetailsManager userDetailsManager,
+                              UserService userService,
+                              UserMapper userMapper) {
+        this.emailService = emailService;
+        this.verificationTokenRepository = verificationTokenRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userDetailsManager = userDetailsManager;
         this.userService = userService;
@@ -70,12 +80,47 @@ public class RegisterController {
                 ? AuthorityUtils.createAuthorityList("ROLE_ADMIN")
                 : AuthorityUtils.createAuthorityList("ROLE_USER");
 
-        var newUser = new org.springframework.security.core.userdetails.User(username, password, authorities);
-        userDetailsManager.createUser(newUser);
+        try {
+            var newUser = new org.springframework.security.core.userdetails.User(username, password, authorities);
+            userDetailsManager.createUser(newUser);
 
-        UserDetails userDetails = userMapper.fromDto(userCreateDto);
-        userService.create(userDetails);
+            UserDetails userDetails = userMapper.fromDto(userCreateDto);
+            userService.create(userDetails);
+            model.addAttribute("user", userDetails);
 
-        return "redirect:/login";
+            VerificationToken verificationToken = new VerificationToken(userDetails);
+            verificationTokenRepository.save(verificationToken);
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(userDetails.getEmail());
+            mailMessage.setSubject("Complete Registration!");
+            mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() + "\n To confirm your account, please click here : "
+                    + "http://localhost:8080/register/confirm-account?token=" + verificationToken.getToken()
+                    + "\n Greetings, Insure Masters");
+
+            emailService.sendEmail(mailMessage);
+
+            return "successfulRegisteration";
+        } catch (IllegalArgumentException e) {
+            return "redirect:/register";
+        }
+    }
+
+    @RequestMapping(value = "confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
+    public String confirmUserAccount(@RequestParam("token") String confirmationToken, Model model) {
+        VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
+
+        if (token != null) {
+            UserDetails user = userService.getByEmail(token.getUser().getEmail());
+            user.setEnabled(true);
+            userService.update(user);
+
+            model.addAttribute("message", "You have successfully confirmed your account!");
+            return "accountVerified";
+
+        } else {
+            model.addAttribute("message", "The link is invalid or broken");
+            return "errorVerification";
+        }
     }
 }

@@ -27,7 +27,19 @@ public class UserDetails {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+
     public UserDetails() {
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Integer getId() {
