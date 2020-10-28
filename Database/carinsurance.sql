@@ -23,14 +23,15 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `address` varchar(70) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.addresses: ~3 rows (approximately)
+-- Dumping data for table carinsurance.addresses: ~4 rows (approximately)
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
 INSERT INTO `addresses` (`id`, `address`) VALUES
 	(1, 'st. Kurkovo'),
-	(2, 'marica'),
-	(3, 'NqmamIdeq');
+	(4, 'Bulgaria, s.Katunica ul. Purva'),
+	(5, 'New York, USA'),
+	(8, 'testing the test');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 
 -- Dumping structure for table carinsurance.authorities
@@ -39,11 +40,14 @@ CREATE TABLE IF NOT EXISTS `authorities` (
   `username` varchar(50) NOT NULL,
   `authority` varchar(50) NOT NULL,
   UNIQUE KEY `username_authority` (`username`,`authority`),
-  CONSTRAINT `authorities_fk` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+  CONSTRAINT `authorities_fk` FOREIGN KEY (`username`) REFERENCES `users` (`username`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.authorities: ~0 rows (approximately)
+-- Dumping data for table carinsurance.authorities: ~2 rows (approximately)
 /*!40000 ALTER TABLE `authorities` DISABLE KEYS */;
+INSERT INTO `authorities` (`username`, `authority`) VALUES
+	('test@abb.bg', 'ROLE_USER'),
+	('testi@gmail.com', 'ROLE_USER');
 /*!40000 ALTER TABLE `authorities` ENABLE KEYS */;
 
 -- Dumping structure for table carinsurance.brands
@@ -54,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `brands` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.brands: ~73 rows (approximately)
+-- Dumping data for table carinsurance.brands: ~72 rows (approximately)
 /*!40000 ALTER TABLE `brands` DISABLE KEYS */;
 INSERT INTO `brands` (`id`, `name`) VALUES
 	(1, 'Acura'),
@@ -147,10 +151,38 @@ CREATE TABLE IF NOT EXISTS `car_details` (
   KEY `car_details_models_id_fk` (`model_id`),
   CONSTRAINT `car_details_brands_id_fk` FOREIGN KEY (`brand_id`) REFERENCES `brands` (`id`),
   CONSTRAINT `car_details_models_id_fk` FOREIGN KEY (`model_id`) REFERENCES `models` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.car_details: ~0 rows (approximately)
+-- Dumping data for table carinsurance.car_details: ~27 rows (approximately)
 /*!40000 ALTER TABLE `car_details` DISABLE KEYS */;
+INSERT INTO `car_details` (`id`, `brand_id`, `model_id`, `cubic_capacity`, `registration_date`, `has_accidents`, `driver_age`, `is_active`) VALUES
+	(4, 9, 498, 1000, '2017-10-16', 1, 18, 1),
+	(114, 8, 4, 1200, '2020-09-28', 0, 18, 0),
+	(115, 2, 3, 1250, '2000-02-10', 0, 19, 0),
+	(116, 2, 3, 1250, '2000-02-10', 0, 19, 0),
+	(117, 2, 2, 500, '2001-02-10', 0, 19, 0),
+	(118, 2, 4, 1202, '2000-02-12', 0, 19, 0),
+	(119, 2, 2, 1200, '2000-02-10', 0, 19, 0),
+	(120, 2, 2, 1200, '2000-02-10', 0, 19, 0),
+	(121, 1, 2, 1200, '2000-02-10', 0, 18, 0),
+	(122, 2, 18, 1200, '2020-09-28', 0, 18, 0),
+	(123, 1, 2, 1200, '2000-02-10', 0, 19, 0),
+	(124, 2, 2, 1200, '2000-02-10', 0, 19, 0),
+	(125, 2, 1457, 1200, '2020-09-28', 0, 18, 0),
+	(126, 8, 1447, 1200, '2000-02-10', 0, 19, 0),
+	(127, 9, 210, 1200, '2000-02-10', 0, 19, 0),
+	(128, 8, 943, 1200, '2000-02-10', 0, 18, 0),
+	(129, 8, 1851, 1200, '2000-02-10', 0, 19, 0),
+	(130, 8, 2767, 1200, '2000-02-10', 0, 19, 0),
+	(131, 8, 6038, 1300, '2020-09-28', 0, 19, 0),
+	(132, 8, 6746, 1200, '0200-02-10', 0, 19, 0),
+	(133, 8, 2768, 1200, '2020-09-28', 0, 19, 0),
+	(134, 5, 777, 1200, '2000-02-10', 0, 19, 0),
+	(135, 8, 6038, 1200, '2000-02-10', 0, 19, 0),
+	(136, 5, 928, 1200, '2000-02-10', 0, 19, 0),
+	(137, 4, 3849, 1200, '2000-02-10', 0, 19, 0),
+	(138, 11, 1623, 1200, '2000-02-10', 0, 19, 0),
+	(139, 2, 1008, 1200, '2000-02-10', 0, 19, 0);
 /*!40000 ALTER TABLE `car_details` ENABLE KEYS */;
 
 -- Dumping structure for table carinsurance.models
@@ -8911,10 +8943,12 @@ CREATE TABLE IF NOT EXISTS `policy_details` (
   CONSTRAINT `policy_details_addresses_id_fk` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   CONSTRAINT `policy_details_car_details_id_fk` FOREIGN KEY (`car_id`) REFERENCES `car_details` (`id`),
   CONSTRAINT `policy_details_user_details_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.policy_details: ~0 rows (approximately)
+-- Dumping data for table carinsurance.policy_details: ~1 rows (approximately)
 /*!40000 ALTER TABLE `policy_details` DISABLE KEYS */;
+INSERT INTO `policy_details` (`id`, `start_date`, `end_date`, `picture`, `phone_number`, `email`, `address_id`, `user_id`, `car_id`) VALUES
+	(11, '2020-09-28', '2020-10-20', _binary 0x66696C65732E686F6C6C6D616E6E2E6A7067, 894575757, 'testi@gmail.com', 4, 9, 114);
 /*!40000 ALTER TABLE `policy_details` ENABLE KEYS */;
 
 -- Dumping structure for table carinsurance.policy_request
@@ -8945,10 +8979,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `users_username_uindex` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.users: ~1 rows (approximately)
+-- Dumping data for table carinsurance.users: ~2 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`username`, `password`, `enabled`) VALUES
-	('test@abv.bg', '{noop}what', 1);
+	('test@abb.bg', '$2a$10$N9UYy.rJVVtGD9keO5nLduCXZMBohvont7kjVpfu2H5VpZiROQ.f.', 1),
+	('testi@gmail.com', '$2a$10$MXmSlr1hUsOO8CKrhvYys.qqj1kQbhtcx4Zm0qenPUqQgvxMCWa1W', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 
 -- Dumping structure for table carinsurance.user_details
@@ -8960,18 +8995,35 @@ CREATE TABLE IF NOT EXISTS `user_details` (
   `last_name` varchar(50) NOT NULL,
   `phone_number` int(10) NOT NULL,
   `address_id` int(11) NOT NULL,
+  `enabled` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_details_email_uindex` (`email`),
   KEY `user_details_addresses_id_fk` (`address_id`),
   CONSTRAINT `user_details_addresses_id_fk` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
-  CONSTRAINT `user_details_users_username_fk` FOREIGN KEY (`email`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  CONSTRAINT `user_details_users_username_fk` FOREIGN KEY (`email`) REFERENCES `users` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
--- Dumping data for table carinsurance.user_details: ~0 rows (approximately)
+-- Dumping data for table carinsurance.user_details: ~1 rows (approximately)
 /*!40000 ALTER TABLE `user_details` DISABLE KEYS */;
-INSERT INTO `user_details` (`id`, `email`, `first_name`, `last_name`, `phone_number`, `address_id`) VALUES
-	(4, 'test@abv.bg', 'Test', 'Testov', 888888888, 1);
+INSERT INTO `user_details` (`id`, `email`, `first_name`, `last_name`, `phone_number`, `address_id`, `enabled`) VALUES
+	(9, 'testi@gmail.com', 'Kenche', 'Umrelo', 894575757, 4, NULL);
 /*!40000 ALTER TABLE `user_details` ENABLE KEYS */;
+
+-- Dumping structure for table carinsurance.verification_token
+DROP TABLE IF EXISTS `verification_token`;
+CREATE TABLE IF NOT EXISTS `verification_token` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `token` varchar(64) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `verification_token_user_details_id_fk` (`user_id`),
+  CONSTRAINT `verification_token_user_details_id_fk` FOREIGN KEY (`user_id`) REFERENCES `user_details` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table carinsurance.verification_token: ~0 rows (approximately)
+/*!40000 ALTER TABLE `verification_token` DISABLE KEYS */;
+/*!40000 ALTER TABLE `verification_token` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
