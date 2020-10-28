@@ -102,7 +102,7 @@ public class RegisterController {
 
             emailService.sendEmail(mailMessage);
 
-            return "successfulRegisteration";
+            return "successfulRegistration";
         } catch (IllegalArgumentException e) {
             return "redirect:/register";
         }
@@ -119,6 +119,7 @@ public class RegisterController {
             user.setEnabled(true);
             userService.update(user);
 
+            verificationTokenRepository.delete(token);
             model.addAttribute("message", "You have successfully confirmed your account!");
             return "accountVerified";
         } catch (NotFoundException | EntityNotFoundException e){

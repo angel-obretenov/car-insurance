@@ -97,7 +97,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Account Verification</h2>
+                <h2>Check your email</h2>
                 <!-- Breadcrumbs -->
                 <nav id="breadcrumbs">
                     <ul>
@@ -115,7 +115,7 @@
         <div class="section-title row text-center">
             <div class="col-md-8 col-md-offset-2">
                 <h3>Welcome to our site</h3>
-                <span th:text="${message}"></span>
+                <span th:text="'Verification email was successfully sent to ' + ${user.email}"></span>
             </div><!-- end col -->
         </div><!-- end title -->
 

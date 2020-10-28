@@ -9,4 +9,6 @@ public interface VerificationTokenRepository{
 
     void save(VerificationToken verificationToken);
 
+    void delete(VerificationToken verificationToken);
+
 }

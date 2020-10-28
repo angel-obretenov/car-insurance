@@ -5,6 +5,7 @@ import com.safety.car.models.entity.VerificationToken;
 import com.safety.car.repositories.interfaces.VerificationTokenRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,6 +42,16 @@ public class VerificationTokenRepositoryImpl implements VerificationTokenReposit
         try (Session session = sessionFactory.openSession()) {
 
             session.save(verificationToken);
+        }
+    }
+
+    @Override
+    public void delete(VerificationToken verificationToken) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            session.delete(verificationToken);
+            tx.commit();
         }
     }
 }
