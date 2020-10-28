@@ -67,7 +67,8 @@
                     <li><a th:href="@{/}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
                     <li><a th:href="@{/service}">Service</a></li>
-                    <li><a th:href="@{/gallery}">Gallery</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
+                        Requests</a></li>
                     <li><a class="active" th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
@@ -135,8 +136,10 @@
                         <img th:src="@{/images/logos/logo.png}"
                              src="../static/images/logos/logo.png" alt="">
                     </div>
-                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its primary use is to provide
-                        financial protection against physical damage or bodily injury resulting from traffic collisions and
+                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its
+                        primary use is to provide
+                        financial protection against physical damage or bodily injury resulting from traffic collisions
+                        and
                         against liability that could also arise from incidents in a vehicle.</p>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -177,7 +180,8 @@
                         <h3>Social</h3>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i class="fa fa-gitlab"></i> Gitlab</a></li>
+                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i
+                                class="fa fa-gitlab"></i> Gitlab</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->

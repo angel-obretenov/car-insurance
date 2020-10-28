@@ -151,12 +151,12 @@
                     </div>
                     <!--                    <div th:field="*{id == ${policy.id}}" style="visibility: hidden">-->
                     <!--                <form th:action="@{/gallery/approve}" th:object="${approval}" method="post">-->
-                    <a th:href="@{/gallery/approve/(id=${policy.id},bool='1')}" style="background-color: lightseagreen"
+                    <a th:href="@{/policy-approval/approve/(id=${policy.id},bool='1')}" style="background-color: lightseagreen"
                        type="button"
                        class="btn btn-primary btn-sm">
                         Approve ✔
                     </a>
-                    <a th:href="@{/gallery/approve/(id=${policy.id},bool='0')}" style="background-color: dimgray"
+                    <a th:href="@{/policy-approval/approve/(id=${policy.id},bool='0')}" style="background-color: dimgray"
                        type="button"
                        class="btn btn-primary btn-sm">
                         Decline ✖
