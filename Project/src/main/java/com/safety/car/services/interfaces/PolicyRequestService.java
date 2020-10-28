@@ -11,4 +11,6 @@ public interface PolicyRequestService {
     PolicyRequest getById(int id);
 
     void create(PolicyRequest policyRequest);
+
+    void update(PolicyRequest policyToUpdate);
 }

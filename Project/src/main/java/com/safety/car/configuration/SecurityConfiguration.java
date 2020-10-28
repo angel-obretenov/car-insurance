@@ -24,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/uploads/**", "/images/**", "/", "/login", "/register/**", "/confirm-account/**",
             "/images/**", "/register/confirm-account/**"};
     private static final String[] USER_MATCHERS = {"/service"};
-    private static final String[] ADMIN_MATCHERS = {""};
+    private static final String[] ADMIN_MATCHERS = {"/policy-approval/**"};
 
     @Autowired
     public SecurityConfiguration(DataSource dataSource) {
@@ -58,7 +58,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .antMatchers(USER_MATCHERS).hasRole("USER")
-//                .antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
+                .antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
                 //.and()

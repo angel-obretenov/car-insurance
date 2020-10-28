@@ -54,4 +54,14 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
             session.save(policyRequest);
         }
     }
+
+    @Override
+    public void update(PolicyRequest policyToUpdate) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            session.update(policyToUpdate);
+            tx.commit();
+        }
+    }
 }

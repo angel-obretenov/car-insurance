@@ -33,4 +33,9 @@ public class PolicyRequestServiceImpl implements PolicyRequestService {
     public void create(PolicyRequest policyRequest) {
         policyRequestRepository.create(policyRequest);
     }
+
+    @Override
+    public void update(PolicyRequest policyToUpdate) {
+        policyRequestRepository.update(policyToUpdate);
+    }
 }

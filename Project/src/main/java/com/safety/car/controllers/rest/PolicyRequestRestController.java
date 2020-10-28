@@ -1,7 +1,8 @@
 package com.safety.car.controllers.rest;
 
 import com.safety.car.exceptions.NotFoundException;
-import com.safety.car.models.dto.rest.PolicyApprovalDto;
+import com.safety.car.models.dto.rest.PolicyRequestApprovalDto;
+import com.safety.car.models.dto.rest.PolicyRequestCreateDto;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.services.interfaces.PolicyRequestService;
 import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
@@ -41,11 +42,23 @@ public class PolicyRequestRestController {
     }
 
     @PostMapping
-    public PolicyRequest create(@RequestBody PolicyApprovalDto policyApprovalDto) {
+    public PolicyRequest create(@RequestBody PolicyRequestCreateDto policyRequestCreateDto) {
         try {
-            PolicyRequest updatePolicy = policyRequestMapper.fromDto(policyApprovalDto);
-            policyRequestService.create(updatePolicy);
-            return updatePolicy;
+            PolicyRequest createPolicy = policyRequestMapper.fromDto(policyRequestCreateDto);
+            policyRequestService.create(createPolicy);
+            return createPolicy;
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND,
+                    e.getMessage());
+        }
+    }
+
+    @PutMapping
+    public PolicyRequest update(@RequestBody PolicyRequestApprovalDto policyRequestApprovalDto) {
+        try {
+            PolicyRequest policyToUpdate = policyRequestMapper.fromDto(policyRequestApprovalDto);
+            policyRequestService.update(policyToUpdate);
+            return policyToUpdate;
         } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     e.getMessage());

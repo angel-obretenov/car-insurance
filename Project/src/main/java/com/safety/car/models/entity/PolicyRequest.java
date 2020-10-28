@@ -19,7 +19,7 @@ public class PolicyRequest {
     private UserDetails userDetails;
 
     @Column(name = "is_approved")
-    private boolean isApproved;
+    private Boolean isApproved;
 
     public PolicyRequest() {
     }
@@ -48,11 +48,11 @@ public class PolicyRequest {
         this.userDetails = userDetails;
     }
 
-    public boolean isApproved() {
+    public Boolean getApproved() {
         return isApproved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(Boolean approved) {
         isApproved = approved;
     }
 }

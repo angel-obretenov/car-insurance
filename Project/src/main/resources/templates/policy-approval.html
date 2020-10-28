@@ -34,9 +34,7 @@
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
 
-
     <!--[if lt IE 9]>
-    //TODO MAYBE
     <script src="../static/https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="../static/https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
@@ -69,13 +67,14 @@
                     <li><a th:href="@{/}">Home</a></li>
                     <li><a th:href="@{/about}">About us </a></li>
                     <li><a th:href="@{/service}">Service</a></li>
-                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy Requests</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" class="active" th:href="@{/policy-approval}">Policy
+                        Requests</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
-                    <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/register}">Register</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
-                    <li class=" social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
+                    <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
                     <li class="search-option">
@@ -95,82 +94,82 @@
     </nav>
 </header>
 
-
-<ul class='slideshow'>
-    <li>
-        <span>Summer</span>
-    </li>
-    <li>
-        <span>Fall</span>
-    </li>
-    <li>
-        <span>Winter</span>
-    </li>
-    <li>
-        <span>Spring</span>
-    </li>
-</ul>
-<div>
-    <div class="parallax first-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
-                    <div class="contact_form">
-                        <h3><i class="fa fa-envelope-o grd1 global-radius"></i> REGISTER</h3>
-                        <form method="post" th:action="@{/register}" th:object="${userCreateDto}" class="px-4 py-3">
-                            <div class="form-group">
-                                <label for="firstname">First Name</label>
-                                <input th:field="*{firstName}" type="text" class="form-control" id="firstname"
-                                       name="firstname"
-                                       placeholder="First Name(not required)">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastname">Family Name</label>
-                                <input th:field="*{lastName}" type="text" class="form-control" id="lastname"
-                                       name="lastname"
-                                       placeholder="Last Name(not required)">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input th:field="*{email}" type="email" class="form-control" id="email" name="email"
-                                       placeholder="email@example.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input th:field="*{password}" type="password" class="form-control" id="password"
-                                       name="password"
-                                       placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="passwordConfirm">Confirm Password</label>
-                                <input th:field="*{confirmPassword}" type="password" class="form-control"
-                                       id="passwordConfirm" name="passwordConfirm"
-                                       placeholder="Confirm Your Password">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone</label>
-                                <input th:field="*{phoneNumber}" type="number" class="form-control"
-                                       id="phone" name="phone"
-                                       placeholder="Phone">
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address</label>
-                                <input th:field="*{addressName}" type="text" class="form-control"
-                                       id="address" name="address"
-                                       placeholder="Address">
-                            </div>
-                            <button type="submit" style="background-color: #004d33" class="btn btn-primary">
-                                Register
-                            </button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/login}">Already have account ? Go to Login Page.</a>
-                    </div>
-                </div>
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Policy Approval</h2>
+                <!-- Breadcrumbs -->
+                <nav id="breadcrumbs">
+                    <ul>
+                        <li><a th:href="@{/}">Home</a></li>
+                        <li>Gallery</li>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </div><!-- end row -->
+    </div>
 </div>
+
+<div id="policy-approval" class="section wb">
+    <div class="container">
+        <div class="section-title row text-center">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Tickets</h3>
+            </div><!-- end col -->
+        </div><!-- end title -->
+
+        <div class="accordion" id="accordionExample" th:each="policy : ${policies}"
+             th:if="${policy.getApproved() == null}" style="border-radius: 4px">
+            <div class="card">
+                <div class="card-header" id="headingOne" style="background-color: darkgray">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                th:data-target="|.demo${policy.getId()}|" aria-expanded="true"
+                                aria-controls="collapseOne" th:text="'Ticket N: ' + ${policy.getId()} + '/ Pending'">
+                        </button>
+                    </h2>
+                </div>
+
+                <div th:id="|collapse demo${policy.getId()}|" th:class="|collapse demo${policy.getId()}|"
+                     aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body" th:utext="'Vehicle' + '<br/>' +
+                                                 'Car model: ' + ${policy.getPolicyDetails().getCar().getModel().name} + '<br/>' +
+                                                 'Registration Date: ' + ${policy.getPolicyDetails().getCar().getRegistrationDate()} + '<br/>' +
+                                                 'Picture: ' + ${policy.getPolicyDetails().getPicture()}">
+                    </div>
+                    <hr>
+                    <div class="card-body" th:utext="'Drivers details ' + '<br/>' +
+                                                         'Drivers age: ' + ${policy.getPolicyDetails().getCar().getDriversAge()} + '<br/>' +
+                                                         'Previous incidents: ' + ${policy.getPolicyDetails().getCar().hasAccidents}">
+                    </div>
+                    <hr>
+                    <div class="card-body" th:utext="'Contacts ' + '<br/>' +
+                                                         'Email: ' + ${policy.getPolicyDetails().email} + '<br/>' +
+                                                         'Phone: ' + ${policy.getPolicyDetails().phoneNumber} + '<br/>' +
+                                                         'Address: ' + ${policy.getPolicyDetails().getAddress().address}">
+                    </div>
+                    <!--                    <div th:field="*{id == ${policy.id}}" style="visibility: hidden">-->
+                    <!--                <form th:action="@{/gallery/approve}" th:object="${approval}" method="post">-->
+                    <a th:href="@{/gallery/approve/(id=${policy.id},bool='1')}" style="background-color: lightseagreen"
+                       type="button"
+                       class="btn btn-primary btn-sm">
+                        Approve ✔
+                    </a>
+                    <a th:href="@{/gallery/approve/(id=${policy.id},bool='0')}" style="background-color: dimgray"
+                       type="button"
+                       class="btn btn-primary btn-sm">
+                        Decline ✖
+                    </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div><!-- end portfolio -->
+</div><!-- end container -->
+</div><!-- end section -->
+
+
 <footer class="footer">
     <div class="container">
         <div class="row">
@@ -180,8 +179,10 @@
                         <img th:src="@{/images/logos/logo.png}"
                              src="../static/images/logos/logo.png" alt="">
                     </div>
-                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its primary use is to provide
-                        financial protection against physical damage or bodily injury resulting from traffic collisions and
+                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its
+                        primary use is to provide
+                        financial protection against physical damage or bodily injury resulting from traffic collisions
+                        and
                         against liability that could also arise from incidents in a vehicle.</p>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -222,7 +223,8 @@
                         <h3>Social</h3>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i class="fa fa-gitlab"></i> Gitlab</a></li>
+                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i
+                                class="fa fa-gitlab"></i> Gitlab</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -262,8 +264,6 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
-<!--<script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>-->
-<script th:src="@{/js/testing.js}"></script>
 
 </body>
 </html>
