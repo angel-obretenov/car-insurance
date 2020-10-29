@@ -70,6 +70,7 @@
                     <li><a th:href="@{/about}">About us </a></li>
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy Requests</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/login}">Login</a></li>

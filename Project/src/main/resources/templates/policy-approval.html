@@ -69,6 +69,7 @@
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" class="active" th:href="@{/policy-approval}">Policy
                         Requests</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
@@ -125,9 +126,17 @@
             <div class="card">
                 <div class="card-header" id="headingOne" style="background-color: darkgray">
                     <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                        <button th:if="${policy.getApproved() == null}" name="pending" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
                                 th:data-target="|.demo${policy.getId()}|" aria-expanded="true"
-                                aria-controls="collapseOne" th:text="'Ticket N: ' + ${policy.getId()} + '/ Pending'">
+                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${policy.getId()} + '/ Pending'">
+                        </button>
+                        <button th:if="${policy.getApproved() == true}" name="accepted" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                th:data-target="|.demo${policy.getId()}|" aria-expanded="true"
+                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${policy.getId()} + '/ Accepted'">
+                        </button>
+                        <button th:if="${policy.getApproved() == false}" name="rejected" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                th:data-target="|.demo${policy.getId()}|" aria-expanded="true"
+                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${policy.getId()} + '/ Rejected'">
                         </button>
                     </h2>
                 </div>
@@ -136,9 +145,9 @@
                      aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body" th:utext="'Vehicle' + '<br/>' +
                                                  'Car model: ' + ${policy.getPolicyDetails().getCar().getModel().name} + '<br/>' +
-                                                 'Registration Date: ' + ${policy.getPolicyDetails().getCar().getRegistrationDate()} + '<br/>' +
-                                                 'Picture: ' + ${policy.getPolicyDetails().getPicture()}">
+                                                 'Registration Date: ' + ${policy.getPolicyDetails().getCar().getRegistrationDate()} + '<br/>'">
                     </div>
+                    <img class="policy_picture" th:src="@{'http://localhost:8080/image/' + ${policy.getPolicyDetails().picture}}">
                     <hr>
                     <div class="card-body" th:utext="'Drivers details ' + '<br/>' +
                                                          'Drivers age: ' + ${policy.getPolicyDetails().getCar().getDriversAge()} + '<br/>' +
@@ -170,7 +179,6 @@
     </div><!-- end portfolio -->
 </div><!-- end container -->
 </div><!-- end section -->
-
 
 <footer class="footer">
     <div class="container">

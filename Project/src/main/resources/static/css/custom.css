@@ -4,3 +4,16 @@
 #redirect_msg{
     color: red;
 }
+
+button[name="accepted"] {
+    color: green;
+}
+
+button[name="rejected"] {
+    color: red;
+}
+
+.policy_picture {
+    width: 320px;
+    height: 200px;
+}

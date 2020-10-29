@@ -74,6 +74,7 @@
                     <li><a id="service-nav" th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
                         Requests</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
                     <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
