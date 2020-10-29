@@ -7,6 +7,8 @@ public class Constants {
 
     public static final String USER_NOT_FOUND_EMAIL = "User with email: %s, was not found!";
     public static final String USER_NOT_FOUND_ID = "User with id: %d, was not found!";
+    public static final String PREMIUM_ID_ERROR = "No such premium values with id %d";
+    public static final String PREMIUM_ERROR = "There are no premium values in the system";
 
     public static final String ANONYMOUS_USER_CONTROLLER = "Guest user";
     public static final String USER_NOT_FOUND_CONTROLLER = "User not found";
