@@ -151,16 +151,17 @@
                                                          'Address: ' + ${policy.getPolicyDetails().getAddress().address}">
                     </div>
                     <form method="post">
-                    <button name="action" th:value="'accept ' + ${policy.id}"  style="background-color: lightseagreen"
-                       type="submit"
-                       class="btn btn-primary btn-sm">
-                        Approve ✔
-                    </button>
-                    <button name="action" th:value="'reject ' + ${policy.id}"  style="background-color: dimgray"
-                       type="submit"
-                       class="btn btn-primary btn-sm">
-                        Decline ✖
-                    </button>
+                        <button name="action" th:value="'accept ' + ${policy.id}"
+                                style="background-color: lightseagreen"
+                                type="submit"
+                                class="btn btn-primary btn-sm">
+                            Approve ✔
+                        </button>
+                        <button name="action" th:value="'reject ' + ${policy.id}" style="background-color: dimgray"
+                                type="submit"
+                                class="btn btn-primary btn-sm">
+                            Decline ✖
+                        </button>
                     </form>
                 </div>
             </div>
