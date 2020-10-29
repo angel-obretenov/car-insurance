@@ -8,8 +8,11 @@ import com.safety.car.repositories.interfaces.AddressRepository;
 import com.safety.car.services.interfaces.AddressService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserMapperImpl implements UserMapper {
@@ -55,7 +58,8 @@ public class UserMapperImpl implements UserMapper {
         return user;
     }
 
-    public void enableUser(String email){
+    @Override
+    public void enableSpringUser(String email){
 
         boolean enabled = true;
         boolean accountNonExpired = true;
@@ -72,5 +76,22 @@ public class UserMapperImpl implements UserMapper {
                 updateUser.getAuthorities());
 
         userDetailsManager.updateUser(updateUser);
+    }
+
+    @Override
+    public void createSpringUser(String username, String password, List<GrantedAuthority> authorities) {
+        boolean enabled = false;
+        boolean accountNonExpired = true;
+        boolean credentialsNonExpired = true;
+        boolean accountNonLocked = true;
+        var newUser = new org.springframework.security.core.userdetails.User(
+                username,
+                password,
+                enabled,
+                accountNonExpired,
+                credentialsNonExpired,
+                accountNonLocked,
+                authorities);
+        userDetailsManager.createUser(newUser);
     }
 }

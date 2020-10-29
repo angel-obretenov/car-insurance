@@ -83,19 +83,8 @@ public class RegisterController {
                 : AuthorityUtils.createAuthorityList("ROLE_USER");
 
         try {
-            boolean enabled = false;
-            boolean accountNonExpired = true;
-            boolean credentialsNonExpired = true;
-            boolean accountNonLocked = true;
-            var newUser = new org.springframework.security.core.userdetails.User(
-                    username,
-                    password,
-                    enabled,
-                    accountNonExpired,
-                    credentialsNonExpired,
-                    accountNonLocked,
-                    authorities);
-            userDetailsManager.createUser(newUser);
+
+            userMapper.createSpringUser(username, password, authorities);
 
             UserDetails userDetails = userMapper.fromDto(userCreateDto);
             userService.create(userDetails);
@@ -104,14 +93,7 @@ public class RegisterController {
             VerificationToken verificationToken = new VerificationToken(userDetails);
             verificationTokenRepository.save(verificationToken);
 
-            SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo(userDetails.getEmail());
-            mailMessage.setSubject("Complete Registration!");
-            mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() + "\n To confirm your account, please click here : "
-                    + "http://localhost:8080/register/confirm-account?token=" + verificationToken.getToken()
-                    + "\n Greetings, Insure Masters");
-
-            emailService.sendEmail(mailMessage);
+            emailService.sendVerificationEmail(userDetails, verificationToken);
 
             return "successfulRegistration";
         } catch (IllegalArgumentException e) {
@@ -125,8 +107,7 @@ public class RegisterController {
             VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
             UserDetails user = userService.getByEmail(token.getUser().getEmail());
 
-            //Updates the spring security UserDetails
-            userMapper.enableUser(token.getUser().getEmail());
+            userMapper.enableSpringUser(token.getUser().getEmail());
 
             user.setEnabled(true);
             userService.update(user);
