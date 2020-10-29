@@ -20,19 +20,10 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender javaMailSender;
-    private final UserService userService;
-    private final PolicyDetailsService policyDetailsService;
-    private final PolicyRequestService policyRequestService;
 
     @Autowired
-    public EmailServiceImpl(@Qualifier("getJavaMailSender") JavaMailSender javaMailSender,
-                            UserService userService,
-                            PolicyDetailsService policyDetailsService,
-                            PolicyRequestService policyRequestService) {
+    public EmailServiceImpl(@Qualifier("getJavaMailSender") JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
-        this.userService = userService;
-        this.policyDetailsService = policyDetailsService;
-        this.policyRequestService = policyRequestService;
     }
 
     @Async
@@ -61,18 +52,18 @@ public class EmailServiceImpl implements EmailService {
         if (policyRequest.getApproved()){
             mailMessage.setSubject("Details on your policy request");
             mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() +
-                    "\n We have accepted your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
+                    "\n\n We have accepted your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
                     "\n Car with brand " + policyDetails.getCar().getBrand().getName()
                     +" and with model " + policyDetails.getCar().getModel().getName()
-                    + "\n Greetings, Insure Masters");
+                    + "\n\n Greetings, Insure Masters");
         } else {
             mailMessage.setSubject("Details on your policy request");
             mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() +
-                    "\n We have rejected your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
+                    "\n\n We have rejected your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
                     "\n Car with brand " + policyDetails.getCar().getBrand().getName()
                     +" and with model " + policyDetails.getCar().getModel().getName()
                     +"\n Since you don't meet our requirements"
-                    + "\n Greetings, Insure Masters");
+                    + "\n\n Greetings, Insure Masters");
         }
         sendEmail(mailMessage);
     }

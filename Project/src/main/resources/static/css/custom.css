@@ -1,8 +1,7 @@
-
 /** ADD YOUR AWESOME CODES HERE **/
 /*@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');*/
 
-#redirect_msg{
+#redirect_msg {
     color: red;
 }
 
@@ -20,8 +19,7 @@ button[name="rejected"] {
 }
 
 
-
-.searchbar{
+.searchbar {
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
@@ -30,30 +28,30 @@ button[name="rejected"] {
     padding: 10px;
 }
 
-.search_input{
+.search_input {
     color: white;
     border: 0;
     outline: 0;
     background: none;
     width: 0;
-    caret-color:transparent;
+    caret-color: transparent;
     line-height: 40px;
     transition: width 0.4s linear;
 }
 
-.searchbar:hover > .search_input{
+.searchbar:hover > .search_input {
     padding: 0 10px;
     width: 450px;
-    caret-color:red;
+    caret-color: red;
     transition: width 0.4s linear;
 }
 
-.searchbar:hover > .search_icon{
+.searchbar:hover > .search_icon {
     background: white;
     color: #e74c3c;
 }
 
-.search_icon{
+.search_icon {
     height: 40px;
     width: 40px;
     float: right;
@@ -61,6 +59,43 @@ button[name="rejected"] {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
-    text-decoration:none;
+    color: white;
+    text-decoration: none;
 }
+
+/*.policy_picture{*/
+/*    transition: .5s;*/
+/*}*/
+/*.policy_picture:hover {*/
+/*    transform: scale(3);*/
+/*}*/
+
+/*#my_image{*/
+/*    width: 200px;*/
+/*    margin: 20px;*/
+/*    cursor: crosshair;*/
+/*}*/
+
+
+#close_image{
+    transition: .5s;
+    background: #ececec;
+    position: fixed;
+    left: 20%;
+    top: 575px;
+    z-index: 10;
+}
+
+#appear_image{
+    transition: .5s;
+    display: flex;
+    height: 60%;
+    width: 60%;
+    margin: auto;
+    position: fixed;
+    border: 2px black;
+    z-index: 11;
+    top: 50px;
+    left: 20%;
+}
+

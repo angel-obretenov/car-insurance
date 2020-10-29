@@ -1,24 +1,41 @@
 $(document).ready(function () {
-        $('#brand_id').change(
-            function () {
-                $.getJSON('/api/model/brandId/' + $(this).val(), {
-                    ajax: 'true'
-                }, function (data) {
-                    var html = '<option value="">Select Model</option>';
-                    var len = data.length;
-                    for (var i = 0; i < len; i++) {
-                        html += '<option value="' + data[i].id + '">'
-                            + data[i].name + ' Year: ' + data[i].year + '</option>';
-                    }
-                    html += '</option>';
+    $('#brand_id').change(
+        function () {
+            $.getJSON('/api/model/brandId/' + $(this).val(), {
+                ajax: 'true'
+            }, function (data) {
+                var html = '<option value="">Select Model</option>';
+                var len = data.length;
+                for (var i = 0; i < len; i++) {
+                    html += '<option value="' + data[i].id + '">'
+                        + data[i].name + ' Year: ' + data[i].year + '</option>';
+                }
+                html += '</option>';
 
-                    $('#model_id').html(html);
-                    $('#model_id').trigger('contentChanged');
-                });
-            }
-        );
+                $('#model_id').html(html);
+                $('#model_id').trigger('contentChanged');
+            });
+        }
+    );
     $('#brand_id').trigger('change');
 });
+
+    $('.policy_picture').click(function () {
+        let img = $(this).attr("src");
+        let appear_image = "<img id='appear_image' onclick='closeImage()' src='" + img + "' >";
+        appear_image = appear_image.concat("<div id='close_image'>Click on image to close</div>");
+        $("body").append(appear_image);
+        $('#appear_image').hide();
+        $('#close_image').hide();
+        $('#appear_image').show(1000)
+        $('#close_image').show(1000)
+    })
+    function closeImage() {
+        $('#appear_image').remove();
+        $('#close_image').remove();
+    }
+
+
 
 // $('#search_input').change(function () {
 //     let filter = $(this).val().toUpperCase();
