@@ -1,5 +1,6 @@
 package com.safety.car.configuration;
 
+import com.safety.car.services.CustomUserDetailsService;
 import com.safety.car.utils.filters.LoginRegisterPageFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -54,6 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new LoginRegisterPageFilter(), DefaultLoginPageGeneratingFilter.class);
+//        http.addFilterBefore(new CustomUserDetailsService(), CustomUserDetailsService.class);
 
         http.authorizeRequests()
                 .antMatchers(PUBLIC_MATCHERS).permitAll()
@@ -66,6 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .usernameParameter("username")
                 .loginProcessingUrl("/authenticate").permitAll()
                 .defaultSuccessUrl("/", true)
                 .permitAll()
@@ -76,4 +79,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
     }
+
+    private CustomUserDetailsService getCustomFilter() throws Exception {
+        CustomUserDetailsService filter = new CustomUserDetailsService();
+        filter.setAuthenticationManager(authenticationManager());
+
+        return filter;
+    }
+
 }

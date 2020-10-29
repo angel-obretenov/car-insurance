@@ -83,7 +83,18 @@ public class RegisterController {
                 : AuthorityUtils.createAuthorityList("ROLE_USER");
 
         try {
-            var newUser = new org.springframework.security.core.userdetails.User(username, password, authorities);
+            boolean enabled = false;
+            boolean accountNonExpired = true;
+            boolean credentialsNonExpired = true;
+            boolean accountNonLocked = true;
+            var newUser = new org.springframework.security.core.userdetails.User(
+                    username,
+                    password,
+                    enabled,
+                    accountNonExpired,
+                    credentialsNonExpired,
+                    accountNonLocked,
+                    authorities);
             userDetailsManager.createUser(newUser);
 
             UserDetails userDetails = userMapper.fromDto(userCreateDto);
@@ -110,11 +121,12 @@ public class RegisterController {
 
     @RequestMapping(value = "confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
     public String confirmUserAccount(@RequestParam("token") String confirmationToken, Model model) {
-        VerificationToken token;
-        UserDetails user;
         try {
-            token = verificationTokenRepository.findByVerificationToken(confirmationToken);
-            user = userService.getByEmail(token.getUser().getEmail());
+            VerificationToken token = verificationTokenRepository.findByVerificationToken(confirmationToken);
+            UserDetails user = userService.getByEmail(token.getUser().getEmail());
+
+            //Updates the spring security UserDetails
+            userMapper.enableUser(token.getUser().getEmail());
 
             user.setEnabled(true);
             userService.update(user);
@@ -122,7 +134,7 @@ public class RegisterController {
             verificationTokenRepository.delete(token);
             model.addAttribute("message", "You have successfully confirmed your account!");
             return "accountVerified";
-        } catch (NotFoundException | EntityNotFoundException e){
+        } catch (NotFoundException | EntityNotFoundException e) {
             model.addAttribute("message", "The link is invalid or broken");
             return "errorVerification";
         }

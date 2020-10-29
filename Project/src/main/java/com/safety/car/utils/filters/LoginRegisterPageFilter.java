@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class LoginRegisterPageFilter extends GenericFilterBean {
 
+    //TODO REMOVE
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String requestURI = ((HttpServletRequest) request).getRequestURI();
@@ -27,4 +28,6 @@ public class LoginRegisterPageFilter extends GenericFilterBean {
 
         chain.doFilter(request, response);
     }
+
+
 }

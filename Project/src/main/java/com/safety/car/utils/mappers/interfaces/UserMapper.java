@@ -9,4 +9,6 @@ public interface UserMapper {
     UserDetails fromDto(UserCreateDto userCreateDto);
 
     UserDetails fromDto(UserUpdateDto userUpdateDto);
+
+    void enableUser(String email);
 }

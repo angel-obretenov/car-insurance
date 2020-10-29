@@ -35,7 +35,7 @@ public class PolicyApprovalController {
 
     @PostMapping
     public String postApproval(String action) {
-        
+
         try {
             PolicyRequest policyToApprove = policyRequestMapper.getUpdateFrom(action);
             policyRequestService.update(policyToApprove);
