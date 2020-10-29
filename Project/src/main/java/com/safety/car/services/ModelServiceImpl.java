@@ -1,6 +1,5 @@
 package com.safety.car.services;
 
-import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.entity.Model;
 import com.safety.car.repositories.interfaces.ModelRepository;
 import com.safety.car.services.interfaces.ModelService;
@@ -20,7 +19,7 @@ public class ModelServiceImpl implements ModelService {
 
     @Override
     public Model getById(int id) {
-            return modelRepository.getById(id);
+        return modelRepository.getById(id);
     }
 
     @Override

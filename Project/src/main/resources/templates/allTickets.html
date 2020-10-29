@@ -78,17 +78,6 @@
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
-                    <li class="search-option">
-                        <button class="search tran3s dropdown-toggle" id="searchDropdown" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false"><i class="fa fa-search"
-                                                                              aria-hidden="true"></i></button>
-                        <form action="#" class="p-color-bg dropdown-menu tran3s" aria-labelledby="searchDropdown">
-                            <label>
-                                <input type="text" placeholder="Search....">
-                            </label>
-                            <button class="p-color-bg"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </form>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -99,8 +88,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2>Policy Approval</h2>
-                <!-- Breadcrumbs -->
+                <h2>All tickets</h2>
                 <nav id="breadcrumbs">
                     <ul>
                         <li><a th:href="@{/}">Home</a></li>
@@ -112,59 +100,79 @@
     </div>
 </div>
 
-<div id="policy-approval" class="section wb">
-    <div class="container">
-        <div class="section-title row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>All Tickets</h3>
-            </div><!-- end col -->
-        </div><!-- end title -->
 
-        <h2 th:if="${tickets.isEmpty()}" th:text="'No Pending Tickets!'"></h2>
-        <div th:unless="${tickets.isEmpty()}" class="accordion" id="accordionExample" th:each="ticket : ${tickets}"
-             style="border-radius: 4px">
-            <div class="card">
-                <div class="card-header" id="headingOne" style="background-color: darkgray">
-                    <h2 class="mb-0">
-                        <button th:if="${ticket.getApproved() == null}" name="pending" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                                th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
-                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${ticket.getId()} + '/ Pending'">
-                        </button>
-                        <button th:if="${ticket.getApproved() == true}" name="accepted" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                                th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
-                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${ticket.getId()} + '/ Accepted'">
-                        </button>
-                        <button th:if="${ticket.getApproved() == false}" name="rejected" class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
-                                th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
-                                aria-controls="collapseOne"   th:text="'Ticket N: ' + ${ticket.getId()} + '/ Rejected'">
-                        </button>
-                    </h2>
-                </div>
+<div>
+    <div id="policy-approval" class="section wb">
+        <div class="container">
+            <nav class="navbar navbar-light bg-light">
+                <form th:object="${searchPoliciesDto}" method="post" class="form-inline">
+                    <input th:field="*{id}" id="search_input" class="form-control mr-sm-2" type="search" placeholder="Search id" aria-label="Search">
+                    <select th:field="*{isApproved}" id="status_select" class="form-control mr-sm-2">
+                        <option selected th:value="-1" th:text="'Filter by status'"></option>
+                        <option th:value="1" th:text="'Accepted'"></option>
+                        <option th:value="0" th:text="'Rejected'"></option>
+                        <option th:value="2" th:text="'Pending'"></option>
+                    </select>
+                    <button id="search_button" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </nav>
+            <div class="section-title row text-center">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>All Tickets</h3>
+                </div><!-- end col -->
+            </div><!-- end title -->
+            <h2 th:if="${error != null}" th:text="${error}" class="error"></h2>
+            <div th:unless="${tickets.isEmpty()}" class="accordion" id="accordionExample" th:each="ticket : ${tickets}"
+                 style="border-radius: 4px">
+                <div class="card">
+                    <div class="card-header" id="headingOne" style="background-color: darkgray">
+                        <h2 class="mb-0">
+                            <button th:if="${ticket.getApproved() == null}" name="pending"
+                                    class="btn btn-link btn-block text-left pending" type="button" data-toggle="collapse"
+                                    th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
+                                    aria-controls="collapseOne"
+                                    th:text="'Ticket N: ' + ${ticket.getId()} + '/ Pending'">
+                            </button>
+                            <button th:if="${ticket.getApproved() == true}" name="accepted"
+                                    class="btn btn-link btn-block text-left accepted" type="button" data-toggle="collapse"
+                                    th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
+                                    aria-controls="collapseOne"
+                                    th:text="'Ticket N: ' + ${ticket.getId()} + '/ Accepted'">
+                            </button>
+                            <button th:if="${ticket.getApproved() == false}" name="rejected"
+                                    class="btn btn-link btn-block text-left rejected" type="button" data-toggle="collapse"
+                                    th:data-target="|.demo${ticket.getId()}|" aria-expanded="true"
+                                    aria-controls="collapseOne"
+                                    th:text="'Ticket N: ' + ${ticket.getId()} + '/ Rejected'">
+                            </button>
+                        </h2>
+                    </div>
 
-                <div th:id="|collapse demo${ticket.getId()}|" th:class="|collapse demo${ticket.getId()}|"
-                     aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body" th:utext="'Vehicle' + '<br/>' +
+                    <div th:id="|collapse demo${ticket.getId()}|" th:class="|collapse demo${ticket.getId()}|"
+                         aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body" th:utext="'Vehicle' + '<br/>' +
                                                  'Car model: ' + ${ticket.getPolicyDetails().getCar().getModel().name} + '<br/>' +
                                                  'Registration Date: ' + ${ticket.getPolicyDetails().getCar().getRegistrationDate()} + '<br/>'">
-                    </div>
-                    <img class="policy_picture" th:src="@{'http://localhost:8080/image/' + ${ticket.getPolicyDetails().picture}}">
-                    <hr>
-                    <div class="card-body" th:utext="'Drivers details ' + '<br/>' +
+                        </div>
+                        <img class="policy_picture"
+                             th:src="@{'http://localhost:8080/image/' + ${ticket.getPolicyDetails().picture}}">
+                        <hr>
+                        <div class="card-body" th:utext="'Drivers details ' + '<br/>' +
                                                          'Drivers age: ' + ${ticket.getPolicyDetails().getCar().getDriversAge()} + '<br/>' +
                                                          'Previous incidents: ' + ${ticket.getPolicyDetails().getCar().hasAccidents}">
-                    </div>
-                    <hr>
-                    <div class="card-body" th:utext="'Contacts ' + '<br/>' +
+                        </div>
+                        <hr>
+                        <div class="card-body" th:utext="'Contacts ' + '<br/>' +
                                                          'Email: ' + ${ticket.getPolicyDetails().email} + '<br/>' +
                                                          'Phone: ' + ${ticket.getPolicyDetails().phoneNumber} + '<br/>' +
                                                          'Address: ' + ${ticket.getPolicyDetails().getAddress().address}">
+                        </div>
                     </div>
                 </div>
+                <hr>
             </div>
-            <hr>
-        </div>
-    </div><!-- end portfolio -->
-</div><!-- end container -->
+        </div><!-- end portfolio -->
+    </div><!-- end container -->
 </div><!-- end section -->
 
 

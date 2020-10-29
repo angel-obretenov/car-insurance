@@ -20,6 +20,11 @@ $(document).ready(function () {
     $('#brand_id').trigger('change');
 });
 
+// $('#search_input').change(function () {
+//     let filter = $(this).val().toUpperCase();
+//
+// })
+
 // $(document).ready(function () {
 //     $('#service-nav').click(
 //         function () {

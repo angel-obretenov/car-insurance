@@ -1,6 +1,7 @@
 package com.safety.car.controllers.mvc;
 
 import com.safety.car.models.entity.PolicyRequest;
+import com.safety.car.services.interfaces.EmailService;
 import com.safety.car.services.interfaces.PolicyRequestService;
 import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,14 @@ public class PolicyApprovalController {
 
     private final PolicyRequestService policyRequestService;
     private final PolicyRequestMapper policyRequestMapper;
+    private final EmailService emailService;
 
     @Autowired
     public PolicyApprovalController(PolicyRequestService policyRequestService,
-                                    PolicyRequestMapper policyRequestMapper) {
+                                    PolicyRequestMapper policyRequestMapper, EmailService emailService) {
         this.policyRequestService = policyRequestService;
         this.policyRequestMapper = policyRequestMapper;
+        this.emailService = emailService;
     }
 
     @GetMapping
@@ -38,6 +41,7 @@ public class PolicyApprovalController {
 
         try {
             PolicyRequest policyToApprove = policyRequestMapper.getUpdateFrom(action);
+            emailService.sendPolicyStatusEmail(policyToApprove);
             policyRequestService.update(policyToApprove);
         } catch (EntityNotFoundException e) {
             return "/policy-approval";

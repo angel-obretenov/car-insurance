@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PolicyRequestServiceImpl implements PolicyRequestService {
@@ -42,5 +43,10 @@ public class PolicyRequestServiceImpl implements PolicyRequestService {
     @Override
     public void update(PolicyRequest policyToUpdate) {
         policyRequestRepository.update(policyToUpdate);
+    }
+
+    @Override
+    public List<PolicyRequest> search(Optional<Integer> id, Optional<Integer> isApproved) {
+        return policyRequestRepository.search(id, isApproved);
     }
 }

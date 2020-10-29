@@ -1,5 +1,6 @@
 package com.safety.car.repositories;
 
+import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.repositories.interfaces.PolicyRequestRepository;
 import org.hibernate.Session;
@@ -10,13 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
+import java.util.*;
 
+import static com.safety.car.utils.constants.Constants.CRITERIA_ERROR;
+import static com.safety.car.utils.constants.Constants.POLICY_ID_NOT_FOUND;
 import static java.lang.String.format;
 
 @Repository
 public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
-
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -50,7 +52,7 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
 
             if (query.list().isEmpty()) {
                 throw new EntityNotFoundException(
-                        format("Policy with id: %d, was not found!", id));
+                        format(POLICY_ID_NOT_FOUND, id));
             }
 
             return query.list().get(0);
@@ -71,6 +73,50 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
 
             session.update(policyToUpdate);
             tx.commit();
+        }
+    }
+
+    public List<PolicyRequest> search(Optional<Integer> id, Optional<Integer> isApproved) {
+        try (Session session = sessionFactory.openSession()) {
+            Set<PolicyRequest> list = new HashSet<>();
+
+            if (id.isPresent()) {
+                Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest WHERE id = :id");
+                query.setParameter("id", id.get());
+
+                list.addAll(query.list());
+            }
+
+            if (isApproved.isPresent()) {
+                Query<PolicyRequest> query = null;
+                switch (isApproved.get()) {
+                    case -1:
+                        break;
+                    case 0:
+                        query = session.createQuery("FROM PolicyRequest WHERE isApproved = false ");
+                        list.addAll(query.list());
+                        break;
+                    case 1:
+                        query = session.createQuery("FROM PolicyRequest WHERE isApproved = true");
+                        list.addAll(query.list());
+                        break;
+                    case 2:
+                        query = session.createQuery("FROM PolicyRequest WHERE isApproved = null");
+                        list.addAll(query.list());
+                        break;
+                }
+            }
+
+            if (list.size() == 0) {
+                //isApproved cant be empty, so .get will always work
+                if (id.isEmpty() && isApproved.get() == -1) {
+                    return getAll();
+                } else {
+                    throw new NotFoundException(CRITERIA_ERROR);
+                }
+            } else {
+                return new ArrayList<>(list);
+            }
         }
     }
 }

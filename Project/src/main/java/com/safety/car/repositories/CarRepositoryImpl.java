@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.safety.car.utils.constants.Constants.CAR_ID_NOT_FOUND;
 import static java.lang.String.format;
 
 @Repository
@@ -30,7 +31,7 @@ public class CarRepositoryImpl implements CarRepository {
                     "WHERE :id = c.id", Car.class);
             query.setParameter("id", id);
 
-            if (query.list().size() == 0) throw new NotFoundException(format("Car with id %d not found", id));
+            if (query.list().size() == 0) throw new NotFoundException(format(CAR_ID_NOT_FOUND, id));
 
 
             return query.list().get(0);

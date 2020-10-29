@@ -24,4 +24,9 @@ public class Constants {
     public static final String CAR_ID_NOT_FOUND = "Car with id %d not found!";
     public static final String GUEST_USER = "Guest user";
     public static final String FILL_FORM_POLICY = "Please fill the form before continuing to requesting policy";
+    public static final String CRITERIA_ERROR = "Nothing looks the same or similar as your criterias.";
+    public static final String POLICY_ID_NOT_FOUND = "Policy with id: %d, was not found!";
+
+    public static final String ADDRESS_NOT_FOUND = "Address with name: %s, was not found!";
+    public static final String ADDRESS_ID_NOT_FOUND = "Address with id: %s, was not found!";
 }

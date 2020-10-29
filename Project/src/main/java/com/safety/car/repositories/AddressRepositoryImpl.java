@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.safety.car.utils.constants.Constants.ADDRESS_ID_NOT_FOUND;
+import static com.safety.car.utils.constants.Constants.ADDRESS_NOT_FOUND;
 import static java.lang.String.format;
 
 @Repository
@@ -40,7 +42,7 @@ public class AddressRepositoryImpl implements AddressRepository {
 
             if (query.list().isEmpty()) {
                 throw new NotFoundException(
-                        format("Address with name: %s, was not found!", addressName));
+                        format(ADDRESS_NOT_FOUND, addressName));
             }
 
             return query.list().get(0);
@@ -55,7 +57,7 @@ public class AddressRepositoryImpl implements AddressRepository {
 
             if (query.list().isEmpty()) {
                 throw new NotFoundException(
-                        format("Address with id: %s, was not found!", id));
+                        format(ADDRESS_ID_NOT_FOUND, id));
             }
 
             return query.list().get(0);
