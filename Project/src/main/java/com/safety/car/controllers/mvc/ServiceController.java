@@ -3,11 +3,10 @@ package com.safety.car.controllers.mvc;
 import com.safety.car.models.dto.rest.PolicyDetailsDto;
 import com.safety.car.models.entity.Car;
 import com.safety.car.models.entity.PolicyDetails;
-import com.safety.car.services.interfaces.BrandService;
-import com.safety.car.services.interfaces.ModelService;
-import com.safety.car.services.interfaces.PolicyDetailsService;
-import com.safety.car.services.interfaces.UserService;
+import com.safety.car.models.entity.PolicyRequest;
+import com.safety.car.services.interfaces.*;
 import com.safety.car.utils.mappers.Helper;
+import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +24,8 @@ import static com.safety.car.utils.mappers.Helper.pictureSaver;
 @SessionAttributes({"redirectFromService", "car"})
 public class ServiceController {
     private final PolicyDetailsService policyDetailsService;
+    private final PolicyRequestService policyRequestService;
+    private final PolicyRequestMapper policyRequestMapper;
     private final BrandService brandService;
     private final ModelService modelService;
     private final UserService userService;
@@ -32,11 +33,15 @@ public class ServiceController {
 
     @Autowired
     public ServiceController(PolicyDetailsService policyDetailsService,
+                             PolicyRequestService policyRequestService,
+                             PolicyRequestMapper policyRequestMapper,
                              BrandService brandService,
                              ModelService modelService,
                              UserService userService,
                              Helper helper) {
         this.policyDetailsService = policyDetailsService;
+        this.policyRequestService = policyRequestService;
+        this.policyRequestMapper = policyRequestMapper;
         this.brandService = brandService;
         this.modelService = modelService;
         this.userService = userService;
@@ -77,6 +82,9 @@ public class ServiceController {
 
         PolicyDetails policyDetails = helper.dtoToPolicyDetails(dto, car, userService.getByEmail(principal.getName()));
         policyDetailsService.create(policyDetails);
+
+        PolicyRequest policyRequest = policyRequestMapper.from(policyDetails);
+        policyRequestService.create(policyRequest);
 
         return "redirect:/";
     }

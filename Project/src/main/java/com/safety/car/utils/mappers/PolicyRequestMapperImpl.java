@@ -1,11 +1,9 @@
 package com.safety.car.utils.mappers;
 
 import com.safety.car.models.dto.rest.PolicyRequestApprovalDto;
-import com.safety.car.models.dto.rest.PolicyRequestCreateDto;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.services.interfaces.PolicyDetailsService;
 import com.safety.car.services.interfaces.PolicyRequestService;
 import com.safety.car.services.interfaces.UserService;
 import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
@@ -15,24 +13,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class PolicyRequestMapperImpl implements PolicyRequestMapper {
 
-    private final PolicyDetailsService policyDetailsService;
-    private final PolicyRequestService policyRequestService;
     private final UserService userService;
+    private final PolicyRequestService policyRequestService;
 
     @Autowired
-    public PolicyRequestMapperImpl(PolicyDetailsService policyDetailsService,
-                                   PolicyRequestService policyRequestService,
-                                   UserService userService) {
-        this.policyDetailsService = policyDetailsService;
+    public PolicyRequestMapperImpl(UserService userService,
+                                   PolicyRequestService policyRequestService) {
         this.policyRequestService = policyRequestService;
         this.userService = userService;
     }
 
     @Override
-    public PolicyRequest fromDto(PolicyRequestCreateDto policyRequestCreateDto) {
+    public PolicyRequest from(PolicyDetails policyDetails) {
         var policyToCreate = new PolicyRequest();
 
-        PolicyDetails policyDetails = policyDetailsService.getById(policyRequestCreateDto.getPolicyId());
         policyToCreate.setPolicyDetails(policyDetails);
 
         UserDetails userDetails = userService.getById(policyDetails.getUser().getId());
