@@ -8,6 +8,8 @@ public interface PolicyDetailsService {
 
     List<PolicyDetails> getAll();
 
+    List<PolicyDetails> getUserPolicies(int userId);
+
     PolicyDetails getById(int id);
 
     void create(PolicyDetails policyDetails);

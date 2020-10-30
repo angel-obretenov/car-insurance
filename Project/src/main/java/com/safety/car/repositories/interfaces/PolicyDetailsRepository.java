@@ -4,9 +4,11 @@ import com.safety.car.models.entity.PolicyDetails;
 
 import java.util.List;
 
-public interface PolicyDetailsRepository{
+public interface PolicyDetailsRepository {
 
     List<PolicyDetails> getAll();
+
+    List<PolicyDetails> getUserPolicies(int userId);
 
     PolicyDetails getById(int id);
 
