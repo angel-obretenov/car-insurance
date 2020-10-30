@@ -29,6 +29,13 @@ dependencies {
 // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.3.4.RELEASE'
 
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
+    testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.3.3'
+
+
     // https://mvnrepository.com/artifact/org.springframework/spring-context-support
     compile group: 'org.springframework', name: 'spring-context-support', version: '5.2.9.RELEASE'
 

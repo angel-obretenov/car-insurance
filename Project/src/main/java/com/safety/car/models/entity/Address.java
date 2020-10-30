@@ -17,6 +17,11 @@ public class Address {
     public Address() {
     }
 
+    public Address(Integer id, String address) {
+        this.id = id;
+        this.address = address;
+    }
+
     public Integer getId() {
         return id;
     }
