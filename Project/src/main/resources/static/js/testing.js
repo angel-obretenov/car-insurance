@@ -91,7 +91,7 @@ $('#simulate_form').on('submit', function (e) {
         $("#brand_id").next(".validation").remove();
     }
     //FOR MODEL SELECT
-    if ($('#model_id').val() === '-1' || $('#model_id').val() === null) {
+    if ($('#model_id').val() === -1 || $('#model_id').val() === null || $('#model_id').val() === '' || $('#model_id').val() === '-1') {
         if ($("#model_id").next(".validation").length === 0) {
             $("#model_id").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select model</div>");
         }
