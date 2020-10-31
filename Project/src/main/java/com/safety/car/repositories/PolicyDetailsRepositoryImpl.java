@@ -42,17 +42,6 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
     }
 
     @Override
-    public List<PolicyDetails> getUserPolicies(int userId) {
-        try (Session session = sessionFactory.openSession()) {
-            Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails " +
-                    "WHERE user.id = :userId", PolicyDetails.class);
-            query.setParameter("userId", userId);
-
-            return query.list();
-        }
-    }
-
-    @Override
     public PolicyDetails getById(int id) {
         try (Session session = sessionFactory.openSession()) {
             Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails " +

@@ -41,6 +41,12 @@ public class PolicyRequestRestController {
         }
     }
 
+
+    @GetMapping("/user/{userId}")
+    public List<PolicyRequest> getUserPolicies(@PathVariable int userId) {
+        return policyRequestService.getUserPolicies(userId);
+    }
+
     @PutMapping
     public PolicyRequest update(@RequestBody PolicyRequestApprovalDto policyRequestApprovalDto) {
         try {

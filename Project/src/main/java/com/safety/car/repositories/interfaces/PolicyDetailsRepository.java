@@ -8,12 +8,9 @@ public interface PolicyDetailsRepository {
 
     List<PolicyDetails> getAll();
 
-    List<PolicyDetails> getUserPolicies(int userId);
-
     PolicyDetails getById(int id);
 
     void create(PolicyDetails policyDetails);
 
     void update(PolicyDetails policyDetails);
-
 }

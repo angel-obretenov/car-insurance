@@ -1,6 +1,7 @@
 package com.safety.car.repositories;
 
 import com.safety.car.exceptions.NotFoundException;
+import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.repositories.interfaces.PolicyRequestRepository;
 import org.hibernate.Session;
@@ -39,6 +40,16 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
     public List<PolicyRequest> getAllPending() {
         try (Session session = sessionFactory.openSession()) {
             Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest WHERE isApproved is null", PolicyRequest.class);
+
+            return query.list();
+        }
+    }
+
+    public List<PolicyRequest> getUserPolicies(int userId) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest " +
+                    "WHERE userDetails.id = :userId", PolicyRequest.class);
+            query.setParameter("userId", userId);
 
             return query.list();
         }

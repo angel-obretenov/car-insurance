@@ -11,6 +11,8 @@ public interface PolicyRequestService {
 
     List<PolicyRequest> getAllPending();
 
+    List<PolicyRequest> getUserPolicies(int userId);
+
     PolicyRequest getById(int id);
 
     void create(PolicyRequest policyRequest);

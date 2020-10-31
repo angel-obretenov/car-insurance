@@ -45,11 +45,6 @@ public class PolicyDetailsRestController {
         }
     }
 
-    @GetMapping("/user/{userId}")
-    public List<PolicyDetails> getUserPolicies(@PathVariable int userId) {
-        return policyDetailsService.getUserPolicies(userId);
-    }
-
     @GetMapping("/{id}")
     public PolicyDetails getById(@PathVariable int id) {
         try {

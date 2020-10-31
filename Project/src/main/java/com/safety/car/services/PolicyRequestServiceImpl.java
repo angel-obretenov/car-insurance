@@ -31,6 +31,11 @@ public class PolicyRequestServiceImpl implements PolicyRequestService {
     }
 
     @Override
+    public List<PolicyRequest> getUserPolicies(int userId) {
+        return policyRequestRepository.getUserPolicies(userId);
+    }
+
+    @Override
     public PolicyRequest getById(int id) {
         return policyRequestRepository.getById(id);
     }

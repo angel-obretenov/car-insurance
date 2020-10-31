@@ -23,11 +23,6 @@ public class PolicyDetailsServiceImpl implements PolicyDetailsService {
     }
 
     @Override
-    public List<PolicyDetails> getUserPolicies(int userId) {
-        return policyDetailsRepository.getUserPolicies(userId);
-    }
-
-    @Override
     public PolicyDetails getById(int id) {
         return policyDetailsRepository.getById(id);
     }
