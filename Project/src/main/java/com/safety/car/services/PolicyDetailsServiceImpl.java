@@ -6,7 +6,6 @@ import com.safety.car.services.interfaces.PolicyDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,6 +20,11 @@ public class PolicyDetailsServiceImpl implements PolicyDetailsService {
     @Override
     public List<PolicyDetails> getAll() {
         return policyDetailsRepository.getAll();
+    }
+
+    @Override
+    public List<PolicyDetails> getUserPolicies(int userId) {
+        return policyDetailsRepository.getUserPolicies(userId);
     }
 
     @Override

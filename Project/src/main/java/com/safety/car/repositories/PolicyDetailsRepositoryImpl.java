@@ -19,6 +19,7 @@ import static java.lang.String.format;
 
 @Repository
 public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -28,25 +29,41 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
 
     @Override
     public List<PolicyDetails> getAll() {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails ", PolicyDetails.class);
             List<PolicyDetails> result = query.list();
 
-            if (result.isEmpty()) throw new EmptyException(POLICY_EMPTY_ERROR);
+            if (result.isEmpty()) {
+                throw new EmptyException(POLICY_EMPTY_ERROR);
+            }
 
             return result;
         }
     }
 
     @Override
+    public List<PolicyDetails> getUserPolicies(int userId) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails " +
+                    "WHERE user.id = :userId", PolicyDetails.class);
+            query.setParameter("userId", userId);
+
+            return query.list();
+        }
+    }
+
+    @Override
     public PolicyDetails getById(int id) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails " +
                     "WHERE :id = id", PolicyDetails.class);
             query.setParameter("id", id);
+
             List<PolicyDetails> result = query.list();
 
-            if (result.isEmpty()) throw new NotFoundException(format(POLICY_ID_ERROR, id));
+            if (result.isEmpty()) {
+                throw new NotFoundException(format(POLICY_ID_ERROR, id));
+            }
 
             return result.get(0);
         }
@@ -54,7 +71,7 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
 
     @Override
     public void create(PolicyDetails policyDetails) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
 
             session.save(policyDetails);
         }
@@ -62,7 +79,7 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
 
     @Override
     public void update(PolicyDetails policyDetails) {
-        try (Session session = sessionFactory.openSession()){
+        try (Session session = sessionFactory.openSession()) {
             Transaction tx = session.beginTransaction();
 
             session.update(policyDetails);
