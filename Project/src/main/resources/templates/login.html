@@ -71,7 +71,6 @@
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy Requests</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
-                    <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/login}">Login</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
@@ -127,23 +126,16 @@
                             <input type="password" class="form-control" id="password" name="password"
                                    placeholder="Password">
                         </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                                <label class="form-check-label" for="dropdownCheck">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" value="Login" style="background-color: #004d33" class="btn btn-primary">
-                            Sign in
-                        </button>
+                            <button type="submit" value="Login" style="background-color: #004d33"
+                                    class="btn btn-primary btn-group-justified center">
+                                Sign in
+                            </button>
                     </form>
                     <div class="dropdown-divider"></div>
                     <div>
-                        <a class="dropdown-item" th:href="@{/register}">New around here? Sign up</a>
+                        <a class="dropdown-item aligncenter" th:href="@{/register}">New around here? Sign up</a>
                     </div>
-                    <a class="dropdown-item" href="#">Forgot password?</a>
+                    <!--                    <a class="dropdown-item" href="#">Forgot password?</a>-->
                 </div>
             </div>
         </div>
@@ -159,8 +151,10 @@
                         <img th:src="@{/images/logos/logo.png}"
                              src="../static/images/logos/logo.png" alt="">
                     </div>
-                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its primary use is to provide
-                        financial protection against physical damage or bodily injury resulting from traffic collisions and
+                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its
+                        primary use is to provide
+                        financial protection against physical damage or bodily injury resulting from traffic collisions
+                        and
                         against liability that could also arise from incidents in a vehicle.</p>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -176,7 +170,6 @@
                         <li><a th:href="@{/service}"> Services</a></li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
                             Requests</a></li>
-                        <li><a th:href="@{/properties}"> Properties</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -202,7 +195,8 @@
                         <h3>Social</h3>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i class="fa fa-gitlab"></i> Gitlab</a></li>
+                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i
+                                class="fa fa-gitlab"></i> Gitlab</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->

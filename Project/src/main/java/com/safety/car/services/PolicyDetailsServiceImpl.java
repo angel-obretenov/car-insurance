@@ -36,4 +36,9 @@ public class PolicyDetailsServiceImpl implements PolicyDetailsService {
     public void update(PolicyDetails policyDetails) {
         policyDetailsRepository.update(policyDetails);
     }
+
+    @Override
+    public void delete(PolicyDetails policyDetails) {
+        policyDetailsRepository.delete(policyDetails);
+    }
 }

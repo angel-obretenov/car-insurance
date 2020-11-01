@@ -78,4 +78,14 @@ public class PolicyDetailsRestController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable int id) {
+        try {
+            PolicyRequest policyToDelete = policyRequestService.getById(id);
+            policyDetailsService.delete(policyToDelete.getPolicyDetails());
+        } catch (NotFoundException e) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
+    }
 }

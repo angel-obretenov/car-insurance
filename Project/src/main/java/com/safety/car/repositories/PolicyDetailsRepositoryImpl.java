@@ -75,4 +75,14 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
             tx.commit();
         }
     }
+
+    @Override
+    public void delete(PolicyDetails policyDetails) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            session.delete(policyDetails);
+            tx.commit();
+        }
+    }
 }

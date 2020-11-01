@@ -250,8 +250,9 @@ input, textarea {
 
 .aligncenter,
 div.aligncenter {
-    display: block;
+    display: flex;
     margin: 5px auto 5px auto;
+    justify-content: center;
 }
 
 .alignright {

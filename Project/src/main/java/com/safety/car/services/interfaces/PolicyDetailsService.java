@@ -14,4 +14,5 @@ public interface PolicyDetailsService {
 
     void update(PolicyDetails policyDetails);
 
+    void delete(PolicyDetails policyDetails);
 }

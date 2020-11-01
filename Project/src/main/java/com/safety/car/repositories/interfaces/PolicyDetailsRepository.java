@@ -13,4 +13,6 @@ public interface PolicyDetailsRepository {
     void create(PolicyDetails policyDetails);
 
     void update(PolicyDetails policyDetails);
+
+    void delete(PolicyDetails policyDetails);
 }

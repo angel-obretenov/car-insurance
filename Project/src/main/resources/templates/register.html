@@ -71,7 +71,6 @@
                     <li><a th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy Requests</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
-                    <li><a th:href="@{/properties}">Properties</a></li>
                     <li><a th:href="@{/contact}">Contact</a></li>
                     <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a></li>
                     <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/register}">Register</a></li>
@@ -199,7 +198,6 @@
                         <li><a th:href="@{/service}"> Services</a></li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
                             Requests</a></li>
-                        <li><a th:href="@{/properties}"> Properties</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
