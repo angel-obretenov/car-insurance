@@ -34,6 +34,16 @@ public class UserDetails {
     public UserDetails() {
     }
 
+    public UserDetails(Integer id, String email, String firstName, String lastName, Integer phoneNumber, Address address, Boolean enabled) {
+        this.id = id;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.enabled = enabled;
+    }
+
     public Boolean getEnabled() {
         return enabled;
     }
