@@ -115,7 +115,12 @@
             <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
                 <div class="contact_form">
                     <h3><i class="fa fa-envelope-o grd1 global-radius"></i> LOGIN TO OUR SITE</h3>
-                    <form method="post" th:action="@{/authenticate}" th:object="${session.carDto}" class="px-4 py-3">
+                    <h5 class="d-flex justify-content-center">
+                        <i th:if="${param.error}" style="color: red">
+                            Wrong username or password
+                        </i>
+                    </h5>
+                    <form method="post" th:action="@{/authenticate}" class="px-4 py-3">
                         <div class="form-group">
                             <label for="username">Email address</label>
                             <input type="email" class="form-control" id="username" name="username"
