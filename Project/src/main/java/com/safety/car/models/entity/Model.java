@@ -21,6 +21,15 @@ public class Model {
     @Column(name = "name")
     private String name;
 
+    public Model() {
+    }
+
+    public Model(Integer id, Integer year, Brand brand, String name) {
+        this.id = id;
+        this.year = year;
+        this.brand = brand;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
