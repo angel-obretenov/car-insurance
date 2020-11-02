@@ -33,8 +33,9 @@
 
     <!-- Modernizer for Portfolio -->
     <script th:src="@{/js/modernizer.js}" src="../static/js/modernizer.js"></script>
-<!--    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <!--    <script src="/webjars/jquery/3.3.1-2/jquery.min.js" type="application/javascript"></script>-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
             th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js}"></script>
 
@@ -120,7 +121,8 @@
         <div class="row">
             <div class="col-md-6 wow slideInLeft hidden-xs hidden-sm">
                 <div class="contact_form" id="pre_form">
-                    <h3 id="redirect_msg" th:unless="${redirectFromService == null}" th:text="${redirectFromService}" ></h3>
+                    <h3 id="redirect_msg" th:unless="${redirectFromService == null}"
+                        th:text="${redirectFromService}"></h3>
                     <h3 th:text="'Hi, ' + ${principal}"><i class="fa fa-envelope-o grd1 global-radius"></i> QUICK OFFER
                     </h3>
                     <form th:action="@{/}" th:object="${carDto}" id="simulate_form" class="row" method="post">
@@ -161,16 +163,22 @@
                                                                        class="form-control"
                                                                        th:placeholder="#{car.driver.age}">
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" th:unless="${estimatedPrice == null}">
-                                <h6>Estimated price <span class="badge badge-secondary">Great deal</span></h6>
-                                <h6 th:text="${#numbers.formatDecimal(estimatedPrice, 0, 'COMMA', 2, 'POINT')} + #{lv}"></h6>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <label th:text="'Did you have accidents in the last 1 year.'"></label>
+                                <input th:field="*{hasAccidents}" type="checkbox" checked data-toggle="toggle">
+                            </div>
+                            <div>
+                                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12"
+                                     th:unless="${estimatedPrice == null}">
+                                    <h5>Estimated price <span class="badge badge-secondary">Great deal</span></h5>
+                                    <h5 th:text="${#numbers.formatDecimal(estimatedPrice, 0, 'COMMA', 2, 'POINT')} + #{lv}"></h5>
+                                </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                                 <button name="action" th:value="simulate" type="submit" value="SEND" id="submit1"
                                         class="btn btn-light btn-radius btn-brd grd1 btn-block">Simulate offer
                                 </button>
                             </div>
-
                         </fieldset>
                     </form>
                 </div>
@@ -179,7 +187,8 @@
                 <div class="big-tagline clearfix">
                     <h2>Insure your car</h2>
                     <p class="lead">With our car insurance company which is the best in the region. </p>
-                    <a id="service-mid" data-scroll th:href="@{/service}" href="/service" class="btn btn-light btn-radius grd1 btn-brd">Request
+                    <a id="service-mid" data-scroll th:href="@{/service}" href="/service"
+                       class="btn btn-light btn-radius grd1 btn-brd">Request
                         Policy</a>
                 </div>
             </div>
@@ -196,8 +205,10 @@
                         <img th:src="@{/images/logos/logo.png}"
                              src="../static/images/logos/logo.png" alt="">
                     </div>
-                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its primary use is to provide
-                        financial protection against physical damage or bodily injury resulting from traffic collisions and
+                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its
+                        primary use is to provide
+                        financial protection against physical damage or bodily injury resulting from traffic collisions
+                        and
                         against liability that could also arise from incidents in a vehicle.</p>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -239,7 +250,8 @@
                         <h3>Social</h3>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i class="fa fa-gitlab"></i> Gitlab</a></li>
+                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i
+                                class="fa fa-gitlab"></i> Gitlab</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
