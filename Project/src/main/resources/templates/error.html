@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Site Metas -->
+    <title>Insure Masters - Insure your car, be safe on the road.</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link th:href="@{/images/favicon.ico}" rel="shortcut icon" href="../static/images/favicon.ico" type="image/x-icon"/>
+    <link th:href="@{/images/apple-touch-icon.png}" rel="apple-touch-icon" href="../static/images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link th:href="@{/css/error.css}" rel="stylesheet" href="../static/css/error.css">
+    <!--    <link th:href="@{/css/test.scss}" rel="stylesheet" href="../static/css/test.scss">-->
+
+
+</head>
+<body>
+<main class='container'>
+    <article class='content'>
+        <p>Damnit stranger,</p>
+        <p>You got lost in the <strong>404</strong> galaxy.</p>
+        <form th:action="@{/}">
+            <p>
+                <button>Go back to earth.</button>
+            </p>
+        </form>
+
+    </article>
+</main>
+</body>
+</html>
