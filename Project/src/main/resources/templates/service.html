@@ -126,6 +126,7 @@
                 <li th:text="#{car.reg}" class="list-group-item">Porta ac consectetur ac
                 </li>
                 <li th:text="#{car.driver.age}" class="list-group-item">Vestibulum at eros</li>
+                <li th:text="#{car.accidents}" class="list-group-item">Vestibulum at eros</li>
             </ul>
             <ul th:object="${car}" class="list-group col">
                 <li th:each="brand : ${brands}" th:if="${brand.id == car.brand.id}" th:text="${brand.name}"
@@ -138,14 +139,21 @@
                 <li th:text="${car.registrationDate}" class="list-group-item">Porta ac consectetur ac
                 </li>
                 <li th:text="${car.driversAge}" class="list-group-item">Vestibulum at eros</li>
+                <li th:text="${car.hasAccidents} ? 'Yes' : 'No'"  class="list-group-item"></li>
+<!--                <li th:if="${car.hasAccidents == true}" th:text="'Yes'"></li>-->
+<!--                <li th:unless="${car.hasAccidents == true}" th:text="'No'"></li>-->
             </ul>
             <div class="form-style-8 col">
                 <h2>Request Policy</h2>
                 <form th:action="@{/service}" th:object="${policy}" method="post" enctype="multipart/form-data">
+                    <label th:text="'Start date'"></label>
                     <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
                            placeholder="Start date"/>
+                    <label th:text="'End date'"></label>
                     <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
                            placeholder="End date"/>
+
+                    <label th:text="'Picture of the car'"></label>
                     <input type="file" th:field="*{picture}" name="file" th:placeholder="#{attach.image}"
                            placeholder="Image"/>  <!--th:field="*{picture}" -->
                     <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
@@ -154,125 +162,16 @@
                     <input type="text" th:field="*{address}" name="address" th:placeholder="#{address}"
                            placeholder="Postal address"/>
                     <!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
-                    <input name="action" th:value="simulate" type="submit"  value="Request policy"/>
+                    <input
+                            name="action"
+                            value="Request policy"
+                            type="submit" />
+<!--                            th:value="simulate"-->
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<div id="testimonials" class="section lb">
-    <div class="container">
-        <div class="section-title row text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>Happy Customers</h3>
-                <p class="lead">Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non
-                    aliquam risus. Sed a tellus quis mi rhoncus dignissim.</p>
-            </div><!-- end col -->
-        </div><!-- end title -->
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="testi-carousel owl-carousel owl-theme">
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly
-                                skilled, and experienced & professional team.</p>
-
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>James Fernando <small>- Manager of Racer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and
-                                praising pain was born and I will give you completed.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Jacques Philips <small>- Designer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i
-                                    class="fa fa-quote-right"></i></h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids
-                                pleasure itself, because it is very pursue pleasure. </p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Venanda Mercy <small>- Newyork City</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Wonderful Support! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">They have got my project on time with the competition with a sed highly
-                                skilled, and experienced & professional team.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_01.png}" src="../static/uploads/testi_01.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>James Fernando <small>- Manager of Racer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Awesome Services! <i class="fa fa-quote-right"></i>
-                            </h3>
-                            <p class="lead">Explain to you how all this mistaken idea of denouncing pleasure and
-                                praising pain was born and I will give you completed.</p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_02.png}" src="../static/uploads/testi_02.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Jacques Philips <small>- Designer</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div>
-                    <!-- end testimonial -->
-
-                    <div class="testimonial clearfix">
-                        <div class="desc">
-                            <h3><i class="fa fa-quote-left"></i> Great & Talented Team! <i
-                                    class="fa fa-quote-right"></i></h3>
-                            <p class="lead">The master-builder of human happines no one rejects, dislikes avoids
-                                pleasure itself, because it is very pursue pleasure. </p>
-                        </div>
-                        <div class="testi-meta">
-                            <img th:src="@{/uploads/testi_03.png}" src="../static/uploads/testi_03.png" alt=""
-                                 class="img-responsive alignleft">
-                            <h4>Venanda Mercy <small>- Newyork City</small></h4>
-                        </div>
-                        <!-- end testi-meta -->
-                    </div><!-- end testimonial -->
-                </div><!-- end carousel -->
-            </div><!-- end col -->
-        </div><!-- end row -->
-    </div><!-- end container -->
-</div><!-- end section -->
 
 <footer class="footer">
     <div class="container">

@@ -52,7 +52,6 @@ public class ServiceController {
     public String requestPolicy(Model model,
                                 Principal principal,
                                 HttpSession session
-//                                @SessionAttribute("car") Car car
     ) {
         Car car = (Car) session.getAttribute("car");
         if (car != null) {

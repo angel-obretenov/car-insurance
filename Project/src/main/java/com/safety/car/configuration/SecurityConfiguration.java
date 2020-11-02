@@ -49,8 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    // http configuration which sets the application security behaviour
-    //TODO still yet to configure the restricted access
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new LoginRegisterPageFilter(), DefaultLoginPageGeneratingFilter.class);
@@ -68,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .usernameParameter("username")
                 .loginProcessingUrl("/authenticate").permitAll()
-                .defaultSuccessUrl("/", true)
+//                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll()
