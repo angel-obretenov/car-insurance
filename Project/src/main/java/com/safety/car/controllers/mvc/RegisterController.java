@@ -60,21 +60,21 @@ public class RegisterController {
                                Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("userCreateDto", userCreateDto);
-            model.addAttribute("error", "Username/password cannot be empty, please try again.");
             return "register";
         }
 
         if (userDetailsManager.userExists(userCreateDto.getEmail())) {
             model.addAttribute("userCreateDto", userCreateDto);
-            model.addAttribute("error", "User with the same email already exists, please try again.");
+            model.addAttribute("invalidEmail", "User with the same Email already exists, please try again.");
             return "register";
         }
 
         if (!userCreateDto.getPassword().equals(userCreateDto.getConfirmPassword())) {
             model.addAttribute("userCreateDto", userCreateDto);
-            model.addAttribute("error", "Passwords do not match, please try again.");
+            model.addAttribute("invalidPassword", "Passwords do not match, please try again.");
             return "register";
         }
+
         String username = userCreateDto.getEmail();
         String password = bCryptPasswordEncoder.encode(userCreateDto.getPassword());
 

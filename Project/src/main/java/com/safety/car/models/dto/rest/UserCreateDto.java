@@ -1,29 +1,31 @@
 package com.safety.car.models.dto.rest;
 
-import org.springframework.format.annotation.NumberFormat;
-
-import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class UserCreateDto {
 
+    @NotEmpty(message = "First Name must not be empty")
     private String firstName;
 
+    @NotEmpty(message = "Last Name must not be empty")
     private String lastName;
 
     @Email(message = "Invalid email address")
     @NotEmpty(message = "Email must not be empty")
     private String email;
 
-    @NotEmpty(message = "Password must not be empty")
+    @Size(min = 4, message = "Password must be bigger than 4 digits")
     private String password;
 
-    @NotEmpty(message = "Confirm password must not be empty")
+    @Size(min = 4, message = "Confirm Password must be bigger than 4 digits")
     private String confirmPassword;
 
-    private Integer phoneNumber;
+    @Size(min = 10, max = 10, message = "Phone Number must be 10 digits")
+    private String phoneNumber;
 
+    @NotEmpty(message = "Address must not be empty")
     private String addressName;
 
     public UserCreateDto() {
@@ -69,11 +71,11 @@ public class UserCreateDto {
         this.confirmPassword = confirmPassword;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
