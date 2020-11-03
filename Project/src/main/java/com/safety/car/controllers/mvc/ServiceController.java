@@ -51,8 +51,7 @@ public class ServiceController {
     @GetMapping
     public String requestPolicy(Model model,
                                 Principal principal,
-                                HttpSession session
-    ) {
+                                HttpSession session) {
         Car car = (Car) session.getAttribute("car");
         if (car != null) {
             model.addAttribute("car", car);
@@ -71,11 +70,9 @@ public class ServiceController {
 
     @PostMapping
     public String postPolicy(@ModelAttribute("policy") PolicyDetailsDto dto,
-                             Model model,
                              Principal principal,
                              @SessionAttribute("car") Car car,
-                             BindingResult bindingResult
-    ) {
+                             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) return "redirect:/";
 
         pictureSaver(dto);

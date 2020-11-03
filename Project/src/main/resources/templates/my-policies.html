@@ -112,7 +112,7 @@
 <div class="about-box">
     <div class="container">
         <div class="row">
-            <h3 th:if="${userPolicies.isEmpty()}">You have not yet created any policy request!</h3>
+            <h3 th:if="${userPolicies.isEmpty()}">You have not created any policy requests yet!</h3>
             <div th:unless="${userPolicies.isEmpty()}" class="accordion" id="accordionExample"
                  th:each="userPolicy : ${userPolicies}"
                  style="border-radius: 4px">

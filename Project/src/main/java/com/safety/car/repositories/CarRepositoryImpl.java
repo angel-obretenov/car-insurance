@@ -17,6 +17,7 @@ import static java.lang.String.format;
 
 @Repository
 public class CarRepositoryImpl implements CarRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -31,10 +32,13 @@ public class CarRepositoryImpl implements CarRepository {
                     "WHERE :id = c.id", Car.class);
             query.setParameter("id", id);
 
-            if (query.list().size() == 0) throw new NotFoundException(format(CAR_ID_NOT_FOUND, id));
+            List<Car> car = query.list();
 
+            if (car.size() == 0) {
+                throw new NotFoundException(format(CAR_ID_NOT_FOUND, id));
+            }
 
-            return query.list().get(0);
+            return car.get(0);
         }
     }
 

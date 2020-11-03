@@ -31,6 +31,7 @@ public class PolicyDetailsRepositoryImpl implements PolicyDetailsRepository {
     public List<PolicyDetails> getAll() {
         try (Session session = sessionFactory.openSession()) {
             Query<PolicyDetails> query = session.createQuery("FROM PolicyDetails ", PolicyDetails.class);
+
             List<PolicyDetails> result = query.list();
 
             if (result.isEmpty()) {

@@ -18,6 +18,7 @@ import static java.lang.String.format;
 
 @Repository
 public class UserDetailsRepositoryImpl implements UserDetailsRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -40,12 +41,14 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
             Query<UserDetails> query = session.createQuery("FROM UserDetails WHERE :id = id", UserDetails.class);
             query.setParameter("id", id);
 
-            if (query.list().isEmpty()) {
+            List<UserDetails> user = query.list();
+
+            if (user.isEmpty()) {
                 throw new EntityNotFoundException(
                         format(USER_NOT_FOUND_ID, id));
             }
 
-            return query.list().get(0);
+            return user.get(0);
         }
     }
 
@@ -55,12 +58,14 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
             Query<UserDetails> query = session.createQuery("FROM UserDetails WHERE :email = email", UserDetails.class);
             query.setParameter("email", email);
 
-            if (query.list().isEmpty()) {
+            List<UserDetails> user = query.list();
+
+            if (user.isEmpty()) {
                 throw new EntityNotFoundException(
                         format(USER_NOT_FOUND_EMAIL, email));
             }
 
-            return query.list().get(0);
+            return user.get(0);
         }
     }
 
@@ -85,8 +90,11 @@ public class UserDetailsRepositoryImpl implements UserDetailsRepository {
 
     @Override
     public boolean emailExists(String email) {
-        return getAll()
-                .stream()
-                .anyMatch(e -> e.getEmail().equalsIgnoreCase(email));
+        try (Session session = sessionFactory.openSession()) {
+            Query<UserDetails> query = session.createQuery("From UserDetails where email = :email", UserDetails.class);
+            query.setParameter("email", email);
+
+            return !query.list().isEmpty();
+        }
     }
 }

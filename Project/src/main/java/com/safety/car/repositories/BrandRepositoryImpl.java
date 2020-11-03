@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public class BrandRepositoryImpl implements BrandRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired

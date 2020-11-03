@@ -28,6 +28,4 @@ public class LoginRegisterPageFilter extends GenericFilterBean {
 
         chain.doFilter(request, response);
     }
-
-
 }

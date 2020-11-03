@@ -15,4 +15,6 @@ public interface UserService {
     void create(UserDetails userDetails);
 
     void update(UserDetails userDetails);
+
+    boolean emailExists(UserDetails userDetails);
 }

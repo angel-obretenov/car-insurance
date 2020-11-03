@@ -84,7 +84,7 @@ public class PolicyDetailsServiceImplTest {
         //arrange
         List<PolicyDetails> mockList = new ArrayList<>();
         mockList.add(policyTest);
-        Mockito.when(policyService.getAll()).thenReturn(mockList);
+        Mockito.when(policyMockRepository.getAll()).thenReturn(mockList);
         // act
         List<PolicyDetails> getListFromService = policyService.getAll();
         //assert

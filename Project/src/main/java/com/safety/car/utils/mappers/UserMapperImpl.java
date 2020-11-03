@@ -4,7 +4,6 @@ import com.safety.car.models.dto.rest.UserCreateDto;
 import com.safety.car.models.dto.rest.UserUpdateDto;
 import com.safety.car.models.entity.Address;
 import com.safety.car.models.entity.UserDetails;
-import com.safety.car.repositories.interfaces.AddressRepository;
 import com.safety.car.services.interfaces.AddressService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class UserMapperImpl implements UserMapper {
     }
 
     @Override
-    public void enableSpringUser(String email){
+    public void enableSpringUser(String email) {
 
         boolean enabled = true;
         boolean accountNonExpired = true;

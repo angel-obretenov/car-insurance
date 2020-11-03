@@ -17,6 +17,7 @@ import static java.lang.String.format;
 
 @Repository
 public class AddressRepositoryImpl implements AddressRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired

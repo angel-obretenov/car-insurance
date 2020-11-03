@@ -16,6 +16,7 @@ import java.util.List;
 public class VerificationTokenRepositoryImpl implements VerificationTokenRepository {
 
     public static final String TOKEN_NOT_VALID = "Token not valid";
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -31,7 +32,9 @@ public class VerificationTokenRepositoryImpl implements VerificationTokenReposit
 
             List<VerificationToken> list = query.list();
 
-            if (list.isEmpty()) throw new NotFoundException(TOKEN_NOT_VALID);
+            if (list.isEmpty()) {
+                throw new NotFoundException(TOKEN_NOT_VALID);
+            }
 
             return list.get(0);
         }

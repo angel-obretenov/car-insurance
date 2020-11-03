@@ -30,10 +30,10 @@ public class CarRestController {
     }
 
     @GetMapping("/{id}")
-    public Car getById(@PathVariable int id){
+    public Car getById(@PathVariable int id) {
         try {
             return carService.getById(id);
-        } catch (NotFoundException e){
+        } catch (NotFoundException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, format(CAR_ID_NOT_FOUND, id));
         }
     }
@@ -48,30 +48,30 @@ public class CarRestController {
     }
 
     @PostMapping
-    public String create(@RequestBody Car car){
-        try{
+    public String create(@RequestBody Car car) {
+        try {
             carService.create(car);
             return format(CAR_WITH_BRAND_CREATED, car.getBrand());
-        } catch (AgeException e){
+        } catch (AgeException e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }
 
     @PutMapping
-    public String update(@RequestBody Car car){
-        try{
+    public String update(@RequestBody Car car) {
+        try {
             carService.update(car);
             return format(CAR_WITH_BRAND_UPDATE, car.getBrand());
-        } catch (AgeException e){
+        } catch (AgeException e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }
 
     @PostMapping("simulate")
-    public String simulateOffer(@RequestBody Car car){
-        try{
-           return format(ESTIMATED_PRICE_REST, carService.simulateOffer(car));
-        } catch (AgeException e){
+    public String simulateOffer(@RequestBody Car car) {
+        try {
+            return format(ESTIMATED_PRICE_REST, carService.simulateOffer(car));
+        } catch (AgeException e) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, e.getMessage());
         }
     }

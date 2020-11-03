@@ -3,7 +3,6 @@ package com.safety.car.controllers.mvc;
 import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.dto.rest.SearchPoliciesDto;
 import com.safety.car.services.interfaces.PolicyRequestService;
-import com.safety.car.utils.mappers.interfaces.PolicyRequestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +18,10 @@ import java.util.Optional;
 public class PolicyRequestController {
 
     private final PolicyRequestService policyRequestService;
-    private final PolicyRequestMapper policyRequestMapper;
 
     @Autowired
-    public PolicyRequestController(PolicyRequestService policyRequestService,
-                                   PolicyRequestMapper policyRequestMapper) {
+    public PolicyRequestController(PolicyRequestService policyRequestService) {
         this.policyRequestService = policyRequestService;
-        this.policyRequestMapper = policyRequestMapper;
     }
 
     @GetMapping

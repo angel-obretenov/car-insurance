@@ -17,6 +17,7 @@ import static java.lang.String.format;
 
 @Repository
 public class ModelRepositoryImpl implements ModelRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -31,7 +32,10 @@ public class ModelRepositoryImpl implements ModelRepository {
             query.setParameter("id", id);
 
             List<Model> model = query.list();
-            if (model.isEmpty()) throw new NotFoundException(format(MODEL_ID_ERROR, id));
+
+            if (model.isEmpty()) {
+                throw new NotFoundException(format(MODEL_ID_ERROR, id));
+            }
 
             return model.get(0);
         }
@@ -43,7 +47,10 @@ public class ModelRepositoryImpl implements ModelRepository {
             Query<Model> query = session.createQuery("FROM Model", Model.class);
 
             List<Model> model = query.list();
-            if (model.isEmpty()) throw new EmptyException(MODEL_EMPTY_ERROR);
+
+            if (model.isEmpty()) {
+                throw new EmptyException(MODEL_EMPTY_ERROR);
+            }
 
             return model;
         }
@@ -56,7 +63,10 @@ public class ModelRepositoryImpl implements ModelRepository {
             query.setParameter("id", id);
 
             List<Model> model = query.list();
-            if (model.isEmpty()) throw new NotFoundException(format(MODEL_BRAND_ID_ERROR, id));
+
+            if (model.isEmpty()) {
+                throw new NotFoundException(format(MODEL_BRAND_ID_ERROR, id));
+            }
 
             return model;
         }

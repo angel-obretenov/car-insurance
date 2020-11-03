@@ -9,7 +9,6 @@ import com.safety.car.services.interfaces.EmailService;
 import com.safety.car.services.interfaces.UserService;
 import com.safety.car.utils.mappers.interfaces.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -22,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 import java.util.List;
+
+import static com.safety.car.utils.constants.Constants.*;
 
 @Controller
 @RequestMapping("/register")
@@ -65,13 +66,13 @@ public class RegisterController {
 
         if (userDetailsManager.userExists(userCreateDto.getEmail())) {
             model.addAttribute("userCreateDto", userCreateDto);
-            model.addAttribute("invalidEmail", "User with the same Email already exists, please try again.");
+            model.addAttribute("invalidEmail", REGISTER_USER_EMAIL_ERROR);
             return "register";
         }
 
         if (!userCreateDto.getPassword().equals(userCreateDto.getConfirmPassword())) {
             model.addAttribute("userCreateDto", userCreateDto);
-            model.addAttribute("invalidPassword", "Passwords do not match, please try again.");
+            model.addAttribute("invalidPassword", REGISTER_PASSWORD_NOT_MATCH);
             return "register";
         }
 
@@ -113,10 +114,10 @@ public class RegisterController {
             userService.update(user);
 
             verificationTokenRepository.delete(token);
-            model.addAttribute("message", "You have successfully confirmed your account!");
+            model.addAttribute("message", SUCCESSFULLY_CONFIRMED_ACCOUNT);
             return "accountVerified";
         } catch (NotFoundException | EntityNotFoundException e) {
-            model.addAttribute("message", "The link is invalid or broken");
+            model.addAttribute("message", INVALID_LINK);
             return "errorVerification";
         }
     }

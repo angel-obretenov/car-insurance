@@ -1,7 +1,6 @@
 package com.safety.car.repositories;
 
 import com.safety.car.exceptions.NotFoundException;
-import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.repositories.interfaces.PolicyRequestRepository;
 import org.hibernate.Session;
@@ -11,7 +10,6 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.*;
 
 import static com.safety.car.utils.constants.Constants.CRITERIA_ERROR;
@@ -20,6 +18,7 @@ import static java.lang.String.format;
 
 @Repository
 public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -61,12 +60,14 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
             Query<PolicyRequest> query = session.createQuery("FROM PolicyRequest WHERE :id = id", PolicyRequest.class);
             query.setParameter("id", id);
 
-            if (query.list().isEmpty()) {
+            List<PolicyRequest> policyRequest = query.list();
+
+            if (policyRequest.isEmpty()) {
                 throw new NotFoundException(
                         format(POLICY_ID_NOT_FOUND, id));
             }
 
-            return query.list().get(0);
+            return policyRequest.get(0);
         }
     }
 

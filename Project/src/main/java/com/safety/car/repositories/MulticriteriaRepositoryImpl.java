@@ -1,7 +1,6 @@
 package com.safety.car.repositories;
 
 import com.safety.car.exceptions.EmptyException;
-import com.safety.car.models.entity.MulticriteriaTable;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,8 +15,8 @@ import static java.lang.String.format;
 
 @Repository
 public class MulticriteriaRepositoryImpl implements MulticriteriaRepository {
-    private final SessionFactory sessionFactory;
 
+    private final SessionFactory sessionFactory;
 
     @Autowired
     public MulticriteriaRepositoryImpl(SessionFactory sessionFactory) {
@@ -33,12 +32,12 @@ public class MulticriteriaRepositoryImpl implements MulticriteriaRepository {
             Query<Double> query = session.createQuery(sql, Double.class);
 
             List<Double> list = query.list();
-            if (list.isEmpty()) throw new EmptyException(CRITERIA_TABLE_EMPTY_ERROR);
+
+            if (list.isEmpty()) {
+                throw new EmptyException(CRITERIA_TABLE_EMPTY_ERROR);
+            }
 
             return list.get(0);
         }
-//        SELECT base_amount
-//        FROM multicriteria_range
-//        WHERE :cc BETWEEN cc_min AND cc_max AND :age  BETWEEN car_age_min AND car_age_max;
     }
 }

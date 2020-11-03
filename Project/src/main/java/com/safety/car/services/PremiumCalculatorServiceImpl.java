@@ -1,7 +1,7 @@
 package com.safety.car.services;
 
-import com.safety.car.models.entity.PremiumValues;
 import com.safety.car.models.entity.Car;
+import com.safety.car.models.entity.PremiumValues;
 import com.safety.car.repositories.interfaces.CarRepository;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
 import com.safety.car.services.interfaces.PremiumCalculatorService;
@@ -21,7 +21,6 @@ public class PremiumCalculatorServiceImpl implements PremiumCalculatorService {
         this.carRepository = carRepository;
         this.multicriteriaRepository = multicriteriaRepository;
     }
-
 
     @Override
     public double calculatePremium(int id) {

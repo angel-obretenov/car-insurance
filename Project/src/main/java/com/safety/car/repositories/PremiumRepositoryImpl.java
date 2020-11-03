@@ -18,6 +18,7 @@ import static java.lang.String.format;
 
 @Repository
 public class PremiumRepositoryImpl implements PremiumRepository {
+
     private final SessionFactory sessionFactory;
 
     @Autowired
@@ -31,28 +32,28 @@ public class PremiumRepositoryImpl implements PremiumRepository {
             Query<PremiumValues> query = session.createQuery("FROM PremiumValues WHERE id = :id", PremiumValues.class);
             query.setParameter("id", id);
 
-            List<PremiumValues> list = query.list();
+            List<PremiumValues> premium = query.list();
 
-            if (list.size() == 0) {
+            if (premium.size() == 0) {
                 throw new NotFoundException(format(PREMIUM_ID_ERROR, id));
             }
 
-            return list.get(0);
+            return premium.get(0);
         }
     }
 
     @Override
     public List<PremiumValues> getAll() {
         try (Session session = sessionFactory.openSession()) {
-            Query<PremiumValues> query = session.createQuery("óFROM PremiumValues", PremiumValues.class);
+            Query<PremiumValues> query = session.createQuery("FROM PremiumValues", PremiumValues.class);
 
-            List<PremiumValues> list = query.list();
+            List<PremiumValues> premium = query.list();
 
-            if (list.size() == 0) {
+            if (premium.size() == 0) {
                 throw new NotFoundException(PREMIUM_ERROR);
             }
 
-            return list;
+            return premium;
         }
     }
 

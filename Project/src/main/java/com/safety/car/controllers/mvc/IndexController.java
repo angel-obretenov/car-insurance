@@ -64,7 +64,7 @@ public class IndexController {
                        BindingResult bindingResult,
                        String action,
                        HttpSession session
-                       ) {
+    ) {
 
         if (bindingResult.hasErrors()) {
             return "index";

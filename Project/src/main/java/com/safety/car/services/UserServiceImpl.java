@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 import static com.safety.car.utils.constants.Constants.EMAIL_CHANGE_REJECTION;
 import static com.safety.car.utils.constants.Constants.USER_EMAIL_EXISTS;
 import static java.lang.String.format;
@@ -42,10 +41,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void create(UserDetails userDetails) {
-        if (userRepository.emailExists(userDetails.getEmail())) {
-            throw new DuplicateException(
-                    format(USER_EMAIL_EXISTS, userDetails.getEmail()));
+        if (emailExists(userDetails)) {
+            throw new DuplicateException(format(USER_EMAIL_EXISTS, userDetails.getEmail()));
         }
+
         userRepository.create(userDetails);
     }
 
@@ -60,6 +59,7 @@ public class UserServiceImpl implements UserService {
         userRepository.update(userDetails);
     }
 
-
-
+    public boolean emailExists(UserDetails userDetails) {
+        return userRepository.emailExists(userDetails.getEmail());
+    }
 }
