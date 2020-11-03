@@ -5,7 +5,6 @@ import com.safety.car.models.entity.Address;
 import com.safety.car.repositories.interfaces.AddressRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,12 +39,14 @@ public class AddressRepositoryImpl implements AddressRepository {
             Query<Address> query = session.createQuery("From Address where address = :addressName", Address.class);
             query.setParameter("addressName", addressName);
 
-            if (query.list().isEmpty()) {
+            List<Address> addresses = query.list();
+
+            if (addresses.isEmpty()) {
                 throw new NotFoundException(
                         format(ADDRESS_NOT_FOUND, addressName));
             }
 
-            return query.list().get(0);
+            return addresses.get(0);
         }
     }
 
@@ -55,30 +56,31 @@ public class AddressRepositoryImpl implements AddressRepository {
             Query<Address> query = session.createQuery("From Address where :id = id", Address.class);
             query.setParameter("id", id);
 
-            if (query.list().isEmpty()) {
+            List<Address> addresses = query.list();
+
+            if (addresses.isEmpty()) {
                 throw new NotFoundException(
                         format(ADDRESS_ID_NOT_FOUND, id));
             }
 
-            return query.list().get(0);
+            return addresses.get(0);
+        }
+    }
+
+    @Override
+    public boolean isNotSaved(String addressName) {
+        try (Session session = sessionFactory.openSession()) {
+            Query<Address> query = session.createQuery("From Address where address = :addressName", Address.class);
+            query.setParameter("addressName", addressName);
+
+            return query.list().isEmpty();
         }
     }
 
     @Override
     public void createAddress(Address address) {
         try (Session session = sessionFactory.openSession()) {
-
             session.save(address);
-        }
-    }
-
-    @Override
-    public void updateAddress(Address address) {
-        try (Session session = sessionFactory.openSession()) {
-            Transaction tx = session.beginTransaction();
-
-            session.update(address);
-            tx.commit();
         }
     }
 }

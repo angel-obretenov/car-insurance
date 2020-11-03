@@ -3,8 +3,6 @@ package com.safety.car.services;
 import com.safety.car.models.entity.Address;
 import com.safety.car.repositories.interfaces.AddressRepository;
 import com.safety.car.services.interfaces.AddressCombinedServices;
-import com.safety.car.services.interfaces.AddressService;
-import com.safety.car.services.interfaces.GenericUtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +38,7 @@ public class AddressServiceImpl implements AddressCombinedServices {
 
     @Override
     public boolean isNotSaved(String addressName) {
-        return getAll().stream().noneMatch(address -> address.getAddress().equalsIgnoreCase(addressName));
+        return addressRepository.isNotSaved(addressName);
     }
 
     @Override

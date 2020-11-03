@@ -9,5 +9,4 @@ public interface AddressService {
     boolean isNotSaved(String addressName);
 
     Address findByName(String addressName);
-
 }
