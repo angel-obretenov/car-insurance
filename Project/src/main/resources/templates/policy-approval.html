@@ -66,7 +66,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:href="@{/}">Home</a></li>
                     <li><a sec:authorize="isAuthenticated()" th:href="@{/my-policies}">My Policies</a></li>
-                    <li><a th:href="@{/service}">Service</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/service}">Service</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" class="active" th:href="@{/policy-approval}">Policy
                         Requests</a></li>
                     <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
@@ -204,7 +204,7 @@
                     <ul class="twitter-widget footer-links">
                         <li><a th:href="@{/}"> Home </a></li>
                         <li><a sec:authorize="isAuthenticated()" th:href="@{/my-policies}">My Policies</a></li>
-                        <li><a th:href="@{/service}"> Services</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/service}">Service</a></li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
                             Requests</a></li>
                     </ul><!-- end links -->

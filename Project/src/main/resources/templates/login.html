@@ -67,12 +67,8 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a th:href="@{/}">Home</a></li>
-                    <li><a sec:authorize="isAuthenticated()" th:href="@{/my-policies}">My Policies</a></li>
-                    <li><a th:href="@{/service}">Service</a></li>
-                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy Requests</a></li>
-                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/tickets}">Tickets</a></li>
                     <li><a sec:authorize="!isAuthenticated()" class="active" th:href="@{/login}">Login</a></li>
-                    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a></li>
+                    <li><a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-twitter global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-facebook global-radius"></i></a></li>
                     <li class="social-links"><a href="#"><i class="fa fa-linkedin global-radius"></i></a></li>
@@ -130,10 +126,10 @@
                             <input type="password" class="form-control" id="password" name="password"
                                    placeholder="Password">
                         </div>
-                            <button type="submit" value="Login" style="background-color: #004d33"
-                                    class="btn btn-primary btn-group-justified center">
-                                Sign in
-                            </button>
+                        <button type="submit" value="Login" style="background-color: #004d33"
+                                class="btn btn-primary btn-group-justified center">
+                            Sign in
+                        </button>
                     </form>
                     <div class="dropdown-divider"></div>
                     <div>
@@ -171,7 +167,7 @@
 
                     <ul class="twitter-widget footer-links">
                         <li><a th:href="@{/}"> Home </a></li>
-                        <li><a th:href="@{/service}"> Services</a></li>
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/service}">Service</a></li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/policy-approval}">Policy
                             Requests</a></li>
                     </ul><!-- end links -->
