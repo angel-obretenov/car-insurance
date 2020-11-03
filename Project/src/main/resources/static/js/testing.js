@@ -164,22 +164,78 @@ $('#simulate_form').on('submit', function (e) {
     }
 })
 
+$('#request_policy_form').on('submit', function (e) {
+    let focusSet = false;
+    //FOR START DATE
+    if (!$('#start_date').val()) {
+        if ($("#start_date").next(".validation").length === 0) {
+            $("#start_date").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select start date</div>");
+        }
+        e.preventDefault();
+        $('#start_date').focus();
+        focusSet = true;
+    } else {
+        $("#start_date").next(".validation").remove();
+    }
 
-// $(document).ready(function () {
-//
-//     $("#submitButton").click(function (e) {
-//         var formInvalid = false;
-//         $('#simulate_form input').each(function () {
-//             if ($(this).val() === '') {
-//                 formInvalid = true;
-//                 e.preventDefault();
-//             }
-//         });
-//
-//         if (formInvalid) {
-//             $('#redirect_msg').show();
-//
-//         } else $('#redirect_msg').hide();
-//     });
-//
-// });
+    //FOR END DATE
+    if (!$('#end_date').val()) {
+        if ($("#end_date").next(".validation").length === 0) {
+            $("#end_date").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please select end date</div>");
+        }
+        e.preventDefault();
+        $('#end_date').focus();
+        focusSet = true;
+    } else {
+        $("#end_date").next(".validation").remove();
+    }
+
+    //FOR END DATE
+    if ($('#car_pic').val() === null || $('#car_pic').val() === 0 || $('#car_pic').val() === '') {
+        if ($("#car_pic").next(".validation").length === 0) {
+            $("#car_pic").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please upload picture of your car.</div>");
+        }
+        e.preventDefault();
+        $('#car_pic').focus();
+        focusSet = true;
+    } else {
+        $("#car_pic").next(".validation").remove();
+    }
+
+    //FOR EMAIL
+    if (!$('#policy_email').val() || $('#policy_email').val() === '') {
+        if ($("#policy_email").next(".validation").length === 0) {
+            $("#policy_email").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter your email.</div>");
+        }
+        e.preventDefault();
+        $('#policy_email').focus();
+        focusSet = true;
+    } else {
+        $("#policy_email").next(".validation").remove();
+    }
+
+    //FOR PHONE NUMBER
+    if (!$('#policy_phone_number').val() || $('#policy_phone_number').val() === '') {
+        if ($("#policy_phone_number").next(".validation").length === 0) {
+            $("#policy_phone_number").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter your phone number.</div>");
+        }
+        e.preventDefault();
+        $('#policy_phone_number').focus();
+        focusSet = true;
+    } else {
+        $("#policy_phone_number").next(".validation").remove();
+    }
+
+    //FOR ADDRESS
+    if (!$('#policy_address').val() || $('#policy_address').val() === '') {
+        if ($("#policy_address").next(".validation").length === 0) {
+            $("#policy_address").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Please enter your address.</div>");
+        }
+        e.preventDefault();
+        $('#policy_address').focus();
+        focusSet = true;
+    } else {
+        $("#policy_address").next(".validation").remove();
+    }
+
+})

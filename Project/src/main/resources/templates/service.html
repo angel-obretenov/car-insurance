@@ -145,28 +145,25 @@
             </ul>
             <div class="form-style-8 col">
                 <h2>Request Policy</h2>
-                <form th:action="@{/service}" th:object="${policy}" method="post" enctype="multipart/form-data">
+                <form id="request_policy_form" th:action="@{/service}" th:object="${policy}" method="post" enctype="multipart/form-data">
                     <label th:text="'Start date'"></label>
-                    <input type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
+                    <input id="start_date" type="date" th:field="*{startDate}" name="start-date" th:placeholder="#{start.date}"
                            placeholder="Start date"/>
                     <label th:text="'End date'"></label>
-                    <input type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
+                    <input id="end_date" type="date" th:field="*{endDate}" name="end-date" th:placeholder="#{end.date}"
                            placeholder="End date"/>
-
                     <label th:text="'Picture of the car'"></label>
-                    <input type="file" th:field="*{picture}" name="file" th:placeholder="#{attach.image}"
+                    <input id="car_pic" type="file" th:field="*{picture}" name="file" th:placeholder="#{attach.image}"
                            placeholder="Image"/>  <!--th:field="*{picture}" -->
-                    <input type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
-                    <input type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
+                    <input id="policy_email" type="email" th:field="*{email}" name="email" th:placeholder="#{email}" placeholder="Email"/>
+                    <input id="policy_phone_number" type="text" th:field="*{phoneNumber}" name="phone-number" th:placeholder="#{phone.number}"
                            placeholder="Phone number"/>
-                    <input type="text" th:field="*{address}" name="address" th:placeholder="#{address}"
+                    <input id="policy_address" type="text" th:field="*{address}" name="address" th:placeholder="#{address}"
                            placeholder="Postal address"/>
-                    <!--                <textarea placeholder="Message" onkeyup="adjust_textarea(this)"></textarea>-->
-                    <input
+                   <input
                             name="action"
                             value="Request policy"
                             type="submit" />
-<!--                            th:value="simulate"-->
                 </form>
             </div>
         </div>
@@ -265,6 +262,7 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
 <!-- MAP & CONTACT -->
 <script th:src="@{/js/map.js}" src="../static/js/map.js"></script>
+<script th:src="@{/js/testing.js}" src="../static/js/testing.js"></script>
 
 <script type="text/javascript">
     //auto expand textarea

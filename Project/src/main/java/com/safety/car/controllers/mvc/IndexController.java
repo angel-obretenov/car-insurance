@@ -62,7 +62,9 @@ public class IndexController {
                        Model model,
                        Principal principal,
                        BindingResult bindingResult,
-                       String action) {
+                       String action,
+                       HttpSession session
+                       ) {
 
         if (bindingResult.hasErrors()) {
             return "index";
@@ -71,7 +73,6 @@ public class IndexController {
         try {
             UserDetails user = userService.getByEmail(principal.getName());
             model.addAttribute("principal", user.getLastName());
-            model.addAttribute("redirectFromService", null);
         } catch (NullPointerException e) {
             model.addAttribute("principal", ANONYMOUS_USER_CONTROLLER);
         } catch (EntityNotFoundException e) {
@@ -82,6 +83,8 @@ public class IndexController {
             Car car = carDtoToCar(carDto, modelService, brandService);
             model.addAttribute("estimatedPrice", carService.simulateOffer(car));
             model.addAttribute("car", car);
+            model.addAttribute("redirectFromService", null);
+            session.removeAttribute("redirectFromService");
         }
 
         model.addAttribute("brands", brandService.getAll());

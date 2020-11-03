@@ -74,7 +74,8 @@ public class ServiceController {
                              Model model,
                              Principal principal,
                              @SessionAttribute("car") Car car,
-                             BindingResult bindingResult) {
+                             BindingResult bindingResult
+    ) {
         if (bindingResult.hasErrors()) return "redirect:/";
 
         pictureSaver(dto);
