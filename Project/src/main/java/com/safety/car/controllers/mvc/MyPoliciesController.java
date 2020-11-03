@@ -1,5 +1,6 @@
 package com.safety.car.controllers.mvc;
 
+import com.safety.car.exceptions.NotFoundException;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.services.interfaces.PolicyDetailsService;
@@ -8,7 +9,10 @@ import com.safety.car.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 
@@ -30,8 +34,8 @@ public class MyPoliciesController {
     }
 
     @GetMapping
-    public String showAboutPage(Model model,
-                                Principal principal) {
+    public String showMyPoliciesPage(Model model,
+                                     Principal principal) {
 
         UserDetails user = userService.getByEmail(principal.getName());
 
@@ -42,10 +46,13 @@ public class MyPoliciesController {
 
     @PostMapping
     public String deletePolicy(@RequestParam int id) {
+        try {
+            PolicyRequest policyToDelete = policyRequestService.getById(id);
 
-        PolicyRequest policyToDelete = policyRequestService.getById(id);
-
-        policyDetailsService.delete(policyToDelete.getPolicyDetails());
+            policyDetailsService.delete(policyToDelete.getPolicyDetails());
+        } catch (NotFoundException e) {
+            return "error";
+        }
 
         return "redirect:my-policies";
     }

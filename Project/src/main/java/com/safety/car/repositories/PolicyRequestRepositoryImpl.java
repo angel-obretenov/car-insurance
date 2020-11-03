@@ -62,7 +62,7 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
             query.setParameter("id", id);
 
             if (query.list().isEmpty()) {
-                throw new EntityNotFoundException(
+                throw new NotFoundException(
                         format(POLICY_ID_NOT_FOUND, id));
             }
 
@@ -99,12 +99,12 @@ public class PolicyRequestRepositoryImpl implements PolicyRequestRepository {
             }
 
             if (isApproved.isPresent()) {
-                Query<PolicyRequest> query = null;
+                Query<PolicyRequest> query;
                 switch (isApproved.get()) {
                     case -1:
                         break;
                     case 0:
-                        query = session.createQuery("FROM PolicyRequest WHERE isApproved = false ");
+                        query = session.createQuery("FROM PolicyRequest WHERE isApproved = false");
                         list.addAll(query.list());
                         break;
                     case 1:

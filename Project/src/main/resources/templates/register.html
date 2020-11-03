@@ -123,41 +123,75 @@
                                 <input th:field="*{firstName}" type="text" class="form-control" id="firstname"
                                        name="firstname"
                                        placeholder="First Name">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('firstName')}" class="label label-danger"
+                                       th:errors="*{firstName}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="lastname">Family Name</label>
                                 <input th:field="*{lastName}" type="text" class="form-control" id="lastname"
                                        name="lastname"
                                        placeholder="Last Name">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('lastName')}" class="label label-danger"
+                                       th:errors="*{lastName}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email address</label>
                                 <input th:field="*{email}" type="email" class="form-control" id="email" name="email"
                                        placeholder="email@example.com">
+                                <h5 class="d-flex justify-content-center">
+                                    <i th:if="${invalidEmail != null}" th:text="${invalidEmail}" class="error" style="color: red"></i>
+                                </h5>
+                                <div>
+                                    <p th:if="${#fields.hasErrors('email')}" class="label label-danger"
+                                       th:errors="*{email}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input th:field="*{password}" type="password" class="form-control" id="password"
                                        name="password"
                                        placeholder="Password">
+                                <h5 class="d-flex justify-content-center">
+                                    <i th:if="${invalidPassword != null}" th:text="${invalidPassword}" class="error" style="color: red"></i>
+                                </h5>
+                                <div>
+                                    <p th:if="${#fields.hasErrors('password')}" class="label label-danger"
+                                       th:errors="*{password}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="passwordConfirm">Confirm Password</label>
                                 <input th:field="*{confirmPassword}" type="password" class="form-control"
                                        id="passwordConfirm" name="passwordConfirm"
                                        placeholder="Confirm Your Password">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('confirmPassword')}" class="label label-danger"
+                                       th:errors="*{confirmPassword}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input th:field="*{phoneNumber}" type="number" class="form-control"
+                                <input th:field="*{phoneNumber}" type="text" class="form-control"
                                        id="phone" name="phone"
                                        placeholder="Phone">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('phoneNumber')}" class="label label-danger"
+                                       th:errors="*{phoneNumber}"></p>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="address">Address</label>
                                 <input th:field="*{addressName}" type="text" class="form-control"
                                        id="address" name="address"
                                        placeholder="Address">
+                                <div>
+                                    <p th:if="${#fields.hasErrors('addressName')}" class="label label-danger"
+                                       th:errors="*{addressName}"></p>
+                                </div>
                             </div>
                             <button type="submit" style="background-color: #004d33" class="btn btn-primary">
                                 Register
@@ -180,8 +214,10 @@
                         <img th:src="@{/images/logos/logo.png}"
                              src="../static/images/logos/logo.png" alt="">
                     </div>
-                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its primary use is to provide
-                        financial protection against physical damage or bodily injury resulting from traffic collisions and
+                    <p> Vehicle insurance is insurance for cars, trucks, motorcycles, and other road vehicles. Its
+                        primary use is to provide
+                        financial protection against physical damage or bodily injury resulting from traffic collisions
+                        and
                         against liability that could also arise from incidents in a vehicle.</p>
                 </div><!-- end clearfix -->
             </div><!-- end col -->
@@ -223,7 +259,8 @@
                         <h3>Social</h3>
                     </div>
                     <ul class="footer-links">
-                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i class="fa fa-gitlab"></i> Gitlab</a></li>
+                        <li><a href="https://gitlab.com/angel.obretenov/car-insurance-project"><i
+                                class="fa fa-gitlab"></i> Gitlab</a></li>
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->

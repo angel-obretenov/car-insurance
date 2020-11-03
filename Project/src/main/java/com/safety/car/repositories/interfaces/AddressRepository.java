@@ -12,9 +12,7 @@ public interface AddressRepository {
 
     Address getById(int id);
 
+    boolean isNotSaved(String addressName);
+
     void createAddress(Address address);
-
-    void updateAddress(Address address);
-
-//    void createIfNotExist(String addressName);
 }

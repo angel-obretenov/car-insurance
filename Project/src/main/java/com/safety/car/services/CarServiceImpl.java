@@ -40,10 +40,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Double getTotalPremiumByCarId(int id) {
-
         return premiumCalculatorService.calculatePremium(id);
     }
-
 
     @Override
     public Double simulateOffer(Car car) {
@@ -67,7 +65,9 @@ public class CarServiceImpl implements CarService {
 
     private void isAgeValid(Car car) {
         PremiumValues premiumValues = premiumService.getById(1);
+
         int driversAge = car.getDriversAge();
+
         if (driversAge < premiumValues.getDriverMinAge() || driversAge > premiumValues.getDriverMaxAge()) {
             throw new AgeException(format(DRIVER_AGE_ERROR, driversAge));
         }

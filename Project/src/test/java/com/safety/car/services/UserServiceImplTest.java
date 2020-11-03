@@ -117,5 +117,4 @@ class UserServiceImplTest {
         assertThrows(EntityNotFoundException.class,
                 () -> service.getByEmail(user.getEmail()));
     }
-
 }

@@ -34,7 +34,7 @@ public class UserMapperImpl implements UserMapper {
         user.setEmail(userCreateDto.getEmail());
         user.setFirstName(userCreateDto.getFirstName());
         user.setLastName(userCreateDto.getLastName());
-        user.setPhoneNumber(userCreateDto.getPhoneNumber());
+        user.setPhoneNumber(Integer.parseInt(userCreateDto.getPhoneNumber()));
 
         addressService.createIfNotExist(userCreateDto.getAddressName());
         Address address = addressService.findByName(userCreateDto.getAddressName());
