@@ -1,7 +1,5 @@
 package com.safety.car.models.entity;
 
-import org.hibernate.annotations.Formula;
-
 import javax.persistence.*;
 
 @Entity
@@ -41,6 +39,11 @@ public class PolicyDetails {
     private Car car;
 
     public PolicyDetails() {
+    }
+
+    public PolicyDetails(Integer id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
     public Integer getId() {

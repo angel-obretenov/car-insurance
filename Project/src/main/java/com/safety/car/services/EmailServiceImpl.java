@@ -1,14 +1,10 @@
 package com.safety.car.services;
 
-import com.safety.car.models.dto.rest.SearchPoliciesDto;
 import com.safety.car.models.entity.PolicyDetails;
 import com.safety.car.models.entity.PolicyRequest;
 import com.safety.car.models.entity.UserDetails;
 import com.safety.car.models.entity.VerificationToken;
 import com.safety.car.services.interfaces.EmailService;
-import com.safety.car.services.interfaces.PolicyDetailsService;
-import com.safety.car.services.interfaces.PolicyRequestService;
-import com.safety.car.services.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.mail.SimpleMailMessage;
@@ -49,20 +45,20 @@ public class EmailServiceImpl implements EmailService {
 
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(userDetails.getEmail());
-        if (policyRequest.getApproved()){
+        if (policyRequest.getApproved()) {
             mailMessage.setSubject("Details on your policy request");
             mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() +
                     "\n\n We have accepted your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
                     "\n Car with brand " + policyDetails.getCar().getBrand().getName()
-                    +" and with model " + policyDetails.getCar().getModel().getName()
+                    + " and with model " + policyDetails.getCar().getModel().getName()
                     + "\n\n Greetings, Insure Masters");
         } else {
             mailMessage.setSubject("Details on your policy request");
             mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() +
                     "\n\n We have rejected your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
                     "\n Car with brand " + policyDetails.getCar().getBrand().getName()
-                    +" and with model " + policyDetails.getCar().getModel().getName()
-                    +"\n Since you don't meet our requirements"
+                    + " and with model " + policyDetails.getCar().getModel().getName()
+                    + "\n Since you don't meet our requirements"
                     + "\n\n Greetings, Insure Masters");
         }
         sendEmail(mailMessage);
