@@ -1,3 +1,3 @@
-How we work on trelo -
+**How we worked on trello:**
 
-```https://trello.com/b/eKg50OXy/car-insurance-project```
+**https://trello.com/b/eKg50OXy/car-insurance-project**
