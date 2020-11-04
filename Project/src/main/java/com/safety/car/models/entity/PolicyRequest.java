@@ -24,6 +24,10 @@ public class PolicyRequest {
     public PolicyRequest() {
     }
 
+    public PolicyRequest(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

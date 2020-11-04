@@ -21,12 +21,12 @@ import static org.mockito.Mockito.*;
 class AddressServiceImplTest {
 
     @Mock
-    AddressRepository mockRepo;
+    private AddressRepository mockRepo;
 
     @InjectMocks
-    AddressServiceImpl service;
+    private AddressServiceImpl service;
 
-    Address address = new Address(2, "Ulitza Vtora");
+    private final Address address = new Address(2, "Ulitza Vtora");
 
     @Test
     void getAll() {

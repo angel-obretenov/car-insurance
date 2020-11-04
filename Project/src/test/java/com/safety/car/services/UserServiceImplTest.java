@@ -14,19 +14,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityNotFoundException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceImplTest {
 
     @Mock
-    UserDetailsRepository mockRepo;
+    private UserDetailsRepository mockRepo;
 
     @InjectMocks
-    UserServiceImpl service;
+    private UserServiceImpl service;
 
-    UserDetails user = new UserDetails(1,
+    private final UserDetails user = new UserDetails(1,
             "test@test.tt",
             "firstName",
             "firstName",

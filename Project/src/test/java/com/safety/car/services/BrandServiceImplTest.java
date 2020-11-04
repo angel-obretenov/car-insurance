@@ -19,12 +19,12 @@ import static org.mockito.Mockito.when;
 class BrandServiceImplTest {
 
     @Mock
-    BrandRepository mockRepo;
+    private BrandRepository mockRepo;
 
     @InjectMocks
-    BrandServiceImpl service;
+    private BrandServiceImpl service;
 
-    Brand brand = new Brand();
+    private final Brand brand = new Brand();
 
     {
         brand.setId(1);

@@ -12,21 +12,20 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ModelServiceImplTest {
 
     @Mock
-    ModelRepository mockRepo;
+    private ModelRepository mockRepo;
 
     @InjectMocks
-    ModelServiceImpl service;
+    private ModelServiceImpl service;
 
-    Brand brand = new Brand(1, "BMW");
-    Model model = new Model(1, 2018, brand, "7 Series");
-
+    private final Brand brand = new Brand(1, "BMW");
+    private final Model model = new Model(1, 2018, brand, "7 Series");
 
     @Test
     void getById() {

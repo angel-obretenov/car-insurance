@@ -11,31 +11,30 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceImplTest {
 
     @Mock
-    CarRepository mockRepo;
+    private CarRepository mockRepo;
 
     @Mock
-    PremiumRepository premiumRepo;
+    private PremiumRepository premiumRepo;
 
     @InjectMocks
-    PremiumServiceImpl premiumService;
+    private PremiumServiceImpl premiumService;
 
     @InjectMocks
-    CarServiceImpl service;
+    private CarServiceImpl service;
 
-    PremiumValues premiumValues = new PremiumValues();
-    Car car = new Car();
+    private final PremiumValues premiumValues = new PremiumValues();
+    private final Car car = new Car();
 
     {
         premiumValues.setId(1);
@@ -80,7 +79,7 @@ class CarServiceImplTest {
 
     @Test
     void create() {
-       //TODO Can't mock inner   PremiumValues premiumValues = premiumService.getById(1); in isAgeValid();
+        //TODO Can't mock inner   PremiumValues premiumValues = premiumService.getById(1); in isAgeValid();
 //        when(premiumRepo.getById(1))
 //                .thenReturn(premiumValues);
 
@@ -93,8 +92,8 @@ class CarServiceImplTest {
 //                .create(car);
     }
 
-    @Test
-    void update() {
-
-    }
+//    @Test
+//    void update() {
+//
+//    }
 }
