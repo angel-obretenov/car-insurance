@@ -80,9 +80,9 @@ class CarServiceImplTest {
 
     @Test
     void create() {
-        //TODO Can't mock inner   PremiumValues premiumValues = premiumService.getById(1); in isAgeValid();
-        when(premiumRepo.getById(1))
-                .thenReturn(premiumValues);
+       //TODO Can't mock inner   PremiumValues premiumValues = premiumService.getById(1); in isAgeValid();
+//        when(premiumRepo.getById(1))
+//                .thenReturn(premiumValues);
 
 //        when(premiumService.getById(1))
 //                .thenReturn(premiumValues);

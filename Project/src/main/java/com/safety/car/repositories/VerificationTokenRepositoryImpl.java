@@ -12,11 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.safety.car.utils.constants.Constants.TOKEN_NOT_VALID;
+
 @Repository
 public class VerificationTokenRepositoryImpl implements VerificationTokenRepository {
-
-    public static final String TOKEN_NOT_VALID = "Token not valid";
-
     private final SessionFactory sessionFactory;
 
     @Autowired

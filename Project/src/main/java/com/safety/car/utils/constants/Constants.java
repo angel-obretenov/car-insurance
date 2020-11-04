@@ -42,4 +42,7 @@ public class Constants {
     public static final String REGISTER_PASSWORD_NOT_MATCH = "Passwords do not match, please try again.";
     public static final String SUCCESSFULLY_CONFIRMED_ACCOUNT = "You have successfully confirmed your account!";
     public static final String REGISTER_USER_EMAIL_ERROR = "User with the same Email already exists, please try again.";
+
+    //VERIFICATION
+    public static final String TOKEN_NOT_VALID = "Token not valid";
 }

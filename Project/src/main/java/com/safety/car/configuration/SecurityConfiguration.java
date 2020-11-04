@@ -38,7 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return jdbcUserDetailsManager;
     }
 
-    // auth manager builder sets the logic for users, passwords and roles
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource);
@@ -59,19 +58,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(ADMIN_MATCHERS).hasRole("ADMIN")
                 .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
-                //.and()
-                //.httpBasic() -> (postman, insomnia configuration)
                 .and()
                 .formLogin()
                 .loginPage("/login")
                 .usernameParameter("username")
                 .loginProcessingUrl("/authenticate").permitAll()
-//                .defaultSuccessUrl("/", true)
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll()
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied")
+                .exceptionHandling().accessDeniedPage("/error")
                 .and()
                 .csrf().disable();
     }

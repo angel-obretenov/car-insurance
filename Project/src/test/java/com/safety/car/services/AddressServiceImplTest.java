@@ -83,14 +83,8 @@ class AddressServiceImplTest {
     @Test
     void isNotSaved() {
         //Arrange
-        List<Address> list = new ArrayList<>();
-        list.add(address);
-
-        when(mockRepo.getAll()).thenReturn(list);
-        // Act
-
-        // Assert
-        Assertions.assertTrue(service.isNotSaved("Nesushtestvuvasht adres"));
+        when(mockRepo.isNotSaved(address.getAddress())).thenReturn(false);
+        // Act  Assert
         Assertions.assertFalse(service.isNotSaved(address.getAddress()));
     }
 
