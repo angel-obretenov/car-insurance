@@ -12,14 +12,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
 public class PolicyDetailsServiceImplTest {
-
 
     @InjectMocks
     private PolicyDetailsServiceImpl policyService;
@@ -28,10 +27,12 @@ public class PolicyDetailsServiceImplTest {
     private PolicyDetailsRepository policyMockRepository;
 
     private PolicyDetails policyTest;
+    private List<PolicyDetails> mockList;
 
     @BeforeEach
     void initialization() {
         policyTest = new PolicyDetails(1, "test@email.com");
+        mockList = Collections.singletonList(policyTest);
     }
 
     @Test
@@ -82,8 +83,6 @@ public class PolicyDetailsServiceImplTest {
     @Test
     public void getAll_ShouldReturn_List() {
         //arrange
-        List<PolicyDetails> mockList = new ArrayList<>();
-        mockList.add(policyTest);
         Mockito.when(policyMockRepository.getAll()).thenReturn(mockList);
         // act
         List<PolicyDetails> getListFromService = policyService.getAll();

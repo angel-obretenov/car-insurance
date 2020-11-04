@@ -10,9 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -117,5 +120,17 @@ class UserServiceImplTest {
 
         assertThrows(EntityNotFoundException.class,
                 () -> service.getByEmail(user.getEmail()));
+    }
+
+    @Test
+    public void getAll_ShouldReturn_List() {
+        //arrange
+        List<UserDetails> mockList = new ArrayList<>();
+        mockList.add(user);
+        Mockito.when(mockRepo.getAll()).thenReturn(mockList);
+        // act
+        List<UserDetails> getListFromService = mockRepo.getAll();
+        //assert
+        assertEquals(mockList, getListFromService);
     }
 }

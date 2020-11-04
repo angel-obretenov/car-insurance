@@ -7,15 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class AddressServiceImplTest {
@@ -31,14 +28,8 @@ class AddressServiceImplTest {
     @Test
     void getAll() {
         //Arrange
-        Address address1 = new Address(1, "Ulitza Parva");
-//        Address address2 = new Address(2, "Ulitza Vtora");
-        Address address3 = new Address(3, "Ulitza Treta");
         List<Address> threeAddresses = new ArrayList<>();
-        threeAddresses.add(address1);
         threeAddresses.add(address);
-        threeAddresses.add(address3);
-
         when(mockRepo.getAll())
                 .thenReturn(threeAddresses);
         // Act
@@ -66,19 +57,16 @@ class AddressServiceImplTest {
         Assertions.assertEquals("Ulitza Vtora", result.getAddress());
     }
 
-    @Test
-    void createIfNotExist() {
-        //Arrange
-
-        //TODO ne znam kak moje da stane
-//        do().when(mockRepo).createAddress(any(Address.class));
-//        when(Address.class).
-//        // Act
-//        service.createIfNotExist("Test");
+//    @Test
+//    void createIfNotExist() {
+//        //Arrange
+//        when(mockRepo.isNotSaved(address.getAddress()))
+//                .thenReturn(true);
 //
-//        // Assert
-//        assertFalse(service.isNotSaved("Test"));
-    }
+//        // Act, Assert
+//        verify(mockRepo, times(1))
+//                .createAddress(address);
+//    }
 
     @Test
     void isNotSaved() {
@@ -101,6 +89,4 @@ class AddressServiceImplTest {
         Assertions.assertEquals("Ulitza Vtora", result.getAddress());
         Assertions.assertEquals(2, result.getId());
     }
-
-
 }

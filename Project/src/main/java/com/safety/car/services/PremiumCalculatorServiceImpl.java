@@ -30,7 +30,9 @@ public class PremiumCalculatorServiceImpl implements PremiumCalculatorService {
         totalPremium = totalPremium + multicriteriaRepository.getByCCAndAge(car.getCubicCapacity(), car.getDriversAge());
 
         //adding 20% if accidents = true
-        if (car.isHasAccidents()) totalPremium = totalPremium + totalPremium * premiumValues.getAccidentCoef();
+        if (car.isHasAccidents()) {
+            totalPremium = totalPremium + totalPremium * premiumValues.getAccidentCoef();
+        }
 
         //adding 5% if drivers age below 25
         if (car.getDriversAge() < premiumValues.getAgeBelowForTax()) {
