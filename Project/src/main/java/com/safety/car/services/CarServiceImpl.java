@@ -63,7 +63,7 @@ public class CarServiceImpl implements CarService {
         carRepository.update(car);
     }
 
-    private void isAgeValid(Car car) {
+    public void isAgeValid(Car car) {
         PremiumValues premiumValues = premiumService.getById(1);
 
         int driversAge = car.getDriversAge();

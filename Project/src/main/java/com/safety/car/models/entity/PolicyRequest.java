@@ -18,6 +18,7 @@ public class PolicyRequest {
     @JoinColumn(name = "user_details_id")
     private UserDetails userDetails;
 
+    //TODO integer+enum
     @Column(name = "is_approved")
     private Boolean isApproved;
 

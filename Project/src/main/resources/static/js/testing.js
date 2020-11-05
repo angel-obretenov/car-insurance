@@ -114,9 +114,9 @@ $('#simulate_form').on('submit', function (e) {
     } else {
         $("#cubics").next(".validation").remove();
     }
-    if ($('#cubics').val() < 100 || $('#cubics').val() > 1300) {
+    if ($('#cubics').val() < 100 || $('#cubics').val() > 7000) {
         if ($("#cubics").next(".validation").length === 0) {
-            $("#cubics").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Maximum cubic capacity is 1300!</div>");
+            $("#cubics").after("<div class='validation' style='color:red;margin-bottom: 20px;'>Maximum cubic capacity is 7000!</div>");
         }
         e.preventDefault();
         if (!focusSet) {

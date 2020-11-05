@@ -1,9 +1,11 @@
 package com.safety.car.repositories;
 
 import com.safety.car.exceptions.EmptyException;
+import com.safety.car.models.entity.MulticriteriaTable;
 import com.safety.car.repositories.interfaces.MulticriteriaRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,15 @@ public class MulticriteriaRepositoryImpl implements MulticriteriaRepository {
         this.sessionFactory = sessionFactory;
     }
 
+    public List<MulticriteriaTable> getAll() {
+        try (Session session = sessionFactory.openSession()) {
+            Query<MulticriteriaTable> query = session.createQuery("FROM MulticriteriaTable "
+                    , MulticriteriaTable.class);
+
+            return query.list();
+        }
+    }
+
     @Override
     public Double getByCCAndAge(int cc, int age) {
         try (Session session = sessionFactory.openSession()) {
@@ -40,4 +51,14 @@ public class MulticriteriaRepositoryImpl implements MulticriteriaRepository {
             return list.get(0);
         }
     }
+
+    public void update(MulticriteriaTable multicriteriaTable) {
+        try (Session session = sessionFactory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            session.update(multicriteriaTable);
+            tx.commit();
+        }
+    }
+
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CarServiceImplTest {
@@ -50,7 +50,7 @@ class CarServiceImplTest {
         car.setBrand(brand);
         car.setModel(model);
         car.setCubicCapacity(1200);
-        car.setDriversAge(19);
+        car.setDriversAge(17);
         car.setHasAccidents(true);
         car.setRegistrationDate("2017 10 16");
         car.setActive(true);
@@ -80,20 +80,22 @@ class CarServiceImplTest {
     @Test
     void create() {
         //TODO Can't mock inner   PremiumValues premiumValues = premiumService.getById(1); in isAgeValid();
-//        when(premiumRepo.getById(1))
-//                .thenReturn(premiumValues);
+        when(premiumService.getById(1))
+                .thenReturn(premiumValues);
 
-//        when(premiumService.getById(1))
-//                .thenReturn(premiumValues);
+        service.create(car);
 
-//        service.create(car);
-//
-//        verify(mockRepo, times(1))
-//                .create(car);
+        verify(mockRepo, times(1))
+                .create(car);
     }
 
 //    @Test
-//    void update() {
+//    void isAgeValid() {
+//        PremiumValues pm = premiumService.getById(1);
+//        when(premiumRepo.getById(1))
+//                .thenReturn(pm);
 //
+//
+//        assertThrows(AgeException.class, () -> service.isAgeValid(car));
 //    }
 }

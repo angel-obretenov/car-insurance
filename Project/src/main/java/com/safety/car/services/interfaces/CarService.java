@@ -1,9 +1,6 @@
 package com.safety.car.services.interfaces;
 
-import com.safety.car.models.entity.Brand;
 import com.safety.car.models.entity.Car;
-import com.safety.car.repositories.interfaces.BrandRepository;
-import com.safety.car.repositories.interfaces.ModelRepository;
 
 import java.util.List;
 
@@ -19,4 +16,6 @@ public interface CarService {
     void create(Car car);
 
     void update(Car car);
+
+    void isAgeValid(Car car);
 }

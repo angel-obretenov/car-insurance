@@ -47,6 +47,13 @@ public class EmailServiceImpl implements EmailService {
         mailMessage.setTo(userDetails.getEmail());
         if (policyRequest.getApproved()) {
             mailMessage.setSubject("Details on your policy request");
+            //get text by status
+            /*
+            * mailMessage.setText(getMailTextForStatus(policyStatus));
+            *   -> Map<PolicyStatus, String> mailTexts = new HashMap<>();
+            *   -> mailTexts.put(PolicyStatus.APPROVED, "Your policy was approved");
+            *   -> return mailTexts.get(PolicyStatus.valueOf(policyStatus));
+            * */
             mailMessage.setText("Dear, " + userDetails.getFirstName() + " " + userDetails.getLastName() +
                     "\n\n We have accepted your policy request with Ticket N:" + policyRequest.getId() + "/ for" +
                     "\n Car with brand " + policyDetails.getCar().getBrand().getName()

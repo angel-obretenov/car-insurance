@@ -32,13 +32,10 @@ public class Helper {
         this.addressCombinedServices = addressCombinedServices;
     }
 
+    //todo returns string, change name
     public static void pictureSaver(PolicyDetailsDto dto) {
         MultipartFile photo = dto.getPicture();
         Path path = Paths.get("uploads/");
-
-        String filename1 = "test.csv";
-        Path path1 = Paths.get(filename1);
-        System.out.println(path1.toAbsolutePath());
 
         try {
             InputStream inputStream = photo.getInputStream();

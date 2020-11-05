@@ -10,5 +10,10 @@ public interface PolicyRequestMapper {
 
     PolicyRequest fromDto(PolicyRequestApprovalDto policyRequestApprovalDto);
 
+    /**
+     *
+     * @param action A string in the format "accept 7", where action[0] is the new status and action[1] is the id of the policy to update
+     * @return
+     */
     PolicyRequest getUpdateFrom(String action);
 }

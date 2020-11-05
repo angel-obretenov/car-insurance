@@ -35,11 +35,11 @@ public class AddressServiceImpl implements AddressCombinedServices {
             addressRepository.createAddress(address);
         }
     }
-
     @Override
     public boolean isNotSaved(String addressName) {
         return addressRepository.isNotSaved(addressName);
     }
+
 
     @Override
     public Address findByName(String addressName) {

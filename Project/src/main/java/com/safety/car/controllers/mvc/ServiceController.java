@@ -19,6 +19,9 @@ import java.security.Principal;
 import static com.safety.car.utils.constants.Constants.FILL_FORM_POLICY;
 import static com.safety.car.utils.mappers.Helper.pictureSaver;
 
+/**
+ *
+ */
 @Controller
 @RequestMapping("/service")
 @SessionAttributes({"redirectFromService", "car"})
@@ -73,7 +76,9 @@ public class ServiceController {
                              Principal principal,
                              @SessionAttribute("car") Car car,
                              BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) return "redirect:/";
+        if (bindingResult.hasErrors()) {
+            return "redirect:/";
+        }
 
         pictureSaver(dto);
 

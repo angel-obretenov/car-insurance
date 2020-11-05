@@ -24,7 +24,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/uploads/**", "/images/**", "/", "/login", "/register/**", "/confirm-account/**",
             "/images/**", "/register/confirm-account/**"};
     private static final String[] USER_MATCHERS = {"/service", "/my-policies"};
-    private static final String[] ADMIN_MATCHERS = {"/policy-approval/**"};
+    private static final String[] ADMIN_MATCHERS = {"/policy-approval/**", "/tickets/**"
+            , "/multicriteria"};
 
     @Autowired
     public SecurityConfiguration(DataSource dataSource) {
